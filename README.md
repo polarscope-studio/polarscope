@@ -5,6 +5,8 @@
 
 **by Jack Mitchell — M7PXZ**
 
+**WEBSITE:** https://polarscope.tiiny.site/
+
 FAR-FIELD 3D · RF Engineering Tool · Physics Powered by AI
 
 ---
