@@ -331,7 +331,7 @@ select.sel{background:var(--surf2);border:1px solid var(--brd2);color:var(--text
     <div class="splash-content" id="splashContent">
       <p>A real-time 3D antenna radiation pattern simulator built entirely in the browser. Visualise far-field patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based electromagnetic models.</p>
       <p style="margin-top:8px">No installation required. No data leaves your device.</p>
-      <p style="margin-top:8px;color:var(--acc)">v1.0 · Physics powered by AI · Built with Plotly.js</p>
+      <p style="margin-top:8px;color:var(--acc)">v1.0 · Powered By Physics · Built with Plotly.js</p>
       <p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell · Personal, educational & research use only. Commercial use prohibited without written permission.</p>
     </div>
     <button class="splash-start" onclick="closeSplash()">▶ Start Simulator</button>
@@ -344,7 +344,7 @@ function showSplashTab(tab,btn){
   btn.classList.add('active');
   const c=document.getElementById('splashContent');
   if(tab==='about'){
-    c.innerHTML='<p>A real-time 3D antenna radiation pattern simulator built entirely in the browser. Visualise far-field patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based electromagnetic models.</p><p style="margin-top:8px">No installation required. No data leaves your device.</p><p style="margin-top:8px;color:var(--acc)">v1.0 · Physics powered by AI · Built with Plotly.js</p><p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell · Personal, educational & research use only. Commercial use prohibited without written permission.</p>';
+    c.innerHTML='<p>A real-time 3D antenna radiation pattern simulator built entirely in the browser. Visualise far-field patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based electromagnetic models.</p><p style="margin-top:8px">No installation required. No data leaves your device.</p><p style="margin-top:8px;color:var(--acc)">v1.0 · Powered By Physics · Built with Plotly.js</p><p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell · Personal, educational & research use only. Commercial use prohibited without written permission.</p>';
   } else if(tab==='features'){
     c.innerHTML='<p><b style="color:var(--acc)">9 Antenna Types</b> — Dipole, V-Dipole, Ground Plane, Yagi-Uda, Turnstile, QFH, Collinear, Loop, Helix</p><p style="margin-top:6px"><b style="color:var(--acc)">Side-by-Side</b> — Compare two antennas simultaneously with independent controls</p><p style="margin-top:6px"><b style="color:var(--acc)">Wave Propagation</b> — Animated near-field and far-field wave visualisation with 8 colour themes</p><p style="margin-top:6px"><b style="color:var(--acc)">Polar Slice</b> — Interactive 2D gain plot with hover readouts at any angle</p><p style="margin-top:6px"><b style="color:var(--acc)">Edit Mode</b> — Per-element length editing with live pattern updates</p><p style="margin-top:6px"><b style="color:var(--acc)">Ground Reflection</b> — Height, conductivity, and ground size modelling</p><p style="margin-top:6px"><b style="color:var(--acc)">Wireframe Mode</b> — Clean mesh view of the radiation pattern</p>';
   } else if(tab==='controls'){
@@ -369,7 +369,7 @@ function closeSplash(){
       <div class="htitle">Antenna Radiation Pattern Visualizer</div>
       <div class="credit">by Jack Mitchell — M7PXZ</div>
     </div>
-    <div class="hsub">Far-Field 3D · RF Engineering Tool · <span style="opacity:.6">Physics powered by AI</span></div>
+    <div class="hsub">Far-Field 3D · RF Engineering Tool · <span style="opacity:.6">Powered By Physics</span></div>
   </div>
   <div class="hright">
     <div style="display:flex;align-items:center;gap:4px">
