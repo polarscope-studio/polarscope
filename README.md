@@ -106,7 +106,6 @@ No installation required. No data leaves your device. No server needed — just 
 ### Other Features
 - Amateur band labels with QRZ-style colours (2200m through 1.2cm)
 - Frequency input with MHz/kHz/GHz selector
-- Coaxial cable presets (RG-8, RG-58, RG-213, LMR-400)
 - Antenna geometry overlay with current arcs
 - Feedpoint markers
 - Splash screen with About, Features, Controls, and Support tabs
@@ -231,8 +230,7 @@ Everything is contained in one HTML file — CSS, JavaScript, and all antenna mo
 
 - **Parabolic antenna**: Attempted but abandoned — beam direction vs dish geometry could not be resolved
 - **Mobile 3D rendering**: May be blank on some devices despite explicit sizing and delayed init
-- **Helix model**: Free-space only (no ground plane reflector) — presets labelled accordingly
-- **Element coupling**: Not modelled — each element's field is computed independently
+- **Element coupling**: Not modelled — each element's field is computed independently (maybe future update)
 - **Far-field only**: Near-field in wave prop is approximate (spherical wave superposition)
 
 ---
@@ -249,16 +247,16 @@ Everything is contained in one HTML file — CSS, JavaScript, and all antenna mo
 
 ## Browser Support
 
-- Chrome/Edge 90+ (recommended)
+- Chrome/Edge/Brave 90+ (recommended)
 - Firefox 90+
 - Safari 15+
-- Mobile browsers (responsive layout, touch support)
+- Mobile browsers (experience may vary, mobile scaling is a nightmare!)
 
 ---
 
 ## Getting Started
 
-1. Download `Noice.html`
+1. Download `polarscopemain.html`
 2. Open in any modern browser
 3. Click **Start Simulator**
 4. Select an antenna type and explore!
