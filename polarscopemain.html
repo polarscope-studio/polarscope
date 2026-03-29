@@ -3261,6 +3261,40 @@ window.addEventListener('orientationchange',()=>{
     render();
   },400);
 });
+
+// Mobile pinch-to-zoom on 3D plot
+(function(){
+  let startDist=0, startEye=null, activeEl=null;
+  function getDist(t){return Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);}
+  
+  document.querySelectorAll('.plot3d-el').forEach(el=>{
+    el.addEventListener('touchstart',e=>{
+      if(e.touches.length===2){
+        e.preventDefault();
+        activeEl=el;
+        startDist=getDist(e.touches);
+        const winIdx=el.id==='plot3d_0'?0:1;
+        const cam=savedCamera[winIdx]||{eye:{x:1.8,y:0.6,z:0.9}};
+        startEye={x:cam.eye.x,y:cam.eye.y,z:cam.eye.z};
+      }
+    },{passive:false});
+  });
+  
+  document.addEventListener('touchmove',e=>{
+    if(!activeEl||e.touches.length!==2) return;
+    e.preventDefault();
+    const dist=getDist(e.touches);
+    const scale=startDist/Math.max(dist,1);
+    const newEye={x:startEye.x*scale,y:startEye.y*scale,z:startEye.z*scale};
+    const winIdx=activeEl.id==='plot3d_0'?0:1;
+    savedCamera[winIdx]={eye:newEye};
+    try{Plotly.relayout(activeEl,{'scene.camera.eye':newEye});}catch(ex){}
+  },{passive:false});
+  
+  document.addEventListener('touchend',e=>{
+    if(e.touches.length<2) activeEl=null;
+  });
+})();
 </script>
 </body>
 </html>
