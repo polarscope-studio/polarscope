@@ -11,7 +11,7 @@
 
 **EMAIL:** m7pxzqrz@gmail.com (Bugs & fixes)
 
-FAR-FIELD 3D · RF Engineering Tool · Physics Powered by AI
+FAR-FIELD 3D · RF Engineering Tool · Powered By Physics
 
 ---
 
