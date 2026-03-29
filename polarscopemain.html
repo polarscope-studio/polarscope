@@ -664,12 +664,12 @@ function closeSplash(){
       <button class="pbtn" onclick="doPreset(this,'gp',{L:0.25,gpRad:4,gpDroop:-30})">Elevated GP<span class="ptag">upswept</span></button>
     </div>
     <div class="plist" id="pre-yagi" style="display:none">
-      <button class="pbtn active" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:3,yagiRef:1})">3-el Yagi<span class="ptag">3+R</span></button>
-      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:5,yagiRef:1})">5-el Yagi<span class="ptag">5+R</span></button>
-      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:7,yagiRef:1})">7-el Yagi<span class="ptag">7+R</span></button>
-      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:10,yagiRef:1})">10-el Yagi<span class="ptag">10+R</span></button>
-      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:12,yagiRef:1})">12-el TV<span class="ptag">12+R</span></button>
-      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:1,yagiRef:1})">2-el beam<span class="ptag">1+R</span></button>
+      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:0,yagiRef:1})">2-el beam<span class="ptag">R+D</span></button>
+      <button class="pbtn active" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:1,yagiRef:1})">3-el Yagi<span class="ptag">3el</span></button>
+      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:3,yagiRef:1})">5-el Yagi<span class="ptag">5el</span></button>
+      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:5,yagiRef:1})">7-el Yagi<span class="ptag">7el</span></button>
+      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:8,yagiRef:1})">10-el Yagi<span class="ptag">10el</span></button>
+      <button class="pbtn" onclick="doPreset(this,'yagi',{L:0.5,yagiDir:10,yagiRef:1})">12-el TV<span class="ptag">12el</span></button>
     </div>
     <div class="plist" id="pre-turnstile" style="display:none">
       <button class="pbtn active" onclick="doPreset(this,'turnstile',{L:0.5,tsRef:1,tsSp:0.25})">+ Reflector<span class="ptag">0.25λ</span></button>
@@ -903,7 +903,7 @@ function defaultState(){
     alpha:45, vRef:0, vSp:0.25, vRefTilt:0,
     vArm1L:null, vArm2L:null, // null = use L, otherwise individual arm length in wavelengths
     gpRad:4, gpDroop:0,
-    yagiDir:3, yagiRef:1,
+    yagiDir:1, yagiRef:1,
     yagiDirLens:null, yagiRefL:null, // per-element overrides
     tsRef:1, tsSp:0.25, tsRefTilt:0, tsXL:null, tsYL:null, tsRefXL:null, tsRefYL:null,
     qfhT:1, colN:4, loopC:1.0, helixT:4, helixP:12, qfhL1:null, qfhL2:null, colLens:null,
@@ -2572,7 +2572,9 @@ function doPreset(btn,type,p){
     rotAz:0,rotEl:0,opacity:100,
     feedpoints:[{id:0,label:'FP1'}],fpCtr:1,
     groundHeight:S.groundHeight,groundUnit:S.groundUnit,groundCond:S.groundCond,
-    coax:S.coax,coaxLen:S.coaxLen};
+    coax:S.coax,coaxLen:S.coaxLen,
+    showWave:S.showWave,waveSpeed:S.waveSpeed,waveTheme:S.waveTheme,wavePhiCut:S.wavePhiCut,waveNF:S.waveNF,
+    showPolar:S.showPolar,phiCut:S.phiCut};
   const fresh=defaultState();
   Object.assign(S,fresh,saved);
   S.type=type;
