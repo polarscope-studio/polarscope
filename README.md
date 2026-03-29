@@ -272,9 +272,10 @@ No server, no install, no dependencies.
 ## File Structure
 
 ```
-polarscopemain.html          — The entire simulator (single file)
-README.md     — This documentation
-LICENSE.txt   — License documentation
+polarscopemain.html        — The Entire Simulator (Single File)
+README.md                  — This Documentation
+TECHNICAL_REFERENCE.md     — Technical Maths & Physics Documentation
+LICENSE.txt                — License Documentation
 ```
 
 ---
