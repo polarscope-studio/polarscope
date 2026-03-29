@@ -6,6 +6,8 @@
 **by Jack Mitchell — M7PXZ**
 
 **WEBSITE:** https://polarscope.tiiny.site/
+**LIVE DEMO VIDEO:** https://youtu.be/cLPWEIdKRf0
+**EMAIL:** m7pxzqrz@gmail.com (Bugs & fixes)
 
 FAR-FIELD 3D · RF Engineering Tool · Physics Powered by AI
 
