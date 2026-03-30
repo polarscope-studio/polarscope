@@ -59,19 +59,22 @@ No installation required. No data leaves your device. No server needed — just 
 - Far-Field mode: radiation pattern lookup table (64×64 LUT, ~20× faster)
 - 8 colour themes: Thermal, Ocean, Fire, Neon, Mono, Plasma, Ember, Aurora
 - Independent speed control per pane
-- Independent φ slice per pane
+- Independent V/H cut toggle per pane (Vertical φ or Horizontal θ)
 - GPU-accelerated compositing
 
 ### Polar Slice Panel
 - Interactive 2D scatterpolar gain plot
 - Hover gain readout on entire lobe edge (elevation + absolute gain)
 - Gold star markers on lobe peaks
+- Dark red star markers on lobe nulls with exact dB tooltips
 - -3dB reference circle
-- Independent φ slider per pane
+- Independent V/H cut toggle (Vertical φ or Horizontal θ)
 - Live resize with Plotly.relayout
 
 ### Edit Mode
 - Per-element length editing for all antenna types
+- Bidirectional sync: Live unit conversion between global sliders and Edit Mode fields
+- Precision Typing Lock: Prevents state overwrites while manually editing numbers
 - Colour picker per element
 - Live radiation pattern and geometry updates
 - Turnstile: Dipole X, Dipole Y, Reflector X, Reflector Y (all independent)
@@ -110,9 +113,11 @@ No installation required. No data leaves your device. No server needed — just 
 ### Other Features
 - Amateur band labels with QRZ-style colours (2200m through 1.2cm)
 - Frequency input with MHz/kHz/GHz selector
+- Precision controls: ◀/▶ stepper buttons for exact lengths and angles
+- Smart stepping: 10mm / 10° logical increments across all measurement units
 - Antenna geometry overlay with current arcs
 - Feedpoint markers
-- Splash screen with About, Features, Controls, and Support tabs
+- Splash screen with About, Features, Controls, Links, and Changelog tabs
 - Presets for each antenna type
 
 ---
@@ -152,7 +157,28 @@ Everything is contained in one HTML file — CSS, JavaScript, and all antenna mo
 
 ## Changelog
 
-### v1.0.0 — Initial Release
+### v1.1.0 — Precision & Visualization Update (30 Mar 2026)
+
+#### Precision & UX
+- **Control Steppers**: Added precision ◀/▶ buttons to all critical sliders (Length, Orientation, Height, Spacing).
+- **Smart Stepping**: Logical 10mm/10° increments that work seamlessly across all 6 unit types.
+- **Edit Mode Sync**: Global length unit selection now synchronizes live with individual element fields.
+- **Typing Lock**: Manual input fields now "lock" during typing to prevent UI updates from wiping user changes.
+- **UI Structure**: Added layout separators for better grouping of antenna parameters.
+
+#### Advanced Visualization
+- **Visual Null Markers**: Dark red stars on polar plots mark deep nulls with exact dBi/dBd hover data.
+- **3D Null Scanning**: Matrix-based structural scan across both H and V planes for accurate multi-plane detection.
+- **Cut Toggles**: Independent V/H cut switching on both Polar Slice and Wave Propagation overlays.
+- **Rendering Fixes**: Resolved line Z-fighting in 3D viewer and improved slice visibility.
+
+#### Improvements & Fixes
+- **Yagi counts**: Updated presets to match standard amateur radio element conventions (R+D+Directors).
+- **State Persistence**: Overlays now persist their visibility and position when switching antenna types.
+- **Pattern accuracy**: Improved peak detection for dipole models.
+- **Splash Screen**: Reorganized splash menu with dedicated Changelog and Links tabs.
+
+### v1.0.0 — Initial Release (28 Mar 2026)
 
 #### Core Simulator
 - 9 antenna types with physics-based field models
