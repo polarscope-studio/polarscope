@@ -1,7 +1,7 @@
 <img width="3093" height="1080" alt="polarscope_1" src="https://github.com/user-attachments/assets/27c2d3e3-20ae-4e81-a663-c51a71231aed" />
 
 
-# 📡 Antenna Radiation Pattern Visualizer
+# 📡 POLARSCOPE - Antenna Radiation Pattern Visualizer
 
 **by Jack Mitchell — M7PXZ**
 
@@ -10,8 +10,6 @@
 **LIVE DEMO VIDEO:** https://youtu.be/cLPWEIdKRf0
 
 **EMAIL:** m7pxzqrz@gmail.com (Bugs & fixes)
-
-**DISCORD** https://discord.com/invite/zBAam3TZKf (Dev Log: #polarscope-dev)
 
 FAR-FIELD 3D · RF Engineering Tool · Powered By Physics
 
@@ -98,6 +96,14 @@ No installation required. No data leaves your device. No server needed — just 
 - Optional beam lines (8 radial lines at TOA elevation)
 - Zenith detection
 
+### Structural Mast System
+- Dynamic 3D lattice tower generation that scales automatically with height
+- Configurable multi-level guy wire lines (up to 3 levels)
+- Catenary curve simulation (toggleable 'Taut' or 'Slack' wire gravitational droop)
+- Real-time Structural Tension Heatmap factoring in antenna weight and mast instability
+- Automatic ground UI enforcement when a tower is active
+- Precise visual anchoring to the ground plane
+
 ### Overlay Panel System
 - Drag-to-move via header bar
 - Resize from any edge or corner (8 invisible hit zones)
@@ -158,6 +164,22 @@ Everything is contained in one HTML file — CSS, JavaScript, and all antenna mo
 ---
 
 ## Changelog
+
+### v1.2.0 — Antenna Orientation & Structural Features (30 Mar 2026)
+
+#### Structural Mast System
+- **Lattice Towers & Masts**: Added a complete structural modelling system allowing you to mount antennas on detailed 3D lattice towers or simple poles.
+- **Guy Wire Physics**: Implemented configurable, multi-level guy wire supports. Guy lines automatically anchor to the ground plane and support configurable slack/sag physics.
+- **Structural Tension Map**: An interactive stress heatmap visually highlights strain points on the tower based on the mounted antenna's mass, wind load instability, and the support provided by the guy wires.
+
+#### Antenna Orientation & UI
+- **Yagi Horizontal Mode**: Fixed 3D geometry rendering so that driven, reflector, and director elements correctly lay along the X-axis when the antenna is flipped to horizontal mode.
+- **Rotation Freedom**: Expanded both Azimuth and Elevation sliders from restricted ranges to a full -180° to 180°, allowing unrestricted 360-degree pointing of all antenna types.
+- **Flip Button Repair**: Restored functionality to the "Flip Orientation" button so that UI controls and the 3D model now sync and re-render immediately upon clicking.
+
+#### Editor Upgrades
+- **Dynamic Editor Refresh**: Resolved a bug where the "Edit Mode" side panel failed to update when dynamically adding or removing elements (like Yagi directors or Collinear sections), ensuring the editor always matches the active 3D model.
+- **Element Syncing**: Fixed logic errors where adjusting single-element dimensions incorrectly modified multi-element arrays (e.g., V-dipole arms or Turnstile reflectors). Synchronised overall length sliders specifically for single-loop and single-helix antennas to alter circumference directly.
 
 ### v1.1.0 — Precision & Visualization Update (30 Mar 2026)
 
