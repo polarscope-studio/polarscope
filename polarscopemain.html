@@ -79,7 +79,7 @@ header{padding:8px 18px;background:var(--surf);border-bottom:1px solid var(--brd
 .panel{width:252px;flex-shrink:0;background:var(--surf);border-right:1px solid var(--brd);display:flex;flex-direction:column;overflow-y:auto;position:relative}
 .panel-resize{position:absolute;top:0;right:-4px;width:8px;height:100%;cursor:col-resize;z-index:10;background:transparent}
 .panel-resize:hover,.panel-resize:active{background:color-mix(in srgb,var(--acc) 30%,transparent)}
-.psec{padding:10px 13px;border-bottom:1px solid var(--brd)}
+.psec{padding:13px 13px;border-bottom:1px solid var(--brd)}
 .psec.collapsed .collapsible-body{display:none}
 .psec.collapsed .slabel::first-letter{content:''}
 .psec:not(.collapsed)>.slabel::before{content:''}
@@ -90,7 +90,7 @@ header{padding:8px 18px;background:var(--surf);border-bottom:1px solid var(--brd
 .ttab:hover{border-color:var(--brd2);color:var(--text)}
 .ttab.active{background:color-mix(in srgb,var(--acc) 13%,transparent);border-color:var(--acc);color:var(--acc)}
 
-.ctrl{display:flex;flex-direction:column;gap:6px;margin-bottom:9px}
+.ctrl{display:flex;flex-direction:column;gap:8px;margin-bottom:13px}
 .ctrl:last-child{margin-bottom:0}
 .crow{display:flex;justify-content:space-between;align-items:center}
 .cname{font-size:.7rem;color:var(--muted)}
@@ -101,6 +101,7 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 0 5px color-mix(in 
 input[type=range]::-moz-range-thumb{width:12px;height:12px;border:none;border-radius:50%;background:var(--acc);cursor:pointer}
 .extra-ctrl{display:none}
 .extra-ctrl.vis{display:block}
+.psec-sep{border:none;height:1px;background:color-mix(in srgb,var(--brd) 60%,transparent);margin:14px 0 10px}
 
 .tog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .tog-row:last-child{margin-bottom:0}
@@ -325,7 +326,7 @@ select.sel{background:var(--surf2);border:1px solid var(--brd2);color:var(--text
       <div class="splash-tab active" onclick="showSplashTab('about',this)">About</div>
       <div class="splash-tab" onclick="showSplashTab('features',this)">Features</div>
       <div class="splash-tab" onclick="showSplashTab('controls',this)">Controls</div>
-      <div class="splash-tab" onclick="showSplashTab('support',this)">Buy Me a Coffee ☕</div>
+      <div class="splash-tab" onclick="showSplashTab('support',this)">Links</div>
       <div class="splash-tab" onclick="showSplashTab('changelog',this)">Changelog</div>
     </div>
     <div class="splash-content" id="splashContent">
@@ -352,7 +353,7 @@ function showSplashTab(tab,btn){
   } else if(tab==='support'){
     c.innerHTML='<p>If you find this tool useful, consider buying me a coffee! ☕</p><p style="margin-top:12px"><b style="color:var(--acc)">PayPal:</b> <a href="https://www.paypal.me/mitchkmn" target="_blank">paypal.me/mitchkmn</a></p><p style="margin-top:8px"><b style="color:var(--acc)">Email:</b> <a href="mailto:m7pxzqrz@gmail.com">m7pxzqrz@gmail.com</a> <span style="font-size:.4rem;color:var(--dim)">(screenshots & bug reports)</span></p><p style="margin-top:8px"><b style="color:var(--acc)">YouTube:</b> <a href="https://www.youtube.com/@M7PXZ" target="_blank">@M7PXZ</a></p><p style="margin-top:8px"><b style="color:var(--acc)">Discord:</b> <a href="https://discord.gg/zBAam3TZKf" target="_blank">Join the server</a></p><p style="margin-top:8px"><b style="color:var(--acc)">GitHub:</b> <a href="https://github.com/polarscope-studio/polarscope" target="_blank">polarscope-studio/polarscope</a></p><p style="margin-top:12px;font-size:.5rem;color:var(--dim)">This project is free for personal, educational, and research use. Your support helps fund development of new features and improvements.</p><p style="margin-top:8px">73 de M7PXZ 🤙</p>';
   } else if(tab==='changelog'){
-    c.innerHTML='<div style="max-height:180px;overflow-y:auto;padding-right:6px"><p style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--brd)"><b style="color:#ffd700">🔧 In Development</b></p><p style="margin-left:8px">• Mast & tower system — mount antennas on elevated poles above ground</p><p style="margin-left:8px">• Antenna element coupling modelling</p><p style="margin-left:8px">• Mobile touch orbit improvements</p><p style="margin-left:8px;margin-bottom:10px">• Satellite pass overlay — input a specific pass and visualise where your lobes intersect the satellite trajectory for optimal reception</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p style="margin-bottom:10px"><b style="color:#38bdf8">📋 Recently Updated</b> <span style="color:var(--dim)">— 29 Mar 2026</span></p><p style="margin-left:8px">• V/H cut toggle on Polar Slice — slice vertically (φ cut) or horizontally (θ cut) through the radiation pattern</p><p style="margin-left:8px">• V/H cut toggle on Wave Propagation — independent from polar, same vertical/horizontal switching</p><p style="margin-left:8px">• 3D slice lines update to match cut mode — horizontal ring for H, vertical arc for V</p><p style="margin-left:8px">• Fixed Yagi preset element counts to match ham convention (3-el = R+D+1 director)</p><p style="margin-left:8px">• Fixed GP radial clipping when extending individual radial lengths</p><p style="margin-left:8px">• Overlays persist across preset switches</p><p style="margin-left:8px">• Improved lobe peak detection for dipole patterns</p><p style="margin-left:8px;margin-bottom:10px">• Splash screen: Polarscope branding, changelog tab, links section</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.0.0</b> <span style="color:var(--dim)">— 28 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Initial public release</p><p style="margin-left:8px">• 9 antenna types with physics-based field models</p><p style="margin-left:8px">• 3D interactive radiation pattern viewer</p><p style="margin-left:8px">• Side-by-side antenna comparison mode</p><p style="margin-left:8px">• Wave propagation overlay (NF/FF, 8 themes)</p><p style="margin-left:8px">• Polar slice panel with hover gain readouts</p><p style="margin-left:8px">• Per-element editing in Edit Mode</p><p style="margin-left:8px">• Ground reflection modelling</p><p style="margin-left:8px">• Wireframe mode (scatter3d mesh lines)</p><p style="margin-left:8px">• Draggable & resizable overlay panels</p><p style="margin-left:8px">• Take-off angle analysis (3 modes)</p><p style="margin-left:8px">• 5 colour themes, 5 colormaps</p><p style="margin-left:8px">• Responsive design (desktop to mobile)</p><p style="margin-left:8px">• Splash screen with project info</p></div>';
+    c.innerHTML='<div style="max-height:180px;overflow-y:auto;padding-right:6px"><p><b style="color:var(--acc)">v1.1.0</b> <span style="color:var(--dim)">— 30 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Precision & Visualization Update</p><p style="margin-left:8px">• Precision slider buttons (hold to ◀/▶ for exact length, rotation, height, spacing, tilt)</p><p style="margin-left:8px">• Smart 10mm/10deg stepping logic for exact decimal increments across all units</p><p style="margin-left:8px">• Visual Null Markers (dark red stars) on polar plots with exact dBi/dBd tooltips</p><p style="margin-left:8px">• 3D Structural Null scanning (H+V cuts) for accurate multi-plane detection</p><p style="margin-left:8px">• Relaxed null detection threshold (-6dB) for better real-world pattern analysis</p><p style="margin-left:8px">• Independent element length tracking in Edit Mode (detached from global L slider)</p><p style="margin-left:8px">• Bidirectional unit conversion & live refresh across all panel modes</p><p style="margin-left:8px">• UI layout refinements with &lt;hr&gt; section separators for better feature grouping</p><p style="margin-left:8px">• Fixed pattern slice Z-fighting and enhanced line visibility in 3D viewer</p><p style="margin-left:8px;margin-bottom:10px">• Precision typing lock to prevent UI state overwrites during manual input</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.0.0</b> <span style="color:var(--dim)">— 28 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Initial public release</p><p style="margin-left:8px">• 9 antenna types with physics-based field models</p><p style="margin-left:8px">• 3D interactive radiation pattern viewer</p><p style="margin-left:8px">• Side-by-side antenna comparison mode</p><p style="margin-left:8px">• Wave propagation overlay (NF/FF, 8 themes)</p><p style="margin-left:8px">• Polar slice panel with hover gain readouts</p><p style="margin-left:8px">• Per-element editing in Edit Mode</p><p style="margin-left:8px">• Ground reflection modelling</p><p style="margin-left:8px">• Wireframe mode (scatter3d mesh lines)</p><p style="margin-left:8px">• Draggable & resizable overlay panels</p><p style="margin-left:8px">• Take-off angle analysis (3 modes)</p><p style="margin-left:8px">• 5 colour themes, 5 colormaps</p><p style="margin-left:8px">• Responsive design (desktop to mobile)</p><p style="margin-left:8px">• Splash screen with project info</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p style="margin-bottom:10px"><b style="color:#38bdf8">📋 Updates</b> <span style="color:var(--dim)">— 29 Mar 2026</span></p><p style="margin-left:8px">• V/H cut toggle on Polar Slice — slice vertically (φ cut) or horizontally (θ cut) through the radiation pattern</p><p style="margin-left:8px">• V/H cut toggle on Wave Propagation — independent from polar, same vertical/horizontal switching</p><p style="margin-left:8px">• 3D slice lines update to match cut mode — horizontal ring for H, vertical arc for V</p><p style="margin-left:8px">• Fixed Yagi preset element counts to match ham convention (3-el = R+D+1 director)</p><p style="margin-left:8px">• Fixed GP radial clipping when extending individual radial lengths</p><p style="margin-left:8px">• Overlays persist across preset switches</p><p style="margin-left:8px">• Improved lobe peak detection for dipole patterns</p><p style="margin-left:8px;margin-bottom:10px">• Splash screen: Polarscope branding, changelog tab, links section</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--brd)"><b style="color:#ffd700">🔧 In Development</b></p><p style="margin-left:8px">• Mast & tower system — mount antennas on elevated poles above ground</p><p style="margin-left:8px">• Antenna element coupling modelling</p><p style="margin-left:8px">• Mobile touch orbit improvements</p><p style="margin-left:8px;margin-bottom:10px">• Satellite pass overlay — input a specific pass and visualise where your lobes intersect the satellite trajectory for optimal reception</p></div>';
   }
 }
 function closeSplash(){
@@ -423,7 +424,7 @@ function closeSplash(){
     <div class="ep-field"><div class="ep-lbl">Azimuth°</div><input class="ep-inp" id="epAz" value="0" oninput="applyEdit()" style="width:52px"/></div>
     <div class="ep-field"><div class="ep-lbl">Elevation°</div><input class="ep-inp" id="epEl" value="0" oninput="applyEdit()" style="width:52px"/></div>
     <div class="ep-field"><div class="ep-lbl">Length</div><input class="ep-inp" id="epLm" value="" readonly style="opacity:.6;width:72px"/></div>
-    <div class="ep-field"><div class="ep-lbl">Units</div><select class="ep-sel" id="epUnit" onchange="buildElemList()" style="width:40px"><option value="wl">λ</option><option value="m">m</option><option value="cm">cm</option><option value="mm">mm</option><option value="in">in</option><option value="ft">ft</option></select></div>
+    <div class="ep-field"><div class="ep-lbl">Units</div><select class="ep-sel" id="epUnit" onchange="S.lUnit=this.value;syncPanelToState();refreshEditDisplay()" style="width:40px"><option value="wl">λ</option><option value="m">m</option><option value="cm">cm</option><option value="mm">mm</option><option value="in">in</option><option value="ft">ft</option></select></div>
   </div>
   <div style="margin-top:6px">
     <div class="ep-lbl">ELEMENTS <span style="color:var(--dim);font-weight:400;font-size:.48rem">— type value + Enter or live as you type</span></div>
@@ -456,16 +457,26 @@ function closeSplash(){
     <div class="slabel">Parameters <span style="font-size:.45rem;color:var(--muted);font-weight:400">Hold ALT + drag for ×5 snap</span></div>
     <div class="ctrl">
       <div class="crow"><span class="cname">Element Length (L)</span><span class="badge" id="lLabel">0.50λ</span></div>
-      <input type="range" id="lengthSlider" min="0.1" max="3.0" step="0.01" value="0.5"/>
+      <div class="gh-row" style="margin-top:2px; margin-bottom:6px">
+        <input class="numinp" id="lVal" value="0.5" onfocus="window._lValTyp=true" onblur="window._lValTyp=false;syncPanelToState()" oninput="if(!_syncing){S.L=unitToWl(parseFloat(this.value)||0.5,S.lUnit||'wl');document.getElementById('lengthSlider').value=S.L;document.getElementById('lengthSlider').dispatchEvent(new Event('input'))}"/>
+        <select class="sel" id="lUnit" onchange="if(!_syncing){S.lUnit=this.value;syncPanelToState();if(typeof editMode!=='undefined'&&editMode)refreshEditDisplay()}" style="width:58px;margin-top:0;padding:3px 5px">
+          <option value="m">m</option><option value="cm">cm</option>
+          <option value="mm">mm</option><option value="in">in</option><option value="ft">ft</option><option value="wl" selected>λ</option>
+        </select>
+      </div>
+      <input type="range" id="lengthSlider" min="0.1" max="3.0" step="any" value="0.5"/>
     </div>
+    <hr class="psec-sep" style="margin:-1px 0 13px">
     <div class="ctrl">
       <div class="crow"><span class="cname">Azimuth rotate</span><span class="badge" id="rotAzLabel">0°</span></div>
       <input type="range" id="rotAzSlider" min="0" max="360" step="1" value="0"/>
     </div>
+    <hr class="psec-sep" style="margin:-1px 0 13px">
     <div class="ctrl">
       <div class="crow"><span class="cname">Elevation tilt</span><span class="badge" id="rotElLabel">0°</span></div>
       <input type="range" id="rotElSlider" min="-90" max="90" step="1" value="0"/>
     </div>
+    <hr class="psec-sep">
     <!-- Dipole extras -->
     <div class="extra-ctrl vis" id="ec-dipole">
       <div class="tog-row"><span class="tog-label">End-Fed</span><label class="tog"><input type="checkbox" id="togEndFed" onchange="S.endFed=this.checked;render()"><span class="tog-sl"></span></label></div>
@@ -604,6 +615,7 @@ function closeSplash(){
       </div>
       <div class="tog-row" style="margin-top:2px"><span class="tog-label" style="font-size:.5rem">Show beam lines</span><label class="tog"><input type="checkbox" id="togTOABeam" onchange="S.showTOABeam=this.checked;render()"><span class="tog-sl"></span></label></div>
     </div>
+    <hr class="psec-sep">
     <div class="ctrl" style="margin-top:7px">
       <div class="crow"><span class="cname">Lobe opacity</span><span class="badge" id="opacLabel">100%</span></div>
       <input type="range" id="opacSlider" min="20" max="100" step="5" value="100"/>
@@ -616,15 +628,16 @@ function closeSplash(){
     <div class="tog-row"><span class="tog-label">Show ground</span><label class="tog"><input type="checkbox" id="togGndVis" onchange="S.showGnd=this.checked;render()"><span class="tog-sl"></span></label></div>
     <div class="ctrl" style="margin-top:6px">
       <div class="crow"><span class="cname">Height</span><span class="badge" id="ghWl">2.4λ</span></div>
-      <input type="range" id="ghSlider" min="0.1" max="20" step="0.1" value="5.0"/>
+      <input type="range" id="ghSlider" min="0.1" max="20" step="any" value="5.0"/>
     </div>
     <div class="gh-row" style="margin-top:4px">
-      <input class="numinp" id="ghVal" value="5.0" oninput="if(!_syncing){S.groundHeight=parseFloat(this.value)||5;updateGH();render()}"/>
+      <input class="numinp" id="ghVal" value="5.0" onfocus="window._ghTyp=true" onblur="window._ghTyp=false;updateGH()" oninput="if(!_syncing){S.groundHeight=parseFloat(this.value)||5;updateGH();render()}"/>
       <select class="sel" id="ghUnit" onchange="if(!_syncing){S.groundUnit=this.value;updateGH();render()}" style="width:58px;margin-top:0;padding:3px 5px">
         <option value="m" selected>m</option><option value="cm">cm</option>
         <option value="mm">mm</option><option value="in">in</option><option value="ft">ft</option><option value="wl">λ</option>
       </select>
     </div>
+    <hr class="psec-sep">
     <div class="ctrl" style="margin-top:7px">
       <div class="crow"><span class="cname">Conductivity</span><span class="badge" id="gcLabel">Medium</span></div>
       <input type="range" id="gcSlider" min="0" max="2" step="1" value="1"/>
@@ -1005,7 +1018,7 @@ function updateGH(){
   const wl=mVal/getLambdaM();
   document.getElementById('ghWl').textContent=wl.toFixed(2)+'λ';
   document.getElementById('ghSlider').value=Math.min(20,Math.max(0.1,mVal));
-  document.getElementById('ghVal').value=v;
+  const gv=document.getElementById('ghVal');if(gv && !window._ghTyp)gv.value=v;
   document.getElementById('ghUnit').value=u;
 }
 
@@ -1221,9 +1234,9 @@ function localField(lx,ly,lz,st){
     case 'qfh':{
       const az=1+0.05*Math.cos(2*phi);
       const c=Math.pow((1+cosT)/2,qfhT);
-      // L controls the loop height — affects vertical beamwidth
-      const ef=elemF(cosT,L);
-      const Etot=Math.max(0,c*c*ef*ef*(0.5+0.5*L)*az);
+      const e1=elemF(cosT,st.qfhL1||L), e2=elemF(cosT,st.qfhL2||L), ef=(e1+e2)/2;
+      const avgL=((st.qfhL1||L)+(st.qfhL2||L))/2;
+      const Etot=Math.max(0,c*c*ef*ef*(0.5+0.5*avgL)*az);
       return {Etot,Ev:Etot*.5,Eh:Etot*.5,Etheta:Etot*.5,Ephi:Etot*.5};
     }
     case 'collinear':{
@@ -1426,10 +1439,21 @@ function fbStr(U,thetas){
   const bk=U[0]||EPS;
   return (10*Math.log10(fwd/(bk+EPS))).toFixed(1)+' dB';
 }
-function countNulls(U){
-  let n=0;
-  for(let i=1;i<U.length-1;i++) if(U[i]<1e-4&&U[i]<=U[i-1]&&U[i]<=U[i+1]) n++;
-  return n;
+function countNulls(Uarr){
+  if(!Uarr||!Uarr.length) return 0;
+  let maxU=0,maxT=0,maxP=0;
+  for(let i=0;i<Uarr.length;i++) for(let j=0;j<Uarr[i].length;j++) if(Uarr[i][j]>maxU){maxU=Uarr[i][j];maxT=i;maxP=j;}
+  const thresh=maxU*0.25;
+  let nV=0,nH=0;
+  const U_v=Uarr.map(r=>r[maxP]);
+  for(let i=1;i<U_v.length-1;i++) if(U_v[i]<thresh && U_v[i]<U_v[i-1] && U_v[i]<=U_v[i+1]) nV++;
+  nV*=2;
+  const U_h=Uarr[maxT]||[];
+  for(let j=0;j<U_h.length-1;j++){
+    const prev=j===0?U_h[U_h.length-2]:U_h[j-1];
+    if(U_h[j]<thresh && U_h[j]<prev && U_h[j]<=U_h[j+1]) nH++;
+  }
+  return Math.max(nV,nH);
 }
 
 /* ════════════════════════════════════════════════
@@ -1643,20 +1667,19 @@ function geomTraces(st,meshData){
         addCurrentArcs([0,-hY,0],[0,hY,0],LY);
         break;}
       case 'qfh':{
-        const nP=60,rq=h*.32,hh=h*.65;
         for(let loop=0;loop<2;loop++){
-          const pts=[];
+          const elL=loop===0?(st.qfhL1||L):(st.qfhL2||L);
+          const hh=elL*sc*.5*.65, rq=elL*sc*.5*.32;
+          const nP=60, pts=[];
           for(let k=0;k<=nP;k++){const t=k/nP,ang=TWO_PI*t+loop*Math.PI/2;pts.push([rq*Math.cos(ang),rq*Math.sin(ang),-hh+2*hh*t]);}
           addLine(pts,loop===0?'rgba(255,255,255,.82)':'#ffd700',3,null,'Loop '+(loop+1));
         }
-        // Current arcs on all four vertical arms of both loops
         for(let loop=0;loop<2;loop++){
-          const phOff=loop*Math.PI/2;
-          // Each loop has 2 vertical runs (up and down sides of the helix)
+          const elL=loop===0?(st.qfhL1||L):(st.qfhL2||L);
+          const hh=elL*sc*.5*.65, rq=elL*sc*.5*.32, phOff=loop*Math.PI/2;
           for(let arm=0;arm<2;arm++){
-            const ang=arm*Math.PI+phOff;
-            const ax=rq*Math.cos(ang), ay=rq*Math.sin(ang);
-            addCurrentArcs([ax,ay,-hh],[ax,ay,hh],L);
+            const ax=rq*Math.cos(arm*Math.PI+phOff), ay=rq*Math.sin(arm*Math.PI+phOff);
+            addCurrentArcs([ax,ay,-hh],[ax,ay,hh],elL);
           }
         }
         break;}
@@ -1680,7 +1703,7 @@ function geomTraces(st,meshData){
         addCurrentArcs([r,0,0],[-r,0,0],loopC*.5);
         break;}
       case 'helix':{
-        const aR=helixP*Math.PI/180, C=1.0*sc, Sp=C*Math.tan(aR), rh=C/TWO_PI, tot=helixT*Sp;
+        const aR=helixP*Math.PI/180, C=L*sc, Sp=C*Math.tan(aR), rh=C/TWO_PI, tot=helixT*Sp;
         const nP=helixT*36, pts=[];
         for(let k=0;k<=nP;k++){const t=k/nP,ang=TWO_PI*helixT*t;pts.push([rh*Math.cos(ang),rh*Math.sin(ang),-tot/2+tot*t]);}
         addLine(pts,'rgba(255,255,255,.82)',3,null,'Helix');
@@ -1788,7 +1811,7 @@ function geomTraces(st,meshData){
       for(let j=0;j<=NP;j++){
         const phi=j*TWO_PI/NP;
         const val=Uarr[thetaIdx]?Uarr[thetaIdx][j]||0:0;
-        const r=Math.sqrt(Math.max(0,val)/mUmax);
+        const r=Math.sqrt(Math.max(0,val)/mUmax) + 0.015;
         const lx=r*sinT*Math.cos(phi),ly=r*sinT*Math.sin(phi),lz=r*cosT;
         const [gx,gy,gz]=rotPt(lx,ly,lz,st.rotAz,st.rotEl);
         slicePts.push([gx,gy,gz]);
@@ -1800,7 +1823,7 @@ function geomTraces(st,meshData){
       for(let i=0;i<=NT;i++){
         const sinT=Math.sin(mThetas[i]),cosT=Math.cos(mThetas[i]);
         const val=Uarr[i][phiIdx]||0;
-        const r=Math.sqrt(Math.max(0,val)/mUmax);
+        const r=Math.sqrt(Math.max(0,val)/mUmax) + 0.015;
         const lx=r*sinT*Math.cos(phiRad),ly=r*sinT*Math.sin(phiRad),lz=r*cosT;
         const [gx,gy,gz]=rotPt(lx,ly,lz,st.rotAz,st.rotEl);
         slicePts.push([gx,gy,gz]);
@@ -1808,7 +1831,7 @@ function geomTraces(st,meshData){
     }
     const sx=slicePts.map(p=>p[0]),sy=slicePts.map(p=>p[1]),sz=slicePts.map(p=>p[2]);
     traces.push({type:'scatter3d',mode:'lines',x:sx,y:sy,z:sz,
-      line:{color:'rgba(255,40,40,.95)',width:7},showlegend:false,hoverinfo:'skip'});
+      line:{color:'rgba(255,40,40,.95)',width:8},showlegend:false,hoverinfo:'skip'});
   }
 
   // Wave propagation slice line on 3D pattern (green)
@@ -1824,7 +1847,7 @@ function geomTraces(st,meshData){
       for(let j=0;j<=NP;j++){
         const phi=j*TWO_PI/NP;
         const val=Uarr[thetaIdx]?Uarr[thetaIdx][j]||0:0;
-        const r=Math.sqrt(Math.max(0,val)/mUmax);
+        const r=Math.sqrt(Math.max(0,val)/mUmax) + 0.015;
         const lx=r*sinT*Math.cos(phi),ly=r*sinT*Math.sin(phi),lz=r*cosT;
         const [gx,gy,gz]=rotPt(lx,ly,lz,st.rotAz,st.rotEl);
         wSlicePts.push([gx,gy,gz]);
@@ -1836,7 +1859,7 @@ function geomTraces(st,meshData){
       for(let i=0;i<=NT;i++){
         const sinT=Math.sin(mThetas[i]),cosT=Math.cos(mThetas[i]);
         const val=Uarr[i][phiIdx]||0;
-        const r=Math.sqrt(Math.max(0,val)/mUmax);
+        const r=Math.sqrt(Math.max(0,val)/mUmax) + 0.015;
         const lx=r*sinT*Math.cos(phiRad),ly=r*sinT*Math.sin(phiRad),lz=r*cosT;
         const [gx,gy,gz]=rotPt(lx,ly,lz,st.rotAz,st.rotEl);
         wSlicePts.push([gx,gy,gz]);
@@ -1844,7 +1867,7 @@ function geomTraces(st,meshData){
     }
     const wx=wSlicePts.map(p=>p[0]),wy=wSlicePts.map(p=>p[1]),wz=wSlicePts.map(p=>p[2]);
     traces.push({type:'scatter3d',mode:'lines',x:wx,y:wy,z:wz,
-      line:{color:'rgba(40,255,120,.85)',width:5},showlegend:false,hoverinfo:'skip'});
+      line:{color:'rgba(40,255,120,.85)',width:6},showlegend:false,hoverinfo:'skip'});
   }
 
   return traces;
@@ -1898,7 +1921,7 @@ function renderWin(winIdx, st){
   renderWinFromMesh(winIdx,st,mesh);
 }
 function renderWinFromMesh(winIdx, st, mesh){
-  const {X,Y,Z,C,Umax,U_row,thetas}=mesh;
+  const {X,Y,Z,C,Umax,U_row,thetas,Uarr}=mesh;
   const showLobe=st.showLobe;
   const opac=Math.max(0.2,Math.min(1,(st.opacity||100)/100));
   const cs=CMAPS[st.cmap]||CMAPS.default;
@@ -1975,7 +1998,7 @@ function renderWinFromMesh(winIdx, st, mesh){
     document.getElementById('statBW').textContent=hpbwStr(U_row,thetas,Umax);
     document.getElementById('statTOA').textContent=toaStr(U_row,thetas,st.toaMode);
     document.getElementById('statFB').textContent=fbStr(U_row,thetas);
-    document.getElementById('statNulls').textContent=countNulls(U_row);
+    document.getElementById('statNulls').textContent=countNulls(Uarr);
     const NAMES={dipole:'Dipole',v:'V-Dipole',gp:'¼λ GP',yagi:'Yagi-Uda',
       turnstile:'Turnstile',qfh:'QFH',collinear:'Collinear',loop:'Loop',helix:'Helix'};
     const DISPS={total:'Total Gain',ver:'Vertical Gain',hor:'Horizontal Gain',
@@ -2158,6 +2181,12 @@ function renderPolarPane(paneIdx,st,mesh){
     for(let i=0;i<rNorm.length;i++){if(rNorm[i]>maxR){maxR=rNorm[i];maxI=i;}}
     if(maxR>.05){lobeEl.push(angles[maxI]);lobeR.push(maxR);}
   }
+  const nullEl=[],nullR=[];
+  for(let i=1;i<rNorm.length-1;i++){
+    if(rNorm[i]<Math.sqrt(0.25) && rNorm[i]<rNorm[i-1] && rNorm[i]<=rNorm[i+1]){
+      nullEl.push(angles[i]); nullR.push(rNorm[i]);
+    }
+  }
   const hue=currentTheme==='terminal'?120:currentTheme==='space'?270:currentTheme==='amber'?40:195;
   const sc=SBGCOL[currentTheme]||'#080b12',tx=STXCOL[currentTheme]||'#94a3b8',gc=tx+'44';
   const plotData=[
@@ -2175,6 +2204,15 @@ function renderPolarPane(paneIdx,st,mesh){
         return a.toFixed(1)+'° · '+absGain+' '+st.dbUnit;
       }),
       hovertemplate:'%{customdata}<extra></extra>',name:'Lobes'}]:[]),
+    ...(nullEl.length?[{type:'scatterpolar',r:nullR,theta:nullEl,mode:'markers',
+      marker:{color:'#b91c1c',size:6,symbol:'star'},
+      customdata:nullEl.map((a,i)=>{
+        const dbNorm=nullR[i]>EPS?(20*Math.log10(nullR[i])).toFixed(1):'-∞';
+        const off=st.dbUnit==='dBd'?-DBD_OFFSET:0;
+        const absGain=(st.peakDbi+parseFloat(dbNorm)+off).toFixed(1);
+        return a.toFixed(1)+'° · Null ('+absGain+' '+st.dbUnit+')';
+      }),
+      hovertemplate:'%{customdata}<extra></extra>',name:'Nulls'}]:[]),
   ];
   const polylay={
     paper_bgcolor:'transparent',plot_bgcolor:'transparent',
@@ -2339,7 +2377,7 @@ function toggleEdit(){
 function refreshEditDisplay(){
   document.getElementById('epAz').value=S.rotAz.toFixed(1);
   document.getElementById('epEl').value=S.rotEl.toFixed(1);
-  document.getElementById('epLm').value=(S.L*getLambdaM()).toFixed(4)+' m';
+  document.getElementById('epLm').value=wlToUnit(S.L,S.lUnit||'wl').toFixed(4)+((S.lUnit||'wl')==='wl'?' λ':' '+(S.lUnit||'wl'));
   buildElemList();
 }
 function applyEdit(){
@@ -2349,7 +2387,7 @@ function applyEdit(){
   document.getElementById('rotAzLabel').textContent=S.rotAz.toFixed(0)+'°';
   document.getElementById('rotElSlider').value=S.rotEl;
   document.getElementById('rotElLabel').textContent=S.rotEl.toFixed(0)+'°';
-  document.getElementById('epLm').value=(S.L*getLambdaM()).toFixed(4)+' m';
+  document.getElementById('epLm').value=wlToUnit(S.L,S.lUnit||'wl').toFixed(4)+((S.lUnit||'wl')==='wl'?' λ':' '+(S.lUnit||'wl'));
   render();
 }
 function applyEditLen(){applyEdit();}
@@ -2366,7 +2404,8 @@ function buildElemList(){
   const inner=document.getElementById('elemListInner');
   if(!inner) return;
   inner.innerHTML='';
-  const u=document.getElementById('epUnit').value;
+  const u=S.lUnit||'wl';
+  const epU=document.getElementById('epUnit');if(epU)epU.value=u;
   const uLabel=u==='wl'?'λ':u;
   
   function mkRow(label,defaultColor,lenWl,onApply){
@@ -2399,17 +2438,16 @@ function buildElemList(){
     };
     const nm=document.createElement('div');nm.className='elem-nm';nm.textContent=label;
     const inp=document.createElement('input');inp.className='elem-inp';
-    inp.value=wlToUnit(lenWl,u).toFixed(3);
+    inp.value=wlToUnit(lenWl,u).toFixed(4);
     // Live update with 200ms debounce
     inp.oninput=function(){
       clearTimeout(_editTimer);
       const self=this;
       _editTimer=setTimeout(()=>{
         const v=parseFloat(self.value);if(isNaN(v)||v<=0)return;
-        onApply(unitToWl(v,u));
-        document.getElementById('epLm').value=(S.L*getLambdaM()).toFixed(4)+' m';
-        document.getElementById('lengthSlider').value=Math.min(3,Math.max(.1,S.L));
-        document.getElementById('lLabel').textContent=S.L.toFixed(2)+'λ';
+        const wl=unitToWl(v,u);
+        onApply(wl);
+        document.getElementById('epLm').value=wlToUnit(wl,S.lUnit||'wl').toFixed(4)+((S.lUnit||'wl')==='wl'?' λ':' '+(S.lUnit||'wl'));
         render();
       },200);
     };
@@ -2526,7 +2564,10 @@ function syncPanelToState(){
     const e=document.getElementById(id);if(e)e.value=val;
     const l=document.getElementById(lid);if(l)l.textContent=fmt(val);
   }
-  ss('lengthSlider',S.L,'lLabel',v=>parseFloat(v).toFixed(2)+'λ');
+  ss('lengthSlider',S.L,'lLabel',v=>parseFloat(v).toFixed(3)+'λ');
+  const lu=document.getElementById('lUnit');if(lu)lu.value=S.lUnit||'wl';
+  const lv=document.getElementById('lVal');if(lv && !window._lValTyp)lv.value=(S.lUnit==='wl'?S.L:wlToUnit(S.L,S.lUnit||'wl')).toFixed(4);
+  const epU=document.getElementById('epUnit');if(epU)epU.value=S.lUnit||'wl';
   ss('rotAzSlider',S.rotAz,'rotAzLabel',v=>v+'°');
   ss('rotElSlider',S.rotEl,'rotElLabel',v=>v+'°');
   ss('alphaSlider',S.alpha,'alphaLabel',v=>v+'°');
@@ -2606,6 +2647,7 @@ function setType(t){
   fresh.type=t;
   fresh.freqMHz=S.freqMHz;fresh.disp=S.disp;fresh.cmap=S.cmap;fresh.dbUnit=S.dbUnit;
   fresh.groundHeight=S.groundHeight;fresh.groundUnit=S.groundUnit;fresh.groundCond=S.groundCond;
+  fresh.showGnd=S.showGnd;fresh.groundSizeM=S.groundSizeM;
   // Preserve overlay panel states
   fresh.showWave=S.showWave;fresh.waveSpeed=S.waveSpeed;fresh.waveTheme=S.waveTheme;fresh.wavePhiCut=S.wavePhiCut;fresh.waveNF=S.waveNF;
   fresh.showPolar=S.showPolar;
@@ -2663,6 +2705,7 @@ function doPreset(btn,type,p){
     rotAz:0,rotEl:0,opacity:100,
     feedpoints:[{id:0,label:'FP1'}],fpCtr:1,
     groundHeight:S.groundHeight,groundUnit:S.groundUnit,groundCond:S.groundCond,
+    showGnd:S.showGnd,groundSizeM:S.groundSizeM,
     coax:S.coax,coaxLen:S.coaxLen,
     showWave:S.showWave,waveSpeed:S.waveSpeed,waveTheme:S.waveTheme,wavePhiCut:S.wavePhiCut,waveNF:S.waveNF,
     showPolar:S.showPolar,phiCut:S.phiCut,polarCutMode:S.polarCutMode,waveCutMode:S.waveCutMode};
@@ -2713,10 +2756,12 @@ function wire(id,key,lid,fmt,isF){
 // Special handling for length slider — scales Yagi elements proportionally
 document.getElementById('lengthSlider').addEventListener('input',function(){
   const oldL=S.L;
-  let val=parseFloat(this.value);
-  if(altHeld){val=Math.round(val/0.05)*0.05;this.value=val;}
+  let val = window._lValTyp ? S.L : parseFloat(this.value);
+  if(!window._lValTyp && altHeld){val=Math.round(val/0.05)*0.05;this.value=val;}
   S.L=val;
-  document.getElementById('lLabel').textContent=val.toFixed(2)+'λ';
+  document.getElementById('lLabel').textContent=val.toFixed(3)+'λ';
+  const lv=document.getElementById('lVal');
+  if(lv && !window._lValTyp) lv.value=(S.lUnit==='wl'?val:wlToUnit(val,S.lUnit||'wl')).toFixed(4);
   // Scale Yagi per-element lengths proportionally
   if(S.type==='yagi'&&S.yagiDirLens&&oldL>0){
     const ratio=val/oldL;
@@ -2775,8 +2820,8 @@ wire('gcSlider',      'groundCond','gcLabel',      v=>['Dry','Medium','Wet'][v]|
 // Ground height slider — syncs with number input
 document.getElementById('ghSlider').addEventListener('input',function(){
   if(_syncing) return;
-  let val=parseFloat(this.value);
-  if(altHeld){val=Math.round(val/5)*5;this.value=val;}
+  let val = window._ghTyp ? toMeters(S.groundHeight,S.groundUnit||'m') : parseFloat(this.value);
+  if(!window._ghTyp && altHeld){val=Math.round(val/5)*5;this.value=val;}
   // Convert slider meters back to current unit
   const u=S.groundUnit||'m';
   let dispVal=val;
@@ -2786,6 +2831,84 @@ document.getElementById('ghSlider').addEventListener('input',function(){
   S.groundHeight=dispVal;
   updateGH();
   render();
+});
+
+// Add +/- stepper buttons dynamically to specific range inputs
+['lengthSlider', 'rotAzSlider', 'rotElSlider', 'ghSlider', 'vSpSlider', 'vRefTiltSlider', 'tsSpSlider', 'tsRefTiltSlider'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(!el) return;
+  const wrap = document.createElement('div');
+  wrap.className='slider-wrap';
+  wrap.style.display='flex'; wrap.style.alignItems='center'; wrap.style.gap='4px';
+  if(el.style.flex) { wrap.style.flex=el.style.flex; el.style.flex='1'; }
+  else { wrap.style.width='100%'; }
+  el.parentNode.insertBefore(wrap, el);
+
+  let intv, to;
+  const startStep = (e, dir) => {
+    e.preventDefault();
+    const act = () => {
+      if(id==='lengthSlider') {
+        const lv=document.getElementById('lVal');
+        if(lv) {
+          if(S.lUnit!=='wl') {
+            let v=parseFloat(lv.value)||0;
+            let step=0.1; const u=S.lUnit;
+            if(u==='m') step=(Math.abs(v)>=10?0.1:0.01); else if(u==='cm') step=1; else if(u==='mm') step=10; else if(u==='in') step=0.5; else if(u==='ft') step=0.1;
+            v = Math.round(v/step)*step;
+            v += dir*step; if(v<0.001) v=0.001;
+            lv.value=Number(v.toFixed(4)); lv.dispatchEvent(new Event('input'));
+            return;
+          } else {
+            let v=parseFloat(el.value)||0.5;
+            let step=0.01;
+            v = Math.round(v/step)*step;
+            v += dir*step; if(v<0.1) v=0.1; if(v>3.0) v=3.0;
+            el.value=Number(v.toFixed(3)); el.dispatchEvent(new Event('input'));
+            return;
+          }
+        }
+      } else if(id==='ghSlider') {
+        const gv=document.getElementById('ghVal');
+        if(gv) {
+          if(S.groundUnit!=='m') {
+            let v=parseFloat(gv.value)||0;
+            let step=0.1; const u=S.groundUnit;
+            if(u==='cm') step=10; else if(u==='mm') step=100; else if(u==='in') step=5; else if(u==='ft') step=0.5; else if(u==='wl') step=0.1;
+            v = Math.round(v/step)*step;
+            v += dir*step; if(v<0) v=0;
+            gv.value=Number(v.toFixed(3)); gv.dispatchEvent(new Event('input'));
+            return;
+          } else {
+            let v=parseFloat(el.value)||5.0;
+            let step=0.1;
+            v = Math.round(v/step)*step;
+            v += dir*step; if(v<0.1) v=0.1; if(v>20.0) v=20.0;
+            el.value=Number(v.toFixed(2)); el.dispatchEvent(new Event('input'));
+            return;
+          }
+        }
+      }
+      try{ if(dir<0) el.stepDown(); else el.stepUp(); }catch(e){}
+      el.dispatchEvent(new Event('input')); 
+    };
+    act();
+    to = setTimeout(() => { intv = setInterval(act, 40); }, 350);
+  };
+  const stopStep = () => { clearTimeout(to); clearInterval(intv); };
+
+  const btnStyle = 'background:var(--surf2);border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);color:var(--acc);border-radius:4px;padding:0 5px;font-size:9px;cursor:pointer;height:18px;line-height:1;user-select:none;flex-shrink:0';
+
+  const m = document.createElement('button'); m.innerHTML='◀'; m.style.cssText=btnStyle;
+  m.onmousedown = (e)=>startStep(e, -1); m.onmouseup = stopStep; m.onmouseleave = stopStep;
+  m.ontouchstart = (e)=>startStep(e, -1); m.ontouchend = stopStep; m.ontouchcancel = stopStep;
+
+  const p = document.createElement('button'); p.innerHTML='▶'; p.style.cssText=btnStyle;
+  p.onmousedown = (e)=>startStep(e, 1); p.onmouseup = stopStep; p.onmouseleave = stopStep;
+  p.ontouchstart = (e)=>startStep(e, 1); p.ontouchend = stopStep; p.ontouchcancel = stopStep;
+
+  wrap.appendChild(m); wrap.appendChild(el); wrap.appendChild(p);
+  if(el.id!=='lengthSlider') wrap.style.marginTop='2px';
 });
 
 /* ════════════════════════════════════════════════
