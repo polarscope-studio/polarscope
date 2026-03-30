@@ -53,8 +53,28 @@ The software calculates the complex pseudo-Brewster angle to accurately model th
 
 ---
 
-## 4. Performance Optimizations
-To maintain 60FPS during real-time slider manipulation, several "nerd-tier" optimizations were implemented:
+## 4. Structural Mast System & Physics
+The simulator includes a deterministic structural modeling engine for towers and guy wires, reacting dynamically to the mounted antenna.
+
+### 🗼 Lattice Tower Generation
+The tower is generated as a rigid lattice structure anchored at the ground plane and extending up to the structural pivot point ($Z = 0$).
+* **Scaling:** The tower's radius and segment spacing automatically scale based on the specified ground height $H$.
+* **Bracing Logic:** The engine dynamically adjusts the number of cross-bracing segments using a minimum segment length threshold to maintain realistic geometric proportions, regardless of the tower's absolute height.
+
+### ⛓️ Guy Wire Physics (Catenary Sag)
+When guy wires are enabled, the support lines are mathematically modeled using a simplified catenary approximation to simulate gravitational droop.
+* **Anchors:** Guy lines project outwards at approximately 70% of the tower height ($0.7 \cdot H$), extending down to ground anchors spaced mathematically around the base.
+* **Slack Factor:** The droop magnitude is controlled by the user-defined `Slack` parameter across $n$-levels of guy supports, introducing realistic downward curvature into the 3D traces.
+
+### 🔥 Structural Tension Mapping
+The engine calculates a localized **Thermal Stress Heatmap** visualizing mechanical strain on the tower structure. The stress metric $S$ combines:
+1. **Antenna Mass ($M_a$):** Approximated by calculating the total linear length of all active antenna elements, assuming a standard aluminium tube density profile ($\sim 2700 \text{ kg/m}^3$).
+2. **Instability ($I$):** Increases linearly with structure height and decreases asymptotically based on the number of active guy wire levels.
+3. **Weight Transfer:** The total stress gradient $S(z) = M_a \cdot g + I(z)$ peaks at the top where the antenna is mounted and distributes downwards through the lattice legs, shifting colors from idle grey $\rightarrow$ blue $\rightarrow$ red based on peak strain.
+
+---
+
+## 5. Performance Optimizations
 
 * **LUT (Lookup Tables):** For wave propagation animations, the engine avoids re-calculating the 3D field for every pixel. Instead, it generates a $64 \times 64$ texture map of the pattern and uses it as a 2D lookup table, resulting in a $\sim 20\times$ speed increase.
 * **Typed Arrays:** All mesh vertices and trig values are stored in `Float32Array` buffers to minimize garbage collection and leverage browser-level math optimizations.
