@@ -11,6 +11,8 @@
 
 **EMAIL:** m7pxzqrz@gmail.com (Bugs & fixes)
 
+**DISCORD** https://discord.com/invite/zBAam3TZKf (Dev Log: #polarscope-dev)
+
 FAR-FIELD 3D · RF Engineering Tool · Powered By Physics
 
 ---
