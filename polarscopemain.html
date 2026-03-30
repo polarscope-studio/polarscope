@@ -2460,11 +2460,15 @@ function buildElemList(){
   if(t==='dipole'){
     mkRow('Dipole','#ffd700',S.L,wl=>{S.L=wl;});
   } else if(t==='v'){
-    mkRow('Arm 1','#ffffff',S.vArm1L||S.L,wl=>{S.vArm1L=wl;});
-    mkRow('Arm 2','#ffd700',S.vArm2L||S.L,wl=>{S.vArm2L=wl;});
+    if(!S.vArm1L) S.vArm1L=S.L;
+    if(!S.vArm2L) S.vArm2L=S.L;
+    mkRow('Arm 1','#ffffff',S.vArm1L,wl=>{S.vArm1L=wl;});
+    mkRow('Arm 2','#ffd700',S.vArm2L,wl=>{S.vArm2L=wl;});
     if(S.vRef){
-      mkRow('Reflector Arm 1','#ff7832',S.vRefArm1L||((S.vArm1L||S.L)*1.05),wl=>{S.vRefArm1L=wl;});
-      mkRow('Reflector Arm 2','#ff7832',S.vRefArm2L||((S.vArm2L||S.L)*1.05),wl=>{S.vRefArm2L=wl;});
+      if(!S.vRefArm1L) S.vRefArm1L=S.vArm1L*1.05;
+      if(!S.vRefArm2L) S.vRefArm2L=S.vArm2L*1.05;
+      mkRow('Reflector Arm 1','#ff7832',S.vRefArm1L,wl=>{S.vRefArm1L=wl;});
+      mkRow('Reflector Arm 2','#ff7832',S.vRefArm2L,wl=>{S.vRefArm2L=wl;});
     }
   } else if(t==='gp'){
     mkRow('Vertical Element','#ffd700',S.L,wl=>{S.L=wl;});
@@ -2475,13 +2479,11 @@ function buildElemList(){
       mkRow('Radial '+(r+1),'rgba(100,200,100,1)',S.gpRadLens[r],wl=>{S.gpRadLens[rIdx]=wl;});
     }
   } else if(t==='yagi'){
-    // Ensure yagiDirLens array exists
     if(!S.yagiDirLens){S.yagiDirLens=[];for(let i=0;i<S.yagiDir;i++)S.yagiDirLens.push(S.L*(1-0.03*(i+1)));}
     while(S.yagiDirLens.length<S.yagiDir) S.yagiDirLens.push(S.L*(1-0.03*(S.yagiDirLens.length+1)));
-    mkRow('Reflector','#ff7832',S.yagiRefL||(S.L*1.05),wl=>{S.yagiRefL=wl;});
+    if(!S.yagiRefL) S.yagiRefL=S.L*1.05;
+    mkRow('Reflector','#ff7832',S.yagiRefL,wl=>{S.yagiRefL=wl;});
     mkRow('Driven Element','#ffd700',S.L,wl=>{
-      // Freeze reflector if not yet explicitly set
-      if(!S.yagiRefL) S.yagiRefL=S.L*1.05;
       S.L=wl;
     });
     for(let d=0;d<S.yagiDir;d++){
@@ -2494,8 +2496,8 @@ function buildElemList(){
     mkRow('Dipole X','#ffffff',S.tsXL,wl=>{S.tsXL=wl;});
     mkRow('Dipole Y','#ffd700',S.tsYL,wl=>{S.tsYL=wl;});
     if(S.tsRef){
-      if(!S.tsRefXL) S.tsRefXL=(S.tsXL||S.L)*1.05;
-      if(!S.tsRefYL) S.tsRefYL=(S.tsYL||S.L)*1.05;
+      if(!S.tsRefXL) S.tsRefXL=S.tsXL*1.05;
+      if(!S.tsRefYL) S.tsRefYL=S.tsYL*1.05;
       mkRow('Reflector X','#ff7832',S.tsRefXL,wl=>{S.tsRefXL=wl;});
       mkRow('Reflector Y','#ff7832',S.tsRefYL,wl=>{S.tsRefYL=wl;});
     }
@@ -2750,6 +2752,9 @@ function wire(id,key,lid,fmt,isF){
     if(altHeld){const snap=isF?0.05:5;val=Math.round(val/snap)*snap;e.value=val;}
     S[key]=val;
     const l=document.getElementById(lid);if(l)l.textContent=fmt(S[key]);
+    if(editMode && (key==='yagiDir' || key==='gpRad' || key==='colN' || key==='vRef' || key==='yagiRef' || key==='tsRef')){
+      refreshEditDisplay();
+    }
     render();
   });
 }
