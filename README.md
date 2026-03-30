@@ -316,4 +316,4 @@ If you find this tool useful, consider buying me a coffee!
 
 ---
 
-*Physics powered by AI · Built with Plotly.js · Created by Jack Mitchell — M7PXZ*
+*Powered By Physics · Built with Plotly.js · Created by Jack Mitchell — M7PXZ*
