@@ -5,7 +5,7 @@
 
 **by Jack Mitchell — M7PXZ**
 
-**WEBSITE:** https://polarscope.tiiny.site/
+**WEBSITE:** https://polarscope-studio.github.io/polarscope/
 
 **LIVE DEMO VIDEO:** https://youtu.be/cLPWEIdKRf0
 
@@ -21,7 +21,7 @@ FAR-FIELD 3D · RF Engineering Tool · Powered By Physics
 
 A real-time 3D antenna radiation pattern simulator built entirely in the browser as a single HTML file. Visualise far-field patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based electromagnetic models using Plotly.js for 3D rendering.
 
-No installation required. No data leaves your device. No server needed — just open the HTML file in any modern browser.
+No installation required. No data leaves your device. No server needed — just open the `index.html` file in any modern browser.
 
 ---
 
@@ -376,7 +376,7 @@ Everything is contained in one HTML file — CSS, JavaScript, and all antenna mo
 
 ## Getting Started
 
-1. Download `polarscopemain.html`
+1. Download `index.html`
 2. Open in any modern browser
 3. Click **Start Simulator**
 4. Select an antenna type and explore!
@@ -388,7 +388,7 @@ No server, no install, no dependencies.
 ## File Structure
 
 ```
-polarscopemain.html        — The Entire Simulator (Single File)
+index.html                 — The Entire Simulator (Single File)
 README.md                  — This Documentation
 TECHNICAL_REFERENCE.md     — Technical Maths & Physics Documentation
 LICENSE.txt                — License Documentation
