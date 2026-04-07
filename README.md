@@ -7,7 +7,7 @@
 
 **WEBSITE:** [https://polarscope-studio.github.io/polarscope/](https://polarscope-studio.github.io/polarscope/)
 
-**MAIN WEBSITE:** [www.polarplot.net](https://www.polarplot.net)
+**OTHER PROJECT:** [www.polarplot.net](https://www.polarplot.net)
 
 **LIVE DEMO VIDEO:** https://youtu.be/cLPWEIdKRf0
 
