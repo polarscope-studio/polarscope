@@ -117,34 +117,63 @@ function parseOutput(text) {
     const rpIdx = text.indexOf('RADIATION PATTERNS');
     if (rpIdx >= 0) {
         for (const line of text.slice(rpIdx).split('\n')) {
-            // Cols: theta phi  vert_gain horiz_gain total_gain  axial_ratio  tilt  [sense text...]
-            const m = line.match(/^\s*([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)(?:\s+([-+]?\d+\.\d+))?/);
+            // Cols: theta phi vert_gain horiz_gain total_gain axial_ratio tilt sense
+            const m = line.match(/^\s*([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)\s+([-+]?\d+\.\d+)(?:\s+([-+]?\d+\.\d+))?(?:\s+([-+]?\d+\.\d+))?\s*([A-Za-z]+)?/);
             if (m) {
                 const theta = parseFloat(m[1]), phi = parseFloat(m[2]);
                 const ti = Math.round(theta / STEP);
                 const pi = Math.round(phi / STEP) % NPHI;
                 if (ti >= 0 && ti < NTHETA) {
                     const key = ti + NTHETA * pi;
-                    if (!patMap.has(key)) patMap.set(key, {
-                        gainV: parseFloat(m[3]),
-                        gainH: parseFloat(m[4]),
-                        gain:  parseFloat(m[5]),
-                        axial: m[6] ? parseFloat(m[6]) : 1.0
-                    });
+                    if (!patMap.has(key)) {
+                        const gainTot = parseFloat(m[5]);
+                        // NEC axial ratio: minor/major (0=linear, 1=circular)
+                        const axial = m[6] ? parseFloat(m[6]) : 0;
+                        const sense = m[8] ? m[8].toUpperCase() : '';
+                        // RHCP/LHCP decomposition from total gain + axial ratio + sense
+                        const r = Math.min(1, Math.max(0, isNaN(axial) ? 0 : axial));
+                        let gainRHCP = -999.99, gainLHCP = -999.99;
+                        if (gainTot > -900) {
+                            const G = Math.pow(10, gainTot / 10);
+                            const Gp = G * (1 + r) * (1 + r) / (2 * (1 + r * r));
+                            const Gs = G * (1 - r) * (1 - r) / (2 * (1 + r * r));
+                            const isLHCP = sense === 'LEFT';
+                            gainRHCP = Gp > 1e-20 ? 10 * Math.log10(isLHCP ? Gs : Gp) : -999.99;
+                            gainLHCP = Gp > 1e-20 ? 10 * Math.log10(isLHCP ? Gp : Gs) : -999.99;
+                            if (gainRHCP < -999) gainRHCP = -999.99;
+                            if (gainLHCP < -999) gainLHCP = -999.99;
+                        }
+                        patMap.set(key, {
+                            gainV: parseFloat(m[3]),
+                            gainH: parseFloat(m[4]),
+                            gain:  gainTot,
+                            axial, gainRHCP, gainLHCP
+                        });
+                    }
                 }
             }
         }
     }
     // Rebuild in canonical order; missing slots get sentinel values
-    const MISS = { gain: -999.99, gainV: -999.99, gainH: -999.99, axial: 1.0 };
+    const MISS = { gain: -999.99, gainV: -999.99, gainH: -999.99, axial: 0, gainRHCP: -999.99, gainLHCP: -999.99 };
     for (let pi = 0; pi < NPHI; pi++) {
         for (let ti = 0; ti < NTHETA; ti++) {
             const pt = patMap.get(ti + NTHETA * pi) || MISS;
             results.pattern.push({ theta: ti * STEP, phi: pi * STEP,
-                gain: pt.gain, gainV: pt.gainV, gainH: pt.gainH, axial: pt.axial });
+                gain: pt.gain, gainV: pt.gainV, gainH: pt.gainH,
+                axial: pt.axial, gainRHCP: pt.gainRHCP, gainLHCP: pt.gainLHCP });
         }
     }
     console.log(`[NEC] Pattern slots filled: ${patMap.size}/${NTHETA * NPHI}`);
+    // CP diagnostic: count points with non-trivial axial ratio
+    let cpCount = 0, maxAxial = 0, senses = {};
+    for (const [, pt] of patMap) {
+        if (pt.axial > 0.05) cpCount++;
+        if (pt.axial > maxAxial) maxAxial = pt.axial;
+        const s = pt.axial > 0.05 ? (pt.gainRHCP > pt.gainLHCP ? 'R' : 'L') : 'Lin';
+        senses[s] = (senses[s] || 0) + 1;
+    }
+    console.log(`[NEC] CP: maxAxial=${maxAxial.toFixed(4)} cpPoints=${cpCount} dist=${JSON.stringify(senses)}`);
 
     // Derive max total gain from pattern
     for (const pt of results.pattern) {

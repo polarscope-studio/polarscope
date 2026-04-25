@@ -93,8 +93,8 @@ const NECBridge = {
                 if (el.isFed) {
                     const midSeg = Math.floor((parseInt(el.segments) || 21) / 2) + 1;
                     const feedSeg = el.feedSeg || midSeg;
-                    const real = (el.feedPhase === 90) ? 0.0 : 1.0;
-                    const imag = (el.feedPhase === 90) ? 1.0 : 0.0;
+                    const real = (el.feedPhase === 90 || el.feedPhase === -90) ? 0.0 : 1.0;
+                    const imag = (el.feedPhase === 90) ? 1.0 : (el.feedPhase === -90) ? -1.0 : 0.0;
                     lines.push(`EX 0 ${srcTag} ${feedSeg} 0 ${real.toFixed(1)} ${imag.toFixed(1)}`);
                 }
                 srcTag++;
@@ -185,7 +185,7 @@ const NECBridge = {
         lines.push(`FR 0 1 0 0 ${freqMHz.toFixed(3)} 0`);
         lines.push(...this._buildExLines(st));
 
-        lines.push("RP 0 181 360 1000 0 0 1.0 1.0 0 0");
+        lines.push("RP 0 181 360 1001 0 0 1.0 1.0 0 0");
         lines.push("EN");
         return lines.join("\n");
     },

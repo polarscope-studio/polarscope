@@ -2250,7 +2250,7 @@
           simulate impedance, plot 3D far-field radiation patterns, and sweep SWR across frequency, all running locally
           with no cloud and no data leaving your device.</p>
         <p style="margin-top:8px">Free to use, fork, and modify. See LICENSE.txt for terms.</p>
-        <p style="margin-top:8px;color:var(--acc)">v1.4.0 · Powered By Real Electromagnetics · Built with Electron &
+        <p style="margin-top:8px;color:var(--acc)">v1.5.0 · Powered By Real Electromagnetics · Built with Electron &
           Plotly.js</p>
         <p
           style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">
@@ -2266,7 +2266,7 @@
       btn.classList.add('active');
       const c = document.getElementById('splashContent');
       if (tab === 'about') {
-        c.innerHTML = '<p>A desktop antenna radiation pattern simulator powered by a real NEC-2 electromagnetic solver. Model antennas, simulate impedance, plot 3D far-field radiation patterns, and sweep SWR across frequency, all running locally with no cloud and no data leaving your device.</p><p style="margin-top:8px">Free to use, fork, and modify. See LICENSE.txt for terms.</p><p style="margin-top:8px;color:var(--acc)">v1.4.0 · Powered By Real Electromagnetics · Built with Electron & Plotly.js</p><p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell (M7PXZ) · Free to use and distribute. Resale and paywalling strictly prohibited.</p>';
+        c.innerHTML = '<p>A desktop antenna radiation pattern simulator powered by a real NEC-2 electromagnetic solver. Model antennas, simulate impedance, plot 3D far-field radiation patterns, and sweep SWR across frequency, all running locally with no cloud and no data leaving your device.</p><p style="margin-top:8px">Free to use, fork, and modify. See LICENSE.txt for terms.</p><p style="margin-top:8px;color:var(--acc)">v1.5.0 · Powered By Real Electromagnetics · Built with Electron & Plotly.js</p><p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell (M7PXZ) · Free to use and distribute. Resale and paywalling strictly prohibited.</p>';
       } else if (tab === 'features') {
         c.innerHTML = '<div style="max-height:180px;overflow-y:auto;padding-right:6px"><p><b style="color:var(--acc)">9 Antenna Types</b> — Dipole, V-Dipole, Ground Plane, Yagi-Uda, Turnstile, QFH, Collinear, Loop, Helix</p><p style="margin-top:6px"><b style="color:var(--acc)">NEC-2 Electromagnetic Solver</b> — Real antenna simulation via nec2dxs500 — accurate impedance, SWR, and full 181×360 far-field radiation patterns</p><p style="margin-top:6px"><b style="color:var(--acc)">Live SWR Sweep</b> — Impedance vs frequency curve with NEC-2 diamond marker, colour-coded SWR readout, and hover tooltips</p><p style="margin-top:6px"><b style="color:var(--acc)">Export NEC Deck</b> — Download a ready-to-use .nec card file for external simulation tools</p><p style="margin-top:6px"><b style="color:var(--acc)">Side-by-Side Mode</b> — Compare two antennas simultaneously with fully independent controls and solvers</p><p style="margin-top:6px"><b style="color:var(--acc)">Sommerfeld Ground</b> — Real ground reflection modelling with height, conductivity, and drooped radial clearance</p><p style="margin-top:6px"><b style="color:var(--acc)">Polar Slice</b> — Interactive 2D gain plot with per-angle hover readouts and null markers</p><p style="margin-top:6px"><b style="color:var(--acc)">Edit Mode</b> — Per-element length, diameter, and feed point editing with live NEC re-solve</p><p style="margin-top:6px"><b style="color:var(--acc)">Wave Propagation</b> — Animated near-field and far-field wave visualisation with 8 colour themes</p><p style="margin-top:6px"><b style="color:var(--acc)">Orientation Control</b> — V/H switch and free elevation/azimuth rotation; pattern mesh rotates rigidly with the antenna</p><p style="margin-top:6px"><b style="color:var(--acc)">Wireframe & Current Views</b> — Toggle between surface, wireframe, and current distribution overlays</p></div>';
       } else if (tab === 'controls') {
@@ -2274,7 +2274,7 @@
       } else if (tab === 'support') {
         c.innerHTML = '<p>If you find this tool useful, consider buying me a coffee! ☕</p><p style="margin-top:12px"><b style="color:var(--acc)">PayPal:</b> <a href="https://www.paypal.me/mitchkmn" target="_blank">paypal.me/mitchkmn</a></p><p style="margin-top:8px"><b style="color:var(--acc)">Email:</b> <a href="mailto:m7pxzqrz@gmail.com">m7pxzqrz@gmail.com</a> <span style="font-size:.4rem;color:var(--dim)">(screenshots & bug reports)</span></p><p style="margin-top:8px"><b style="color:var(--acc)">YouTube:</b> <a href="https://www.youtube.com/@M7PXZ" target="_blank">@M7PXZ</a></p><p style="margin-top:8px"><b style="color:var(--acc)">Discord:</b> <a href="https://discord.gg/zBAam3TZKf" target="_blank">Join the server</a></p><p style="margin-top:8px"><b style="color:var(--acc)">GitHub:</b> <a href="https://github.com/polarscope-studio/polarscope" target="_blank">polarscope-studio/polarscope</a></p><p style="margin-top:12px;font-size:.5rem;color:var(--dim)">This project is free for personal, educational, and research use. Your support helps fund development of new features and improvements.</p><p style="margin-top:8px">73 de M7PXZ 🤙</p>';
       } else if (tab === 'changelog') {
-        c.innerHTML = '<div style="max-height:180px;overflow-y:auto;padding-right:6px"><p><b style="color:var(--acc)">v1.4.0</b> <span style="color:var(--dim)">— 25 Apr 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">NEC-2 Engine & Electron App</p><p style="margin-left:8px">• Full NEC-2 simulation via bundled nec2dxs500.exe (real electromagnetic solver)</p><p style="margin-left:8px">• Local HTTP bridge (necserver.js) — impedance, SWR, and full 181×360 radiation pattern</p><p style="margin-left:8px">• SWR sweep: real impedance vs frequency curve with 51–151 sample points</p><p style="margin-left:8px">• NEC diamond marker on SWR plot — live Z and SWR from solver, colour-coded green/red</p><p style="margin-left:8px">• Export .nec deck — download NEC-2 card file for use in external tools</p><p style="margin-left:8px">• Lumped loading (LD card) — series R+L at base, centre, or top of driven element</p><p style="margin-left:8px">• Sommerfeld ground integration — height, conductivity, and drooped radial clearance</p><p style="margin-left:8px">• V/H orientation pill switch — replaces Vertical checkbox and Flip Orientation button</p><p style="margin-left:8px">• Pattern mesh rotates rigidly with antenna orientation (yagi V/H and polFlipped)</p><p style="margin-left:8px">• Flip now uses polFlipped flag — elevation slider stays at 0° after flip</p><p style="margin-left:8px">• SWR hover: JetBrains Mono font, frequency + SWR readout, no spike line</p><p style="margin-left:8px">• Plot title updates correctly for every antenna type on each render</p><p style="margin-left:8px">• Dipole default feedpoint gap changed from 0 mm to 2 mm</p><p style="margin-left:8px">• Yagi Units dropdown (mm SI / inches USCS) removed</p><p style="margin-left:8px;margin-bottom:10px">• Packaged as standalone Windows installer (Electron + NSIS, no Node.js required)</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.3.0</b> <span style="color:var(--dim)">— 31 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Physics-Driven Q-Factor Engine</p><p style="margin-left:8px">• Universal Dynamic Q-Factor engine replacing hard-coded SWR bandwidths</p><p style="margin-left:8px">• Real-time "Pinch" effect: SWR sharpness reacts to geometry, thickness, and ground loading</p><p style="margin-left:8px">• Element Diameter UI control with dual-unit (mm/λ) badge system</p><p style="margin-left:8px">• Array Complexity Modeling ($Q_{sys}$) for narrower high-gain Yagi bandwidths</p><p style="margin-left:8px">• Intelligent Plotly X-axis auto-scaling based on real-time Q calculation</p><p style="margin-left:8px;margin-bottom:10px">• Integrated Ground Proximity Loading (h < 0.2λ) into SWR simulation</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.2.0</b> <span style="color:var(--dim)">— 30 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Structural Mast & Editors</p><p style="margin-left:8px">• Lattice towers & mast mounting system</p><p style="margin-left:8px">• Configurable multi-level guy wire lines with slack physics</p><p style="margin-left:8px">• Structural Tension Heatmap visualizing strain</p><p style="margin-left:8px">• Yagi Horizontal Mode 3D geometry fixed</p><p style="margin-left:8px">• Rotation freedom unlocked (-180&deg; to 180&deg;)</p><p style="margin-left:8px">• Repaired "Flip Orientation" button</p><p style="margin-left:8px;margin-bottom:10px">• Dynamic Editor UI refresh & element sync fixes</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.1.0</b> <span style="color:var(--dim)">— 30 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Precision & Visualization Update</p><p style="margin-left:8px">• Precision slider buttons (hold to ◀/▶ for exact length, rotation, height, spacing, tilt)</p><p style="margin-left:8px">• Smart 10mm/10deg stepping logic for exact decimal increments across all units</p><p style="margin-left:8px">• Visual Null Markers (dark red stars) on polar plots with exact dBi/dBd tooltips</p><p style="margin-left:8px">• 3D Structural Null scanning (H+V cuts) for accurate multi-plane detection</p><p style="margin-left:8px">• Relaxed null detection threshold (-6dB) for better real-world pattern analysis</p><p style="margin-left:8px">• Independent element length tracking in Edit Mode (detached from global L slider)</p><p style="margin-left:8px">• Bidirectional unit conversion & live refresh across all panel modes</p><p style="margin-left:8px">• UI layout refinements with &lt;hr&gt; section separators for better feature grouping</p><p style="margin-left:8px">• Fixed pattern slice Z-fighting and enhanced line visibility in 3D viewer</p><p style="margin-left:8px;margin-bottom:10px">• Precision typing lock to prevent UI state overwrites during manual input</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.0.0</b> <span style="color:var(--dim)">— 28 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Initial public release</p><p style="margin-left:8px">• 9 antenna types with physics-based field models</p><p style="margin-left:8px">• 3D interactive radiation pattern viewer</p><p style="margin-left:8px">• Side-by-side antenna comparison mode</p><p style="margin-left:8px">• Wave propagation overlay (NF/FF, 8 themes)</p><p style="margin-left:8px">• Polar slice panel with hover gain readouts</p><p style="margin-left:8px">• Per-element editing in Edit Mode</p><p style="margin-left:8px">• Ground reflection modelling</p><p style="margin-left:8px">• Wireframe mode (scatter3d mesh lines)</p><p style="margin-left:8px">• Draggable & resizable overlay panels</p><p style="margin-left:8px">• Take-off angle analysis (3 modes)</p><p style="margin-left:8px">• 5 colour themes, 5 colormaps</p><p style="margin-left:8px">• Responsive design (desktop to mobile)</p><p style="margin-left:8px">• Splash screen with project info</p></div>';
+        c.innerHTML = '<div style="max-height:180px;overflow-y:auto;padding-right:6px"><p><b style="color:var(--acc)">v1.5.0</b> <span style="color:var(--dim)">— 25 Apr 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Circular Polarisation & Wave Propagation</p><p style="margin-left:8px">• RHCP/LHCP display modes — visualise co-pol and cross-pol radiation components</p><p style="margin-left:8px">• CP Handedness pill switch (RHCP/LHCP) for Turnstile, QFH, and Helix antenna types</p><p style="margin-left:8px">• Turnstile: Y-dipole fed at +90° (RHCP) or -90° (LHCP) phase via NEC EX card</p><p style="margin-left:8px">• Helix: winding direction reversed for LHCP via Y-coordinate negation</p><p style="margin-left:8px">• QFH: loop 1 phased at +90°/−90° relative to loop 0 for handedness control</p><p style="margin-left:8px">• RHCP/LHCP gain decomposed from NEC gainV/gainH using theta-hemisphere convention</p><p style="margin-left:8px">• Peak gain readout updates correctly when switching RHCP/LHCP display modes</p><p style="margin-left:8px">• Plot title shows "RHCP Gain" / "LHCP Gain" — no longer lowercase</p><p style="margin-left:8px">• NEC RP card XNDA changed to 1001 — enables axial ratio output from solver</p><p style="margin-left:8px">• Average axial ratio shown in NEC info panel</p><p style="margin-left:8px">• Wave propagation H-cut mode — horizontal azimuthal slice at any elevation</p><p style="margin-left:8px">• V/H toggle button on wave propagation panel switches between elevation and azimuth cuts</p><p style="margin-left:8px">• Horizontal green ring in 3D plot traces actual radiation pattern contour in azimuth</p><p style="margin-left:8px">• H-cut slider: 0° = zenith, 90° = horizon, 180° = nadir — full upper and lower coverage</p><p style="margin-left:8px">• Wave canvas shows top-down view in H mode with info bar showing H-Plane / theta</p><p style="margin-left:8px;margin-bottom:10px">• Feedpoints toggle removed from overlay panel</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.4.0</b> <span style="color:var(--dim)">— 25 Apr 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">NEC-2 Engine & Electron App</p><p style="margin-left:8px">• Full NEC-2 simulation via bundled nec2dxs500.exe (real electromagnetic solver)</p><p style="margin-left:8px">• Local HTTP bridge (necserver.js) — impedance, SWR, and full 181×360 radiation pattern</p><p style="margin-left:8px">• SWR sweep: real impedance vs frequency curve with 51–151 sample points</p><p style="margin-left:8px">• NEC diamond marker on SWR plot — live Z and SWR from solver, colour-coded green/red</p><p style="margin-left:8px">• Export .nec deck — download NEC-2 card file for use in external tools</p><p style="margin-left:8px">• Lumped loading (LD card) — series R+L at base, centre, or top of driven element</p><p style="margin-left:8px">• Sommerfeld ground integration — height, conductivity, and drooped radial clearance</p><p style="margin-left:8px">• V/H orientation pill switch — replaces Vertical checkbox and Flip Orientation button</p><p style="margin-left:8px">• Pattern mesh rotates rigidly with antenna orientation (yagi V/H and polFlipped)</p><p style="margin-left:8px">• Flip now uses polFlipped flag — elevation slider stays at 0° after flip</p><p style="margin-left:8px">• SWR hover: JetBrains Mono font, frequency + SWR readout, no spike line</p><p style="margin-left:8px">• Plot title updates correctly for every antenna type on each render</p><p style="margin-left:8px">• Dipole default feedpoint gap changed from 0 mm to 2 mm</p><p style="margin-left:8px">• Yagi Units dropdown (mm SI / inches USCS) removed</p><p style="margin-left:8px;margin-bottom:10px">• Packaged as standalone Windows installer (Electron + NSIS, no Node.js required)</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.3.0</b> <span style="color:var(--dim)">— 31 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Physics-Driven Q-Factor Engine</p><p style="margin-left:8px">• Universal Dynamic Q-Factor engine replacing hard-coded SWR bandwidths</p><p style="margin-left:8px">• Real-time "Pinch" effect: SWR sharpness reacts to geometry, thickness, and ground loading</p><p style="margin-left:8px">• Element Diameter UI control with dual-unit (mm/λ) badge system</p><p style="margin-left:8px">• Array Complexity Modeling ($Q_{sys}$) for narrower high-gain Yagi bandwidths</p><p style="margin-left:8px">• Intelligent Plotly X-axis auto-scaling based on real-time Q calculation</p><p style="margin-left:8px;margin-bottom:10px">• Integrated Ground Proximity Loading (h < 0.2λ) into SWR simulation</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.2.0</b> <span style="color:var(--dim)">— 30 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Structural Mast & Editors</p><p style="margin-left:8px">• Lattice towers & mast mounting system</p><p style="margin-left:8px">• Configurable multi-level guy wire lines with slack physics</p><p style="margin-left:8px">• Structural Tension Heatmap visualizing strain</p><p style="margin-left:8px">• Yagi Horizontal Mode 3D geometry fixed</p><p style="margin-left:8px">• Rotation freedom unlocked (-180&deg; to 180&deg;)</p><p style="margin-left:8px">• Repaired "Flip Orientation" button</p><p style="margin-left:8px;margin-bottom:10px">• Dynamic Editor UI refresh & element sync fixes</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.1.0</b> <span style="color:var(--dim)">— 30 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Precision & Visualization Update</p><p style="margin-left:8px">• Precision slider buttons (hold to ◀/▶ for exact length, rotation, height, spacing, tilt)</p><p style="margin-left:8px">• Smart 10mm/10deg stepping logic for exact decimal increments across all units</p><p style="margin-left:8px">• Visual Null Markers (dark red stars) on polar plots with exact dBi/dBd tooltips</p><p style="margin-left:8px">• 3D Structural Null scanning (H+V cuts) for accurate multi-plane detection</p><p style="margin-left:8px">• Relaxed null detection threshold (-6dB) for better real-world pattern analysis</p><p style="margin-left:8px">• Independent element length tracking in Edit Mode (detached from global L slider)</p><p style="margin-left:8px">• Bidirectional unit conversion & live refresh across all panel modes</p><p style="margin-left:8px">• UI layout refinements with &lt;hr&gt; section separators for better feature grouping</p><p style="margin-left:8px">• Fixed pattern slice Z-fighting and enhanced line visibility in 3D viewer</p><p style="margin-left:8px;margin-bottom:10px">• Precision typing lock to prevent UI state overwrites during manual input</p><div style="border-top:1px solid var(--brd);margin:8px 0"></div><p><b style="color:var(--acc)">v1.0.0</b> <span style="color:var(--dim)">— 28 Mar 2026</span></p><p style="margin:4px 0 8px;color:var(--text)">Initial public release</p><p style="margin-left:8px">• 9 antenna types with physics-based field models</p><p style="margin-left:8px">• 3D interactive radiation pattern viewer</p><p style="margin-left:8px">• Side-by-side antenna comparison mode</p><p style="margin-left:8px">• Wave propagation overlay (NF/FF, 8 themes)</p><p style="margin-left:8px">• Polar slice panel with hover gain readouts</p><p style="margin-left:8px">• Per-element editing in Edit Mode</p><p style="margin-left:8px">• Ground reflection modelling</p><p style="margin-left:8px">• Wireframe mode (scatter3d mesh lines)</p><p style="margin-left:8px">• Draggable & resizable overlay panels</p><p style="margin-left:8px">• Take-off angle analysis (3 modes)</p><p style="margin-left:8px">• 5 colour themes, 5 colormaps</p><p style="margin-left:8px">• Responsive design (desktop to mobile)</p><p style="margin-left:8px">• Splash screen with project info</p></div>';
       }
     }
     function closeSplash() {
@@ -2291,7 +2291,7 @@
         <div class="htitle">Antenna Radiation Pattern Visualizer</div>
         <div class="credit">by Jack Mitchell — M7PXZ</div>
       </div>
-      <div class="hsub">Far-Field 3D · RF Engineering Tool · <span style="opacity:.6">Powered By Physics</span></div>
+      <div class="hsub">Far-Field 3D · RF Engineering Tool · <span style="opacity:.6">Powered By NEC</span></div>
     </div>
     <div class="hright">
       <div style="display:flex;align-items:center;gap:4px">
@@ -2460,6 +2460,15 @@
               style="flex:1;padding:4px 0;font-size:0.52rem;font-family:var(--font);border:none;cursor:pointer;background:var(--bg2);color:var(--fg2);transition:background .15s,color .15s">Vertical</button>
             <button id="polBtnH" onclick="if(!(S.type==='yagi'?!S.yagiV:S.polFlipped))flipPol()"
               style="flex:1;padding:4px 0;font-size:0.52rem;font-family:var(--font);border:none;border-left:1px solid var(--bdr);cursor:pointer;background:var(--bg2);color:var(--fg2);transition:background .15s,color .15s">Horizontal</button>
+          </div>
+        </div>
+        <div id="cpModeBtns" style="margin-top:6px;display:none">
+          <div class="slabel" style="font-size:0.44rem;margin-bottom:3px;color:var(--muted)">CP HANDEDNESS</div>
+          <div style="display:flex;gap:0;border-radius:6px;overflow:hidden;border:1px solid var(--bdr)">
+            <button id="cpBtnRHCP" onclick="setCpMode('rhcp')"
+              style="flex:1;padding:4px 0;font-size:0.52rem;font-family:var(--font);border:none;cursor:pointer;background:var(--bg2);color:var(--fg2);transition:background .15s,color .15s">RHCP</button>
+            <button id="cpBtnLHCP" onclick="setCpMode('lhcp')"
+              style="flex:1;padding:4px 0;font-size:0.52rem;font-family:var(--font);border:none;border-left:1px solid var(--bdr);cursor:pointer;background:var(--bg2);color:var(--fg2);transition:background .15s,color .15s">LHCP</button>
           </div>
         </div>
         <hr class="psec-sep">
@@ -2772,6 +2781,8 @@
           <button class="dispbtn" data-disp="etheta" onclick="setDisp('etheta')">Eθ Field</button>
           <button class="dispbtn" data-disp="ephi" onclick="setDisp('ephi')">Eφ Field</button>
           <button class="dispbtn" data-disp="ar" onclick="setDisp('ar')">Axial-R</button>
+          <button class="dispbtn" data-disp="rhcp" onclick="setDisp('rhcp')">RHCP</button>
+          <button class="dispbtn" data-disp="lhcp" onclick="setDisp('lhcp')">LHCP</button>
         </div>
         <div class="slabel" style="margin-top:9px">Colormap</div>
         <select class="sel" id="cmapSel" onchange="setCmap(this.value)">
@@ -2802,9 +2813,7 @@
               class="tog-sl"></span></label></div>
         <div class="tog-row"><span class="tog-label">Current Arcs</span><label class="tog"><input type="checkbox"
               id="togArcs" onchange="S.showArcs=this.checked;render()"><span class="tog-sl"></span></label></div>
-        <div class="tog-row"><span class="tog-label">Feedpoints</span><label class="tog"><input type="checkbox"
-              id="togFeed" checked onchange="S.showFeed=this.checked;render()"><span class="tog-sl"></span></label>
-        </div>
+
         <div class="tog-row"><span class="tog-label">Polar Slice Panel</span><label class="tog"><input type="checkbox"
               id="togPolar" onchange="S.showPolar=this.checked;togglePolar()"><span class="tog-sl"></span></label></div>
         <div class="tog-row"><span class="tog-label">Wave Propagation</span><label class="tog"><input type="checkbox"
@@ -3337,7 +3346,7 @@
     function defaultState() {
       return {
         type: 'dipole', disp: 'total', cmap: 'default', dbUnit: 'dBi',
-        L: 0.5, rotAz: 0, rotEl: 0, polFlipped: false, endFed: false, dipRadEnabled: false, dipRadN: 4, dipRadDroop: 0,
+        L: 0.5, rotAz: 0, rotEl: 0, polFlipped: false, cpMode: 'rhcp', endFed: false, dipRadEnabled: false, dipRadN: 4, dipRadDroop: 0,
         alpha: 45, vRef: 0, vSp: 0.25, vRefTilt: 0,
         vArm1L: null, vArm2L: null, // null = use L, otherwise individual arm length in wavelengths
         gpRad: 4, gpDroop: 0,
@@ -3425,7 +3434,7 @@
       document.getElementById('hLambda').textContent = 'λ=' + ls;
       document.getElementById('statLambda').textContent = ls;
       const _TNAMES = { dipole: 'Dipole', v: 'V-Dipole', gp: '¼λ GP', yagi: 'Yagi-Uda', turnstile: 'Turnstile', qfh: 'QFH', collinear: 'Collinear', loop: 'Loop', helix: 'Helix' };
-      const _TDISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio' };
+      const _TDISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio', rhcp: 'RHCP Gain', lhcp: 'LHCP Gain' };
       document.getElementById('plotTitle').textContent = `${_TNAMES[S.type] || S.type} · ${_TDISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz / 1000).toFixed(3) + ' GHz' : S.freqMHz + ' MHz'}`;
       // Band label
       const band = getBand(S.freqMHz);
@@ -3780,6 +3789,9 @@
           const a = Math.sqrt(Math.max(0, field.Etheta)), b = Math.sqrt(Math.max(0, field.Ephi));
           return a + b < EPS ? 0 : Math.pow(Math.min(a, b) / Math.max(a, b), 2);
         }
+        case 'rhcp': case 'lhcp':
+          // Fallback: linear antenna → RHCP = LHCP = total/2
+          return field.Etot * 0.5;
       }
       return field.Etot;
     }
@@ -3821,8 +3833,35 @@
             return entry.gainH > -900 ? Math.pow(10, entry.gainH / 10) : 0;
           }
           case 'ar':
-            // Axial ratio: 1 = circular, 0 = linear (NEC outputs minor/major linear ratio)
             return entry.axial != null ? Math.max(0, Math.min(1, entry.axial)) : 0;
+          case 'rhcp':
+          case 'lhcp': {
+            // Use NEC axial-ratio data only if it's meaningfully asymmetric (>1 dB R vs L)
+            if (entry.gainRHCP != null && entry.gainLHCP != null &&
+                Math.abs(entry.gainRHCP - entry.gainLHCP) > 1.0) {
+              const g = disp === 'rhcp' ? entry.gainRHCP : entry.gainLHCP;
+              return g > -900 ? Math.pow(10, g / 10) : 0;
+            }
+            // Estimate from gainV + gainH: equal components = circular, unequal = linear.
+            // Hemisphere convention: theta < 90° is the co-pol direction for this antenna.
+            const gV = entry.gainV, gH = entry.gainH;
+            if (gV == null || gV <= -900 || gH == null || gH <= -900) {
+              const g = entry.gain;
+              return g > -900 ? Math.pow(10, g / 10) * 0.5 : 0;
+            }
+            const Gv = Math.pow(10, gV / 10);
+            const Gh = Math.pow(10, gH / 10);
+            const G_sum = Gv + Gh;
+            if (G_sum < 1e-20) return 0;
+            const r = Math.sqrt(Math.min(Gv, Gh) / Math.max(Gv, Gh));
+            const Gp = G_sum * (1 + r) * (1 + r) / (2 * (1 + r * r));
+            const Gs = G_sum * (1 - r) * (1 - r) / (2 * (1 + r * r));
+            const theta_e = ti * step;
+            const cpMode = res.cpMode || 'rhcp';
+            const isCoPol = theta_e < 90;
+            const isRHCPdir = (cpMode === 'rhcp') ? isCoPol : !isCoPol;
+            return disp === 'rhcp' ? (isRHCPdir ? Gp : Gs) : (isRHCPdir ? Gs : Gp);
+          }
           default: {
             const g = entry.gain;
             return g > -900 ? Math.pow(10, g / 10) : 0;
@@ -3970,8 +4009,9 @@
         case 'turnstile': {
           const LX = st.tsXL || baseL, LY = st.tsYL || baseL;
           const hX = LX * sc * 0.5, hY = LY * sc * 0.5;
-          elements.push(mkEl('ts_x', 'Dipole X', { x: -hX, y: 0, z: 0 }, { x: hX, y: 0, z: 0 }, { type: 'driven', isFed: true }));
-          elements.push(mkEl('ts_y', 'Dipole Y', { x: 0, y: -hY, z: 0 }, { x: 0, y: hY, z: 0 }, { type: 'driven', isFed: true }));
+          const tsYPhase = (st.cpMode === 'lhcp') ? -90 : 90;
+          elements.push(mkEl('ts_x', 'Dipole X', { x: -hX, y: 0, z: 0 }, { x: hX, y: 0, z: 0 }, { type: 'driven', isFed: true, feedPhase: 0 }));
+          elements.push(mkEl('ts_y', 'Dipole Y', { x: 0, y: -hY, z: 0 }, { x: 0, y: hY, z: 0 }, { type: 'driven', isFed: true, feedPhase: tsYPhase }));
           if (st.tsRef) {
             const rLX = st.tsRefXL || (LX * 1.05), rLY = st.tsRefYL || (LY * 1.05);
             const rz0 = -(st.tsSp || 0.25) * sc;
@@ -4011,18 +4051,19 @@
         }
         case 'helix': {
           // Axial-mode helix: helixT turns, pitch angle helixP°, circumference=L*lambda
-          const hC = baseL * sc;                          // circumference in metres
-          const hR = hC / (2 * Math.PI);                   // radius
-          const hSp = hC * Math.tan((st.helixP || 12) * Math.PI / 180); // axial spacing per turn
+          const hC = baseL * sc;
+          const hR = hC / (2 * Math.PI);
+          const hSp = hC * Math.tan((st.helixP || 12) * Math.PI / 180);
           const hTot = (st.helixT || 4) * hSp;
           const SEGS_PER_TURN = 12;
           const nHW = (st.helixT || 4) * SEGS_PER_TURN;
+          const hHand = (st.cpMode === 'lhcp') ? -1 : 1; // flip winding for LHCP
           for (let i = 0; i < nHW; i++) {
             const t1 = i / nHW, t2 = (i + 1) / nHW;
             const a1 = 2 * Math.PI * (st.helixT || 4) * t1, a2 = 2 * Math.PI * (st.helixT || 4) * t2;
             elements.push(mkEl('helix_' + i, 'Helix seg ' + (i + 1),
-              { x: hR * Math.cos(a1), y: hR * Math.sin(a1), z: -hTot / 2 + hTot * t1 },
-              { x: hR * Math.cos(a2), y: hR * Math.sin(a2), z: -hTot / 2 + hTot * t2 },
+              { x: hR * Math.cos(a1), y: hHand * hR * Math.sin(a1), z: -hTot / 2 + hTot * t1 },
+              { x: hR * Math.cos(a2), y: hHand * hR * Math.sin(a2), z: -hTot / 2 + hTot * t2 },
               { type: 'driven', isFed: (i === 0), feedSeg: 1, segments: 1 }
             ));
           }
@@ -4046,7 +4087,7 @@
                 { x: rq * Math.cos(a2), y: rq * Math.sin(a2), z: -hh + 2 * hh * t2 },
                 {
                   type: 'driven', isFed: (i === 0), feedSeg: 1, segments: 1,
-                  feedPhase: (loop === 1 ? 90 : 0)
+                  feedPhase: (loop === 1 ? (st.cpMode === 'lhcp' ? -90 : 90) : 0)
                 }
               ));
             }
@@ -4449,6 +4490,28 @@
           case 'hor': case 'ephi': {
             let pk = -999; for (const p of pat) { if (p.gainH != null && p.gainH > -900 && p.gainH > pk) pk = p.gainH; }
             return pk > -900 ? pk : st.necResults.gainDbi;
+          }
+          case 'rhcp':
+          case 'lhcp': {
+            const cpMode = st.necResults.cpMode || 'rhcp';
+            const wantRHCP = st.disp === 'rhcp';
+            let pk = -Infinity;
+            for (const p of pat) {
+              const gV = p.gainV, gH = p.gainH;
+              if (gV == null || gV <= -900 || gH == null || gH <= -900) continue;
+              const Gv = Math.pow(10, gV / 10);
+              const Gh = Math.pow(10, gH / 10);
+              const G_sum = Gv + Gh;
+              if (G_sum < 1e-20) continue;
+              const r = Math.sqrt(Math.min(Gv, Gh) / Math.max(Gv, Gh));
+              const Gp = G_sum * (1 + r) * (1 + r) / (2 * (1 + r * r));
+              const Gs = G_sum * (1 - r) * (1 - r) / (2 * (1 + r * r));
+              const isRHCPdir = (cpMode === 'rhcp') ? (p.theta < 90) : (p.theta >= 90);
+              const G = wantRHCP ? (isRHCPdir ? Gp : Gs) : (isRHCPdir ? Gs : Gp);
+              const dbi = G > 1e-20 ? 10 * Math.log10(G) : -999;
+              if (dbi > pk) pk = dbi;
+            }
+            return pk > -900 ? pk : st.necResults.gainDbi - 3;
           }
           default: return st.necResults.gainDbi;
         }
@@ -5185,15 +5248,32 @@
 
       if (st.showWave && curMesh) {
         const { Uarr, thetas: mThetas, Umax: mUmax } = curMesh;
-        const wPhiDeg = st.wavePhiCut != null ? st.wavePhiCut : st.phiCut || 0;
-        const wPhiRad = wPhiDeg * Math.PI / 180;
-        const wPhiIdx = Math.min(NP, Math.round(wPhiDeg / 360 * NP));
+        const wSliderVal = st.wavePhiCut != null ? st.wavePhiCut : st.phiCut || 0;
+        const wCutMode = st.waveCutMode || 'V';
         const wPts = [];
-        for (let i = 0; i <= NT; i++) {
-          const sinT = Math.sin(mThetas[i]), cosT = Math.cos(mThetas[i]);
-          const r = Math.sqrt(Math.max(0, Uarr[i][wPhiIdx] || 0) / mUmax) + 0.015;
-          const [gx, gy, gz] = rotPt(r * sinT * Math.cos(wPhiRad), r * sinT * Math.sin(wPhiRad), r * cosT, az, el);
-          wPts.push([gx - pGx, gy - pGy + yLobeOff, gz - pGz]);
+        if (wCutMode === 'H') {
+          // Horizontal circle: iterate phi at fixed theta. Slider = theta directly (0=zenith, 90=horizon, 180=nadir).
+          const thetaDeg = Math.max(0, Math.min(180, wSliderVal));
+          const tIdx = Math.min(NT, Math.max(0, Math.round(thetaDeg / 180 * NT)));
+          const thetaRad = mThetas[Math.min(NT, tIdx)] || (thetaDeg * Math.PI / 180);
+          const sinT = Math.sin(thetaRad), cosT = Math.cos(thetaRad);
+          for (let phiIdx = 0; phiIdx <= NP; phiIdx++) {
+            const pIdx = phiIdx % NP;
+            const phiRad = phiIdx / NP * TWO_PI;
+            const r = Math.max(0.06, Math.sqrt(Math.max(0, (Uarr[tIdx] && Uarr[tIdx][pIdx]) || 0) / mUmax)) + 0.025;
+            const [gx, gy, gz] = rotPt(r * sinT * Math.cos(phiRad), r * sinT * Math.sin(phiRad), r * cosT, az, el);
+            wPts.push([gx - pGx, gy - pGy + yLobeOff, gz - pGz]);
+          }
+        } else {
+          // Vertical arc: iterate theta at fixed phi (original behaviour).
+          const wPhiRad = wSliderVal * Math.PI / 180;
+          const wPhiIdx = Math.min(NP - 1, Math.round(wSliderVal / 360 * NP));
+          for (let i = 0; i <= NT; i++) {
+            const sinT = Math.sin(mThetas[i]), cosT = Math.cos(mThetas[i]);
+            const r = Math.sqrt(Math.max(0, Uarr[i][wPhiIdx] || 0) / mUmax) + 0.015;
+            const [gx, gy, gz] = rotPt(r * sinT * Math.cos(wPhiRad), r * sinT * Math.sin(wPhiRad), r * cosT, az, el);
+            wPts.push([gx - pGx, gy - pGy + yLobeOff, gz - pGz]);
+          }
         }
         traces.push({ type: 'scatter3d', mode: 'lines', x: wPts.map(p => p[0]), y: wPts.map(p => p[1]), z: wPts.map(p => p[2]), line: { color: 'rgba(40,255,120,.95)', width: 8 }, showlegend: false, hoverinfo: 'skip' });
       }
@@ -5471,6 +5551,7 @@
       if (!ratio) {
         // No impedance transform (none / choke)
         st.necResults = Object.assign({}, results, { impedance: Object.assign({}, results.impedance) });
+        st.necResults.cpMode = st.cpMode || 'rhcp';
         st.swrSweep = sweep ? sweep.map(p => Object.assign({}, p)) : null;
       } else {
         const r = results.impedance.r / ratio;
@@ -5479,6 +5560,7 @@
         const g = Math.sqrt(Math.max(0, rho2));
         const swr = Math.min(999, g < 0.9999 ? (1 + g) / (1 - g) : 999);
         st.necResults = Object.assign({}, results, { impedance: { r, x }, swr });
+        st.necResults.cpMode = st.cpMode || 'rhcp';
 
         st.swrSweep = sweep ? sweep.map(p => {
           const pr = p.r / ratio, px = p.x / ratio;
@@ -5870,7 +5952,12 @@
           const clr = swr_nec > 2.0 ? '#ff5555' : '#55ff55';
           const sign = X_nec >= 0 ? '+' : '-';
           const xStr = Math.abs(X_nec) < 0.1 ? '0.0' : Math.abs(X_nec).toFixed(1);
-          info.innerHTML = `SWR: <b style="color:${clr}">${swr_nec.toFixed(2)}:1</b> | Z: ${R_nec.toFixed(1)} ${sign} j${xStr} Ω | BW: ~${BW.toFixed(1)} MHz`;
+          const pat = st.necResults.pattern;
+          let axSum = 0, axN = 0;
+          for (const p of pat) { if (p.gain > -900 && p.axial != null) { axSum += p.axial; axN++; } }
+          const axAvg = axN > 0 ? axSum / axN : 0;
+          const arStr = axN > 0 ? ` | AR: ${axAvg.toFixed(2)}` : '';
+          info.innerHTML = `SWR: <b style="color:${clr}">${swr_nec.toFixed(2)}:1</b> | Z: ${R_nec.toFixed(1)} ${sign} j${xStr} Ω | BW: ~${BW.toFixed(1)} MHz${arStr}`;
         }
       }
     }
@@ -6075,7 +6162,7 @@
       if (dot1) dot1.style.display = (sbsMode && sbsWin1 === idx) ? 'block' : 'none';
       // Force title update
       const NAMES = { dipole: 'Dipole', v: 'V-Dipole', gp: '¼λ GP', yagi: 'Yagi-Uda', turnstile: 'Turnstile', qfh: 'QFH', collinear: 'Collinear', loop: 'Loop', helix: 'Helix' };
-      const DISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio' };
+      const DISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio', rhcp: 'RHCP Gain', lhcp: 'LHCP Gain' };
       document.getElementById('plotTitle').textContent = `${NAMES[S.type] || S.type} · ${DISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz / 1000).toFixed(3) + ' GHz' : S.freqMHz + ' MHz'}`;
       syncPanelToState();
       if (editMode) refreshEditDisplay();
@@ -6087,7 +6174,7 @@
     function switchWinFromTab(idx) {
       if (!WINS[idx]) return;
       const NAMES = { dipole: 'Dipole', v: 'V-Dipole', gp: '¼λ GP', yagi: 'Yagi-Uda', turnstile: 'Turnstile', qfh: 'QFH', collinear: 'Collinear', loop: 'Loop', helix: 'Helix' };
-      const DISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio' };
+      const DISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio', rhcp: 'RHCP Gain', lhcp: 'LHCP Gain' };
 
       if (sbsMode) {
         // Bring the chosen window into pane0 (swap if it was in pane1)
@@ -6642,7 +6729,7 @@
         document.getElementById('togGeom').checked = S.showGeom;
         document.getElementById('togCurrent').checked = S.showCurr;
         document.getElementById('togArcs').checked = S.showArcs;
-        document.getElementById('togFeed').checked = S.showFeed;
+        // togFeed removed — showFeed stays true (feedpoints always visible)
         document.getElementById('togTOA').checked = S.showTOA;
         document.getElementById('togWave').checked = !!S.showWave;
         document.getElementById('waveOv0').style.display = S.showWave ? 'flex' : 'none';
@@ -6716,6 +6803,18 @@
           bV.style.background = isVertical ? onBg : offBg; bV.style.color = isVertical ? onFg : offFg;
           bH.style.background = isVertical ? offBg : onBg; bH.style.color = isVertical ? offFg : onFg;
         }
+        // CP handedness pill — visible for turnstile, qfh, helix
+        const cpTypes = ['turnstile', 'qfh', 'helix'];
+        const cpEl = document.getElementById('cpModeBtns');
+        if (cpEl) cpEl.style.display = cpTypes.includes(S.type) ? 'block' : 'none';
+        const cpMode = S.cpMode || 'rhcp';
+        const cpR = document.getElementById('cpBtnRHCP'), cpL = document.getElementById('cpBtnLHCP');
+        if (cpR && cpL) {
+          cpR.style.background = cpMode === 'rhcp' ? 'var(--acc)' : 'var(--bg2)';
+          cpR.style.color = cpMode === 'rhcp' ? '#fff' : 'var(--fg2)';
+          cpL.style.background = cpMode === 'lhcp' ? 'var(--acc)' : 'var(--bg2)';
+          cpL.style.color = cpMode === 'lhcp' ? '#fff' : 'var(--fg2)';
+        }
 
         updateGH();
         _syncing = false;
@@ -6775,6 +6874,17 @@
       document.querySelectorAll('#disp-btns .dispbtn').forEach(b => b.classList.toggle('active', b.dataset.disp === d));
       _necDirty = true;
       render();
+    }
+
+    function setCpMode(mode) {
+      S.cpMode = mode;
+      document.getElementById('cpBtnRHCP').style.background = mode === 'rhcp' ? 'var(--acc)' : 'var(--bg2)';
+      document.getElementById('cpBtnRHCP').style.color = mode === 'rhcp' ? '#fff' : 'var(--fg2)';
+      document.getElementById('cpBtnLHCP').style.background = mode === 'lhcp' ? 'var(--acc)' : 'var(--bg2)';
+      document.getElementById('cpBtnLHCP').style.color = mode === 'lhcp' ? '#fff' : 'var(--fg2)';
+      rebuildGeometry(S);
+      _necDirty = true;
+      renderAndSolve();
     }
 
     function setCmap(v) {
@@ -7288,6 +7398,9 @@
       const phiD = document.getElementById('wavePhiDisp' + paneIdx);
       if (phiS) phiS.value = st.wavePhiCut || 0;
       if (phiD) phiD.textContent = st.wavePhiCut || 0;
+      const cutBtn = document.getElementById('waveCutBtn' + paneIdx);
+      if (cutBtn) cutBtn.textContent = st.waveCutMode || 'V';
+      if (phiS) phiS.max = (st.waveCutMode === 'H') ? '180' : '360';
       // Also sync polar phi slider for this pane
       const pPhiS = document.getElementById('polarPhiSlider' + paneIdx);
       if (pPhiS) pPhiS.value = st.phiCut || 0;
@@ -7296,6 +7409,23 @@
     function updateNFBtn() {
       syncWaveUI(0);
       syncWaveUI(1);
+    }
+
+    function toggleWaveCut(paneIdx) {
+      const st = waveWin(paneIdx);
+      st.waveCutMode = (st.waveCutMode === 'H') ? 'V' : 'H';
+      const btn = document.getElementById('waveCutBtn' + paneIdx);
+      if (btn) btn.textContent = st.waveCutMode;
+      const slider = document.getElementById('wavePhiSlider' + paneIdx);
+      const disp   = document.getElementById('wavePhiDisp'   + paneIdx);
+      if (st.waveCutMode === 'H') {
+        if (slider) { slider.max = '180'; slider.value = '90'; }
+        if (disp) disp.textContent = '90';
+        st.wavePhiCut = 90; // start at horizon
+      } else {
+        if (slider) { slider.max = '360'; }
+      }
+      render();
     }
 
     // Pattern lookup cache for wave propagation (avoids calling localField per pixel)
@@ -7385,6 +7515,12 @@
         }
       }
 
+      const cutMode = st.waveCutMode || 'V';
+      // H-cut: slider = theta (0=zenith, 90=horizon, 180=nadir)
+      const thetaH  = cutMode === 'H' ? Math.max(0, Math.min(180, st.wavePhiCut || 90)) * Math.PI / 180 : Math.PI / 2;
+      const hzScale = Math.sin(thetaH); // XY component scale
+      const lzFixed = Math.cos(thetaH); // Z component
+
       for (let py = 0; py < H; py++) {
         for (let px = 0; px < W; px++) {
           const horiz = (px - cx) * scale;
@@ -7395,8 +7531,9 @@
             // Near-field: sum spherical waves from each element
             let re = 0, im = 0;
             for (const src of sources) {
-              const dx = horiz - src.y; // horizontal = Y axis for most antennas
-              const dz = vert - src.z;
+              // V-cut: horiz=Y, vert=Z  |  H-cut: horiz=X, vert=Y (top-down)
+              const dx = cutMode === 'H' ? horiz - (src.x || 0) : horiz - src.y;
+              const dz = cutMode === 'H' ? vert  - src.y        : vert  - src.z;
               const dist = Math.sqrt(dx * dx + dz * dz);
               if (dist < 0.03) continue;
               const a = src.amp / Math.max(dist, 0.15);
@@ -7412,7 +7549,16 @@
               data[idx] = 255; data[idx + 1] = 200; data[idx + 2] = 0; data[idx + 3] = 255;
               continue;
             }
-            const lx = (horiz * cosPhi) / r, ly = (horiz * sinPhi) / r, lz = vert / r;
+            let lx, ly, lz;
+            if (cutMode === 'H') {
+              // Horizontal cut: top-down view. horiz=X, vert=Y, lz fixed by elevation slider.
+              lx = (horiz / r) * hzScale;
+              ly = (vert  / r) * hzScale;
+              lz = lzFixed;
+            } else {
+              // Vertical cut: side view. horiz = radial direction at azimuth phiCut, vert = Z.
+              lx = (horiz * cosPhi) / r; ly = (horiz * sinPhi) / r; lz = vert / r;
+            }
             const U = lut ? lutLookup(lut, lx, ly, lz) : 0;
             wave = Math.sqrt(U) * Math.cos(k * r - phase) / Math.max(r, 0.3);
           }
@@ -7431,12 +7577,14 @@
       if (nfMode && sources) {
         ctx.fillStyle = '#ffd700';
         for (const src of sources) {
-          const sx = cx + src.y / scale, sy = cy - src.z / scale;
+          const sx = cutMode === 'H' ? cx + (src.x || 0) / scale : cx + src.y / scale;
+          const sy = cutMode === 'H' ? cy - src.y / scale         : cy - src.z / scale;
           ctx.beginPath(); ctx.arc(sx, sy, 2, 0, TWO_PI); ctx.fill();
         }
       }
+      const sliderVal = st.wavePhiCut != null ? st.wavePhiCut : st.phiCut || 0;
       const info = document.getElementById('waveInfo' + paneIdx);
-      if (info) info.textContent = (nfMode ? 'Near-Field' : 'Far-Field') + ' · φ=' + (st.wavePhiCut != null ? st.wavePhiCut : st.phiCut || 0) + '° · λ=' + getLambdaM(st).toFixed(2) + 'm';
+      if (info) info.textContent = (nfMode ? 'Near-Field' : 'Far-Field') + (cutMode === 'H' ? ' · H-Plane · θ=' + sliderVal + '°' : ' · V-Plane · φ=' + sliderVal + '°') + ' · λ=' + getLambdaM(st).toFixed(2) + 'm';
     }
 
     function startWaveAnim() {
