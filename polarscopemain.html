@@ -248,8 +248,8 @@
     .hicon {
       width: 24px;
       height: 24px;
-      background: linear-gradient(135deg, #0ea5e9, #6366f1);
-      border-radius: 5px;
+      background: none;
+      border-radius: 0;
       display: grid;
       place-items: center;
       font-size: 12px;
@@ -391,15 +391,28 @@
     }
 
     @keyframes necBarSlide {
-      0%   { left: -45%; }
-      100% { left: 110%; }
+      0% {
+        left: -45%;
+      }
+
+      100% {
+        left: 110%;
+      }
     }
+
     .nec-loading-bar {
-      height: 2px; margin: 0; overflow: hidden; position: relative;
-      background: rgba(0,180,216,0.15);
+      height: 2px;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      background: rgba(0, 180, 216, 0.15);
     }
-    .nec-loading-bar > div {
-      position: absolute; top: 0; height: 100%; width: 45%;
+
+    .nec-loading-bar>div {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 45%;
       background: linear-gradient(90deg, transparent, var(--acc), transparent);
       animation: necBarSlide 1.1s ease-in-out infinite;
     }
@@ -540,8 +553,15 @@
       list-style: none;
       margin-bottom: 8px
     }
-    summary.slabel::-webkit-details-marker { display: none }
-    summary.slabel::marker { display: none }
+
+    summary.slabel::-webkit-details-marker {
+      display: none
+    }
+
+    summary.slabel::marker {
+      display: none
+    }
+
     summary.slabel::after {
       content: '▾';
       font-size: 0.62rem;
@@ -549,10 +569,14 @@
       opacity: 0.6;
       transition: transform 0.18s ease
     }
-    details.psec:not([open]) > summary.slabel::after {
+
+    details.psec:not([open])>summary.slabel::after {
       transform: rotate(-90deg)
     }
-    details.psec > summary.slabel:hover { color: var(--text) }
+
+    details.psec>summary.slabel:hover {
+      color: var(--text)
+    }
 
     .slabel {
       font-size: .56rem;
@@ -645,8 +669,12 @@
       -moz-appearance: textfield;
       appearance: textfield
     }
+
     .foc-num-input::-webkit-inner-spin-button,
-    .foc-num-input::-webkit-outer-spin-button { opacity: 0.4 }
+    .foc-num-input::-webkit-outer-spin-button {
+      opacity: 0.4
+    }
+
     .foc-num-input:focus {
       border-color: var(--acc);
       background: color-mix(in srgb, var(--acc) 22%, transparent)
@@ -1119,9 +1147,13 @@
       line-height: 1;
     }
 
-    .elem-lock:hover { opacity: 0.9; }
+    .elem-lock:hover {
+      opacity: 0.9;
+    }
 
-    .elem-lock.locked { opacity: 0.75; }
+    .elem-lock.locked {
+      opacity: 0.75;
+    }
 
     .elem-row.locked-row .elem-inp,
     .elem-row.locked-row .elem-range,
@@ -1348,6 +1380,7 @@
       align-items: center;
       gap: 5px
     }
+
     .pane-dot {
       display: none;
       width: 7px;
@@ -1441,26 +1474,33 @@
       display: none;
       align-items: center;
       gap: 8px;
-      background: rgba(8,11,18,0.88);
+      background: rgba(8, 11, 18, 0.88);
       border: 1px solid var(--acc);
       border-radius: 20px;
       padding: 5px 13px 5px 10px;
       pointer-events: none;
       z-index: 30;
       backdrop-filter: blur(6px);
-      box-shadow: 0 0 14px rgba(56,189,248,0.18);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.18);
     }
+
     .nec-spin-ring {
       width: 15px;
       height: 15px;
-      border: 2px solid rgba(56,189,248,0.15);
+      border: 2px solid rgba(56, 189, 248, 0.15);
       border-top-color: var(--acc);
       border-right-color: var(--acc);
       border-radius: 50%;
       animation: nec-spin 0.7s linear infinite;
       flex-shrink: 0;
     }
-    @keyframes nec-spin { to { transform: rotate(360deg); } }
+
+    @keyframes nec-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     .nec-spin-txt {
       color: var(--acc);
       font-family: 'JetBrains Mono', monospace;
@@ -1473,7 +1513,7 @@
     /* ── Balun / Choke panel ── */
     .balun-result {
       font-size: 0.5rem;
-      background: rgba(0,0,0,0.25);
+      background: rgba(0, 0, 0, 0.25);
       border: 1px solid var(--brd);
       border-radius: 4px;
       padding: 6px 7px;
@@ -1481,10 +1521,22 @@
       font-family: 'JetBrains Mono', monospace;
       line-height: 1.7;
     }
-    .balun-result.q-excellent { border-color: #10b981; }
-    .balun-result.q-good      { border-color: #22c55e; }
-    .balun-result.q-adequate  { border-color: #f59e0b; }
-    .balun-result.q-poor      { border-color: #ef4444; }
+
+    .balun-result.q-excellent {
+      border-color: #10b981;
+    }
+
+    .balun-result.q-good {
+      border-color: #22c55e;
+    }
+
+    .balun-result.q-adequate {
+      border-color: #f59e0b;
+    }
+
+    .balun-result.q-poor {
+      border-color: #ef4444;
+    }
 
     .polar-ov {
       pointer-events: auto;
@@ -2194,15 +2246,15 @@
         <div class="splash-tab" onclick="showSplashTab('changelog',this)">Changelog</div>
       </div>
       <div class="splash-content" id="splashContent">
-        <p>A real-time 3D antenna radiation pattern simulator built entirely in the browser. Visualise far-field
-          patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based
-          electromagnetic models.</p>
-        <p style="margin-top:8px">No installation required. No data leaves your device.</p>
-        <p style="margin-top:8px;color:var(--acc)">v1.0 · Powered By Physics · Built with Plotly.js</p>
+        <p>A desktop antenna radiation pattern simulator powered by a real NEC-2 electromagnetic solver. Model antennas,
+          simulate impedance, plot 3D far-field radiation patterns, and sweep SWR across frequency, all running locally
+          with no cloud and no data leaving your device.</p>
+        <p style="margin-top:8px">Free to use, fork, and modify. See LICENSE.txt for terms.</p>
+        <p style="margin-top:8px;color:var(--acc)">v1.4.0 · Powered By Real Electromagnetics · Built with Electron &
+          Plotly.js</p>
         <p
           style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">
-          © 2026 Jack Mitchell · Personal, educational & research use only. Commercial use prohibited without written
-          permission.</p>
+          © 2026 Jack Mitchell (M7PXZ) · Free to use and distribute. Resale and paywalling strictly prohibited.</p>
       </div>
       <button class="splash-start" onclick="closeSplash()">▶ Start Simulator</button>
     </div>
@@ -2214,7 +2266,7 @@
       btn.classList.add('active');
       const c = document.getElementById('splashContent');
       if (tab === 'about') {
-        c.innerHTML = '<p>A real-time 3D antenna radiation pattern simulator built entirely in the browser. Visualise far-field patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based electromagnetic models.</p><p style="margin-top:8px">No installation required. No data leaves your device.</p><p style="margin-top:8px;color:var(--acc)">v1.0 · Powered By Physics · Built with Plotly.js</p><p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell · Personal, educational & research use only. Commercial use prohibited without written permission.</p>';
+        c.innerHTML = '<p>A desktop antenna radiation pattern simulator powered by a real NEC-2 electromagnetic solver. Model antennas, simulate impedance, plot 3D far-field radiation patterns, and sweep SWR across frequency, all running locally with no cloud and no data leaving your device.</p><p style="margin-top:8px">Free to use, fork, and modify. See LICENSE.txt for terms.</p><p style="margin-top:8px;color:var(--acc)">v1.4.0 · Powered By Real Electromagnetics · Built with Electron & Plotly.js</p><p style="margin-top:12px;font-size:.45rem;color:var(--dim);line-height:1.6;border-top:1px solid var(--brd);padding-top:8px">© 2026 Jack Mitchell (M7PXZ) · Free to use and distribute. Resale and paywalling strictly prohibited.</p>';
       } else if (tab === 'features') {
         c.innerHTML = '<div style="max-height:180px;overflow-y:auto;padding-right:6px"><p><b style="color:var(--acc)">9 Antenna Types</b> — Dipole, V-Dipole, Ground Plane, Yagi-Uda, Turnstile, QFH, Collinear, Loop, Helix</p><p style="margin-top:6px"><b style="color:var(--acc)">NEC-2 Electromagnetic Solver</b> — Real antenna simulation via nec2dxs500 — accurate impedance, SWR, and full 181×360 far-field radiation patterns</p><p style="margin-top:6px"><b style="color:var(--acc)">Live SWR Sweep</b> — Impedance vs frequency curve with NEC-2 diamond marker, colour-coded SWR readout, and hover tooltips</p><p style="margin-top:6px"><b style="color:var(--acc)">Export NEC Deck</b> — Download a ready-to-use .nec card file for external simulation tools</p><p style="margin-top:6px"><b style="color:var(--acc)">Side-by-Side Mode</b> — Compare two antennas simultaneously with fully independent controls and solvers</p><p style="margin-top:6px"><b style="color:var(--acc)">Sommerfeld Ground</b> — Real ground reflection modelling with height, conductivity, and drooped radial clearance</p><p style="margin-top:6px"><b style="color:var(--acc)">Polar Slice</b> — Interactive 2D gain plot with per-angle hover readouts and null markers</p><p style="margin-top:6px"><b style="color:var(--acc)">Edit Mode</b> — Per-element length, diameter, and feed point editing with live NEC re-solve</p><p style="margin-top:6px"><b style="color:var(--acc)">Wave Propagation</b> — Animated near-field and far-field wave visualisation with 8 colour themes</p><p style="margin-top:6px"><b style="color:var(--acc)">Orientation Control</b> — V/H switch and free elevation/azimuth rotation; pattern mesh rotates rigidly with the antenna</p><p style="margin-top:6px"><b style="color:var(--acc)">Wireframe & Current Views</b> — Toggle between surface, wireframe, and current distribution overlays</p></div>';
       } else if (tab === 'controls') {
@@ -2233,7 +2285,7 @@
   </script>
 
   <header>
-    <div class="hicon">📡</div>
+    <div class="hicon"><img src="icon.png" style="width:100%;height:100%;object-fit:contain;border-radius:3px"></div>
     <div>
       <div style="display:flex;align-items:baseline;gap:6px">
         <div class="htitle">Antenna Radiation Pattern Visualizer</div>
@@ -2349,7 +2401,8 @@
 
       <!-- Parameters -->
       <details class="psec" open>
-        <summary class="slabel">Parameters <span style="font-size:.45rem;color:var(--muted);font-weight:400">Hold ALT + drag
+        <summary class="slabel">Parameters <span style="font-size:.45rem;color:var(--muted);font-weight:400">Hold ALT +
+            drag
             for ×5 snap</span></summary>
         <div class="ctrl">
           <div class="crow"><span class="cname">Element Length (L)</span><span class="badge" id="lLabel">0.50λ</span>
@@ -2385,7 +2438,9 @@
           <input type="range" id="thickSlider" min="0.5" max="100.0" step="0.1" value="2.0" />
         </div>
         <div class="ctrl" id="fpGapCtrl">
-          <div class="crow"><span class="cname">Feedpoint Gap</span><span class="badge" id="fpGapLabel">2.0mm</span><span id="fpGapWarn" style="display:none;font-size:.48rem;color:#f87171;margin-left:4px">⚠ SHORT</span>
+          <div class="crow"><span class="cname">Feedpoint Gap</span><span class="badge"
+              id="fpGapLabel">2.0mm</span><span id="fpGapWarn"
+              style="display:none;font-size:.48rem;color:#f87171;margin-left:4px">⚠ SHORT</span>
           </div>
           <input type="range" id="fpGapSlider" min="0" max="200.0" step="0.5" value="2" />
         </div>
@@ -2411,17 +2466,22 @@
         <!-- Dipole extras -->
         <div class="extra-ctrl vis" id="ec-dipole">
           <div class="tog-row"><span class="tog-label">End-Fed</span><label class="tog"><input type="checkbox"
-                id="togEndFed" onchange="S.endFed=this.checked;syncPanelToState();renderAndSolve()"><span class="tog-sl"></span></label></div>
+                id="togEndFed" onchange="S.endFed=this.checked;syncPanelToState();renderAndSolve()"><span
+                class="tog-sl"></span></label></div>
           <div id="dipRadSection" style="display:none">
             <div class="tog-row"><span class="tog-label">Radials</span><label class="tog"><input type="checkbox"
-                id="togDipRad" onchange="S.dipRadEnabled=this.checked;syncPanelToState();if(typeof editMode!=='undefined'&&editMode)refreshEditDisplay();renderAndSolve()"><span class="tog-sl"></span></label></div>
+                  id="togDipRad"
+                  onchange="S.dipRadEnabled=this.checked;syncPanelToState();if(typeof editMode!=='undefined'&&editMode)refreshEditDisplay();renderAndSolve()"><span
+                  class="tog-sl"></span></label></div>
             <div id="dipRadSliders" style="display:none">
               <div class="ctrl">
-                <div class="crow"><span class="cname">Radials (n)</span><span class="badge" id="dipRadNLabel">4</span></div>
+                <div class="crow"><span class="cname">Radials (n)</span><span class="badge" id="dipRadNLabel">4</span>
+                </div>
                 <input type="range" id="dipRadNSlider" min="1" max="8" step="1" value="4" />
               </div>
               <div class="ctrl">
-                <div class="crow"><span class="cname">Radial droop°</span><span class="badge" id="dipRadDroopLabel">0°</span></div>
+                <div class="crow"><span class="cname">Radial droop°</span><span class="badge"
+                    id="dipRadDroopLabel">0°</span></div>
                 <input type="range" id="dipRadDroopSlider" min="-45" max="90" step="1" value="0" />
               </div>
             </div>
@@ -2482,11 +2542,13 @@
               </div>
             </div>
             <div class="ctrl">
-              <div class="crow"><span class="cname">Inductance</span><span class="badge" id="ldUHLabel">10.0 μH</span></div>
+              <div class="crow"><span class="cname">Inductance</span><span class="badge" id="ldUHLabel">10.0 μH</span>
+              </div>
               <input type="range" id="ldUHSlider" min="0.1" max="200" step="0.1" value="10.0" />
             </div>
             <div class="ctrl">
-              <div class="crow"><span class="cname">Coil loss R</span><span class="badge" id="ldRLabel">1.0 Ω</span></div>
+              <div class="crow"><span class="cname">Coil loss R</span><span class="badge" id="ldRLabel">1.0 Ω</span>
+              </div>
               <input type="range" id="ldRSlider" min="0" max="50" step="0.5" value="1.0" />
             </div>
             <div class="ctrl">
@@ -2501,7 +2563,8 @@
         <div class="extra-ctrl" id="ec-yagi">
           <div class="ctrl">
             <div class="crow"><span class="cname">Matching</span>
-              <select class="sel" id="yagiMatchSel" onchange="S.yagiMatch=this.value;rebuildGeometry(S);renderAndSolve()"
+              <select class="sel" id="yagiMatchSel"
+                onchange="S.yagiMatch=this.value;rebuildGeometry(S);renderAndSolve()"
                 style="width:90px;padding:2px;font-size:0.5rem">
                 <option value="gamma">Gamma (50Ω)</option>
                 <option value="folded">Folded (300Ω)</option>
@@ -2518,12 +2581,14 @@
             <input type="range" id="yagiRefSlider" min="0" max="1" step="1" value="1" />
           </div>
           <div class="ctrl">
-            <div class="crow"><span class="cname">Refl. spacing</span><span class="badge" id="yagiRefSpLabel">0.20λ</span></div>
+            <div class="crow"><span class="cname">Refl. spacing</span><span class="badge"
+                id="yagiRefSpLabel">0.20λ</span></div>
             <input type="range" id="yagiRefSpSlider" min="0.10" max="0.35" step="0.01" value="0.20" />
           </div>
           <div class="ctrl">
             <div class="crow"><span class="cname">Element shape</span>
-              <select class="sel" id="yagiElemShapeSel" onchange="S.yagiElemShape=this.value;rebuildGeometry(S);render()"
+              <select class="sel" id="yagiElemShapeSel"
+                onchange="S.yagiElemShape=this.value;rebuildGeometry(S);render()"
                 style="width:90px;padding:2px;font-size:0.5rem">
                 <option value="round">Round</option>
                 <option value="flat">Flat</option>
@@ -2532,7 +2597,8 @@
           </div>
           <div class="ctrl">
             <div class="crow"><span class="cname">Boom cross-section</span>
-              <select class="sel" id="yagiBoomShapeSel" onchange="S.yagiBoomShape=this.value;rebuildGeometry(S);render()"
+              <select class="sel" id="yagiBoomShapeSel"
+                onchange="S.yagiBoomShape=this.value;rebuildGeometry(S);render()"
                 style="width:90px;padding:2px;font-size:0.5rem">
                 <option value="round">Round</option>
                 <option value="square">Square</option>
@@ -2540,16 +2606,19 @@
             </div>
           </div>
           <div class="ctrl">
-            <div class="crow"><span class="cname">Boom diam (mm)</span><span class="badge" id="yagiBoomDiamLabel">20</span></div>
+            <div class="crow"><span class="cname">Boom diam (mm)</span><span class="badge"
+                id="yagiBoomDiamLabel">20</span></div>
             <input type="range" id="yagiBoomDiamSlider" min="10" max="50" step="2" value="20" />
           </div>
           <div class="ctrl" id="yagiBoomLenCtrl">
-            <div class="crow"><span class="cname">Boom length</span><span class="badge" id="yagiBoomLenLabel">0.32λ</span></div>
+            <div class="crow"><span class="cname">Boom length</span><span class="badge"
+                id="yagiBoomLenLabel">0.32λ</span></div>
             <input type="range" id="yagiBoomLenSlider" min="0.10" max="5.0" step="0.01" value="0.32" />
           </div>
           <div class="ctrl">
             <div class="crow"><span class="cname">Elem. mount</span>
-              <select class="sel" id="yagiBoomMountSel" onchange="S.yagiBoomMount=parseInt(this.value);rebuildGeometry(S);renderAndSolve()"
+              <select class="sel" id="yagiBoomMountSel"
+                onchange="S.yagiBoomMount=parseInt(this.value);rebuildGeometry(S);renderAndSolve()"
                 style="width:90px;padding:2px;font-size:0.5rem">
                 <option value="1">Through boom</option>
                 <option value="2">Insulated</option>
@@ -2612,33 +2681,49 @@
       <!-- DISCRETE ELEMENT LIST (New Overhaul Component) -->
       <details class="psec" open id="elementListPanel" style="position:relative">
         <summary class="slabel">Antenna Elements (NEC-2)</summary>
-        <div id="elementRows" style="display:flex; flex-direction:column; gap:4px; max-height:200px; overflow-y:auto; padding:4px;">
-            <!-- Populated by renderElementList() -->
+        <div id="elementRows"
+          style="display:flex; flex-direction:column; gap:4px; max-height:200px; overflow-y:auto; padding:4px;">
+          <!-- Populated by renderElementList() -->
         </div>
-        <div id="necServerBanner" style="display:none; margin-top:6px; padding:5px 7px; border-radius:4px; font-size:0.5rem; font-family:monospace; line-height:1.5;"></div>
+        <div id="necServerBanner"
+          style="display:none; margin-top:6px; padding:5px 7px; border-radius:4px; font-size:0.5rem; font-family:monospace; line-height:1.5;">
+        </div>
         <div style="margin-top:6px; display:flex; gap:6px;">
-          <button class="pbtn" style="flex:1; font-size:0.48rem; padding:4px 0; display:flex; align-items:center; justify-content:center;" onclick="window.exportNECFile()">Export .nec</button>
-          <button class="pbtn" style="flex:1; font-size:0.48rem; padding:4px 0; visibility:hidden;" onclick="window.importNECFile()">&#8657; Import .nec</button>
-          <button class="pbtn" style="flex:1; font-size:0.48rem; padding:4px 0; display:flex; align-items:center; justify-content:center;" onclick="window.runSolverManual()">Re-solve</button>
+          <button class="pbtn"
+            style="flex:1; font-size:0.48rem; padding:4px 0; display:flex; align-items:center; justify-content:center;"
+            onclick="window.exportNECFile()">Export .nec</button>
+          <button class="pbtn" style="flex:1; font-size:0.48rem; padding:4px 0; visibility:hidden;"
+            onclick="window.importNECFile()">&#8657; Import .nec</button>
+          <button class="pbtn"
+            style="flex:1; font-size:0.48rem; padding:4px 0; display:flex; align-items:center; justify-content:center;"
+            onclick="window.runSolverManual()">Re-solve</button>
         </div>
-        <input type="file" id="necImportInput" accept=".nec,.txt" style="display:none" onchange="window._necImportFile(this)">
-        <div id="focusedElementCtrl" style="margin-top:8px; display:none; background:rgba(0,0,0,0.2); padding:6px; border-radius:4px; border:1px solid var(--brd);">
-            <div class="slabel" style="font-size:0.55rem; color:var(--acc); margin-bottom:4px;">Focused Element Settings
-              <select id="focElemUnit" style="font-size:0.48rem;margin-left:6px;background:var(--bg2);color:var(--text);border:1px solid var(--brd);border-radius:3px;padding:1px 3px;" onchange="renderElementList()">
-                <option value="wl">λ</option>
-                <option value="m">m</option>
-                <option value="cm">cm</option>
-                <option value="mm">mm</option>
-              </select>
-            </div>
-            <div class="ctrl">
-              <div class="crow"><span class="cname">Length</span><input type="number" id="focLenLabel" class="foc-num-input" step="any" onchange="updateFocusedElement('len', this.value)" /></div>
-              <input type="range" id="focLenSlider" min="0.001" max="5" step="0.001" oninput="updateFocusedElement('len', this.value)" />
-            </div>
-            <div class="ctrl">
-              <div class="crow"><span class="cname">Position Y</span><input type="number" id="focYLabel" class="foc-num-input" step="any" onchange="updateFocusedElement('y', this.value)" /></div>
-              <input type="range" id="focYSlider" min="-5" max="5" step="0.001" oninput="updateFocusedElement('y', this.value)" />
-            </div>
+        <input type="file" id="necImportInput" accept=".nec,.txt" style="display:none"
+          onchange="window._necImportFile(this)">
+        <div id="focusedElementCtrl"
+          style="margin-top:8px; display:none; background:rgba(0,0,0,0.2); padding:6px; border-radius:4px; border:1px solid var(--brd);">
+          <div class="slabel" style="font-size:0.55rem; color:var(--acc); margin-bottom:4px;">Focused Element Settings
+            <select id="focElemUnit"
+              style="font-size:0.48rem;margin-left:6px;background:var(--bg2);color:var(--text);border:1px solid var(--brd);border-radius:3px;padding:1px 3px;"
+              onchange="renderElementList()">
+              <option value="wl">λ</option>
+              <option value="m">m</option>
+              <option value="cm">cm</option>
+              <option value="mm">mm</option>
+            </select>
+          </div>
+          <div class="ctrl">
+            <div class="crow"><span class="cname">Length</span><input type="number" id="focLenLabel"
+                class="foc-num-input" step="any" onchange="updateFocusedElement('len', this.value)" /></div>
+            <input type="range" id="focLenSlider" min="0.001" max="5" step="0.001"
+              oninput="updateFocusedElement('len', this.value)" />
+          </div>
+          <div class="ctrl">
+            <div class="crow"><span class="cname">Position Y</span><input type="number" id="focYLabel"
+                class="foc-num-input" step="any" onchange="updateFocusedElement('y', this.value)" /></div>
+            <input type="range" id="focYSlider" min="-5" max="5" step="0.001"
+              oninput="updateFocusedElement('y', this.value)" />
+          </div>
         </div>
       </details>
 
@@ -2667,7 +2752,8 @@
               <option value="75">FT240-75 — 0.5–10 MHz LF/MF</option>
             </select>
             <div class="ctrl" style="margin:0">
-              <div class="crow"><span class="cname">Turns (N)</span><span class="badge" id="balunTurnsLabel">8</span></div>
+              <div class="crow"><span class="cname">Turns (N)</span><span class="badge" id="balunTurnsLabel">8</span>
+              </div>
               <input type="range" id="balunTurnsSlider" min="2" max="20" step="1" value="8"
                 oninput="S.balunTurns=parseInt(this.value);document.getElementById('balunTurnsLabel').textContent=this.value;updateBalunUI()">
             </div>
@@ -2767,7 +2853,8 @@
             <input class="numinp" id="ghVal" value="5.0" onfocus="window._ghTyp=true"
               onblur="window._ghTyp=false;updateGH()"
               oninput="if(!_syncing){S.groundHeight=parseFloat(this.value)||5;updateGH();renderAndSolve()}" />
-            <select class="sel" id="ghUnit" onchange="if(!_syncing){S.groundUnit=this.value;updateGH();renderAndSolve()}"
+            <select class="sel" id="ghUnit"
+              onchange="if(!_syncing){S.groundUnit=this.value;updateGH();renderAndSolve()}"
               style="width:58px;margin-top:0;padding:3px 5px">
               <option value="m" selected>m</option>
               <option value="cm">cm</option>
@@ -2870,7 +2957,8 @@
             onclick="doPreset(this,'gp',{L:0.25,gpRad:4,gpDroop:0,_struct:'lattice',_gh:6,_gu:'m'})">🗼 VHF on
             tower<span class="ptag">tower</span></button>
           <button class="pbtn"
-            onclick="doPreset(this,'gp',{L:0.19,gpRad:4,gpDroop:0,ldEnabled:true,ldUH:1.4,ldR:1.0,ldPos:'base',elemThick:22})">JPC-12<span class="ptag">base-loaded</span></button>
+            onclick="doPreset(this,'gp',{L:0.19,gpRad:4,gpDroop:0,ldEnabled:true,ldUH:1.4,ldR:1.0,ldPos:'base',elemThick:22})">JPC-12<span
+              class="ptag">base-loaded</span></button>
         </div>
         <div class="plist" id="pre-yagi" style="display:none">
           <button class="pbtn"
@@ -2980,7 +3068,8 @@
             <div class="sl">λ</div>
             <div class="sv" id="statLambda">—</div>
           </div>
-          <div class="scard" style="grid-column: span 2; border-top: 1px solid var(--brd); padding-top: 8px; margin-top: 4px;">
+          <div class="scard"
+            style="grid-column: span 2; border-top: 1px solid var(--brd); padding-top: 8px; margin-top: 4px;">
             <div class="sl">Physics Engine</div>
             <div class="sv" id="modelTypeVal" style="font-size: 0.65rem; color: var(--muted);">Heuristic (Fast)</div>
           </div>
@@ -2992,7 +3081,8 @@
 
     <!-- ═══════════════ CENTER ═══════════════ -->
     <div class="center">
-      <div class="ctopbar" style="background: linear-gradient(90deg, var(--surf), #1e293b); border-bottom: 2px solid var(--acc);">
+      <div class="ctopbar"
+        style="background: linear-gradient(90deg, var(--surf), #1e293b); border-bottom: 2px solid var(--acc);">
         <div class="dot" style="background: #10b981; box-shadow: 0 0 10px #10b981;"></div>
         <div class="ctitle" id="plotTitle" style="color: #fff; font-weight: 700;">U(θ,φ) — Dipole · Total Gain</div>
         <span class="gbadge" id="gainBadge" style="background: var(--acc); color: #000; font-weight: 700;">—</span>
@@ -3000,7 +3090,8 @@
       <div class="plots-outer" id="plotsOuter">
         <!-- Pane 0 (always present) -->
         <div class="plot-pane" id="pane0">
-          <div class="pane-label" id="paneLabel0" style="display:none"><span id="paneLabelText0">Window 1</span><span class="pane-dot" id="paneDot0"></span></div>
+          <div class="pane-label" id="paneLabel0" style="display:none"><span id="paneLabelText0">Window 1</span><span
+              class="pane-dot" id="paneDot0"></span></div>
           <div class="plot3d-el" id="plot3d_0"></div>
           <div class="nec-spinner" id="necSpinner0">
             <div class="nec-spin-ring"></div>
@@ -3088,7 +3179,8 @@
           </div>
         </div>
         <div class="plot-pane" id="pane1" style="display:none">
-          <div class="pane-label" id="paneLabel1"><span id="paneLabelText1">Window 2</span><span class="pane-dot" id="paneDot1"></span></div>
+          <div class="pane-label" id="paneLabel1"><span id="paneLabelText1">Window 2</span><span class="pane-dot"
+              id="paneDot1"></span></div>
           <div class="plot3d-el" id="plot3d_1"></div>
           <div class="nec-spinner" id="necSpinner1">
             <div class="nec-spin-ring"></div>
@@ -3291,13 +3383,13 @@
     let savedCamera = [null, null];
     function snapCam(view, paneIdx) {
       const VIEWS = {
-        front:  { x: 0,    y: 2,    z: 0.1  },
-        back:   { x: 0,    y: -2,   z: 0.1  },
-        right:  { x: 2,    y: 0,    z: 0.1  },
-        left:   { x: -2,   y: 0,    z: 0.1  },
-        top:    { x: 0.1,  y: 0,    z: 2    },
-        bottom: { x: 0.1,  y: 0,    z: -2   },
-        iso:    { x: 1.2,  y: 0.4,  z: 0.6  }
+        front: { x: 0, y: 2, z: 0.1 },
+        back: { x: 0, y: -2, z: 0.1 },
+        right: { x: 2, y: 0, z: 0.1 },
+        left: { x: -2, y: 0, z: 0.1 },
+        top: { x: 0.1, y: 0, z: 2 },
+        bottom: { x: 0.1, y: 0, z: -2 },
+        iso: { x: 1.2, y: 0.4, z: 0.6 }
       };
       const eye = VIEWS[view] || VIEWS.iso;
       savedCamera[paneIdx] = { eye };
@@ -3334,7 +3426,7 @@
       document.getElementById('statLambda').textContent = ls;
       const _TNAMES = { dipole: 'Dipole', v: 'V-Dipole', gp: '¼λ GP', yagi: 'Yagi-Uda', turnstile: 'Turnstile', qfh: 'QFH', collinear: 'Collinear', loop: 'Loop', helix: 'Helix' };
       const _TDISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio' };
-      document.getElementById('plotTitle').textContent = `${_TNAMES[S.type] || S.type} · ${_TDISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz/1000).toFixed(3)+' GHz' : S.freqMHz+' MHz'}`;
+      document.getElementById('plotTitle').textContent = `${_TNAMES[S.type] || S.type} · ${_TDISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz / 1000).toFixed(3) + ' GHz' : S.freqMHz + ' MHz'}`;
       // Band label
       const band = getBand(S.freqMHz);
       const be = document.getElementById('hBand');
@@ -3696,496 +3788,498 @@
      * Interpolates the NEC-2 pattern data for a given observation vector
      */
     function getFieldFromNEC(lx, ly, lz, res, disp) {
-        if (!res || !res.pattern || res.pattern.length === 0) return 0;
-        const theta_q = Math.acos(Math.max(-1, Math.min(1, lz))) * 180 / Math.PI;
-        let phi_q = Math.atan2(ly, lx) * 180 / Math.PI;
-        if (phi_q < 0) phi_q += 360;
+      if (!res || !res.pattern || res.pattern.length === 0) return 0;
+      const theta_q = Math.acos(Math.max(-1, Math.min(1, lz))) * 180 / Math.PI;
+      let phi_q = Math.atan2(ly, lx) * 180 / Math.PI;
+      if (phi_q < 0) phi_q += 360;
 
-        // Auto-detect grid: 181×360=65160 (1°), 73×144=10512 (2.5°), 37×72=2664 (5°)
-        const ultraRes = res.pattern.length > 20000;
-        const hiRes    = !ultraRes && res.pattern.length > 3000;
-        const step = ultraRes ? 1.0 : hiRes ? 2.5 : 5.0;
-        const nT   = ultraRes ? 181 : hiRes ? 73 : 37;
-        const nP   = ultraRes ? 360 : hiRes ? 144 : 72;
-        const theta_fi = theta_q / step;
-        const phi_fi   = phi_q   / step;
-        const t0 = Math.min(nT - 1, Math.floor(theta_fi));
-        const t1 = Math.min(nT - 1, t0 + 1);
-        const p0 = Math.floor(phi_fi) % nP;
-        const p1 = (p0 + 1) % nP;
-        const ft = theta_fi - Math.floor(theta_fi);
-        const fp = phi_fi   - Math.floor(phi_fi);
+      // Auto-detect grid: 181×360=65160 (1°), 73×144=10512 (2.5°), 37×72=2664 (5°)
+      const ultraRes = res.pattern.length > 20000;
+      const hiRes = !ultraRes && res.pattern.length > 3000;
+      const step = ultraRes ? 1.0 : hiRes ? 2.5 : 5.0;
+      const nT = ultraRes ? 181 : hiRes ? 73 : 37;
+      const nP = ultraRes ? 360 : hiRes ? 144 : 72;
+      const theta_fi = theta_q / step;
+      const phi_fi = phi_q / step;
+      const t0 = Math.min(nT - 1, Math.floor(theta_fi));
+      const t1 = Math.min(nT - 1, t0 + 1);
+      const p0 = Math.floor(phi_fi) % nP;
+      const p1 = (p0 + 1) % nP;
+      const ft = theta_fi - Math.floor(theta_fi);
+      const fp = phi_fi - Math.floor(phi_fi);
 
-        function gainLin(ti, pi) {
-            const entry = res.pattern[ti + nT * pi];
-            if (!entry) return 0;
-            switch (disp) {
-                case 'ver': case 'etheta': {
-                    if (entry.gainV === undefined) { const g = entry.gain; return g > -900 ? Math.pow(10, g / 10) : 0; }
-                    return entry.gainV > -900 ? Math.pow(10, entry.gainV / 10) : 0;
-                }
-                case 'hor': case 'ephi': {
-                    if (entry.gainH === undefined) { const g = entry.gain; return g > -900 ? Math.pow(10, g / 10) : 0; }
-                    return entry.gainH > -900 ? Math.pow(10, entry.gainH / 10) : 0;
-                }
-                case 'ar':
-                    // Axial ratio: 1 = circular, 0 = linear (NEC outputs minor/major linear ratio)
-                    return entry.axial != null ? Math.max(0, Math.min(1, entry.axial)) : 0;
-                default: {
-                    const g = entry.gain;
-                    return g > -900 ? Math.pow(10, g / 10) : 0;
-                }
-            }
+      function gainLin(ti, pi) {
+        const entry = res.pattern[ti + nT * pi];
+        if (!entry) return 0;
+        switch (disp) {
+          case 'ver': case 'etheta': {
+            if (entry.gainV === undefined) { const g = entry.gain; return g > -900 ? Math.pow(10, g / 10) : 0; }
+            return entry.gainV > -900 ? Math.pow(10, entry.gainV / 10) : 0;
+          }
+          case 'hor': case 'ephi': {
+            if (entry.gainH === undefined) { const g = entry.gain; return g > -900 ? Math.pow(10, g / 10) : 0; }
+            return entry.gainH > -900 ? Math.pow(10, entry.gainH / 10) : 0;
+          }
+          case 'ar':
+            // Axial ratio: 1 = circular, 0 = linear (NEC outputs minor/major linear ratio)
+            return entry.axial != null ? Math.max(0, Math.min(1, entry.axial)) : 0;
+          default: {
+            const g = entry.gain;
+            return g > -900 ? Math.pow(10, g / 10) : 0;
+          }
         }
-        const gInterp = gainLin(t0,p0)*(1-ft)*(1-fp) + gainLin(t1,p0)*ft*(1-fp)
-                      + gainLin(t0,p1)*(1-ft)*fp      + gainLin(t1,p1)*ft*fp;
-        return Math.max(0, gInterp);
+      }
+      const gInterp = gainLin(t0, p0) * (1 - ft) * (1 - fp) + gainLin(t1, p0) * ft * (1 - fp)
+        + gainLin(t0, p1) * (1 - ft) * fp + gainLin(t1, p1) * ft * fp;
+      return Math.max(0, gInterp);
     }
 
     /**
      * Converts high-level antenna parameters into a discrete geometry array for NEC-2
      */
     function rebuildGeometry(st) {
-        st = st || S;
-        if (st.customMode) return st.geometryArray;
-        
-        const lambda = getLambdaM(st) || 1;
-        const sc = lambda; // NEC2 needs real-world meters: wavelengths × lambda = meters
-        const elements = [];
-        const diam = parseFloat(st.elemThick) || 15;
-        const _fpg = parseFloat(st.fpGap); const gapM = (isNaN(_fpg) ? 0 : _fpg) / 1000;
-        const baseL = parseFloat(st.L) || 0.5;
-        const isVert = (st.pol === 'vertical' || st.yagiV);
+      st = st || S;
+      if (st.customMode) return st.geometryArray;
 
-        // Helper: build a wire object
-        function mkEl(id, label, p1, p2, opts) {
-            return Object.assign({ id, label, type: 'parasitic', p1, p2, diam, isFed: false, segments: 11 }, opts || {});
-        }
+      const lambda = getLambdaM(st) || 1;
+      const sc = lambda; // NEC2 needs real-world meters: wavelengths × lambda = meters
+      const elements = [];
+      const diam = parseFloat(st.elemThick) || 15;
+      const _fpg = parseFloat(st.fpGap); const gapM = (isNaN(_fpg) ? 0 : _fpg) / 1000;
+      const baseL = parseFloat(st.L) || 0.5;
+      const isVert = (st.pol === 'vertical' || st.yagiV);
 
-        switch (st.type) {
-            case 'dipole': {
-                const h = baseL * sc * 0.5;
-                const gS = (gapM / lambda) * sc;
-                const g2 = gS * 0.5;
-                const radN = (st.endFed && st.dipRadEnabled && (st.dipRadN || 0) > 0) ? (st.dipRadN || 4) : 0;
-                if (radN > 0) {
-                    // End-fed + radials: single full-length radiator fed at bottom end, N radials at feed
-                    const hFull = baseL * sc;
-                    elements.push(mkEl('dip_arm1', 'Radiator', {x:0,y:0,z:0}, {x:0,y:0,z:hFull}, {type:'driven',isFed:true,feedSeg:1}));
-                    if (!st.dipRadLens) st.dipRadLens = [];
-                    while (st.dipRadLens.length < radN) st.dipRadLens.push(baseL * 0.9);
-                    const dR = (st.dipRadDroop || 0) * Math.PI / 180;
-                    for (let n = 0; n < radN; n++) {
-                        const rL = st.dipRadLens[n], rLen = rL * sc, az2 = 2 * Math.PI * n / radN;
-                        elements.push(mkEl('dip_rad' + n, 'Radial ' + (n + 1),
-                            {x: 0, y: 0, z: 0},
-                            {x: rLen * Math.cos(az2) * Math.cos(dR), y: rLen * Math.sin(az2) * Math.cos(dR), z: -rLen * Math.sin(dR)}
-                        ));
-                    }
-                } else if (st.endFed) {
-                    // End-fed no radials: single full-length radiator, fed at bottom end (segment 1)
-                    const hFull = baseL * sc;
-                    elements.push(mkEl('dip_arm1', 'Radiator', {x:0,y:0,z:0}, {x:0,y:0,z:hFull}, {type:'driven',isFed:true,feedSeg:1}));
-                } else if (isVert) {
-                    // Single wire: full dipole fed at centre (segment 11), most accurate NEC model
-                    elements.push(mkEl('dip_arm1', 'Dipole', {x:0,y:0,z:-(g2+h)}, {x:0,y:0,z:g2+h}, {type:'driven',isFed:true,feedSeg:11,segments:21}));
-                } else {
-                    elements.push(mkEl('dip_arm1', 'Dipole', {x:0,y:-(g2+h),z:0}, {x:0,y:g2+h,z:0}, {type:'driven',isFed:true,feedSeg:11,segments:21}));
-                }
-                break;
+      // Helper: build a wire object
+      function mkEl(id, label, p1, p2, opts) {
+        return Object.assign({ id, label, type: 'parasitic', p1, p2, diam, isFed: false, segments: 11 }, opts || {});
+      }
+
+      switch (st.type) {
+        case 'dipole': {
+          const h = baseL * sc * 0.5;
+          const gS = (gapM / lambda) * sc;
+          const g2 = gS * 0.5;
+          const radN = (st.endFed && st.dipRadEnabled && (st.dipRadN || 0) > 0) ? (st.dipRadN || 4) : 0;
+          if (radN > 0) {
+            // End-fed + radials: single full-length radiator fed at bottom end, N radials at feed
+            const hFull = baseL * sc;
+            elements.push(mkEl('dip_arm1', 'Radiator', { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: hFull }, { type: 'driven', isFed: true, feedSeg: 1 }));
+            if (!st.dipRadLens) st.dipRadLens = [];
+            while (st.dipRadLens.length < radN) st.dipRadLens.push(baseL * 0.9);
+            const dR = (st.dipRadDroop || 0) * Math.PI / 180;
+            for (let n = 0; n < radN; n++) {
+              const rL = st.dipRadLens[n], rLen = rL * sc, az2 = 2 * Math.PI * n / radN;
+              elements.push(mkEl('dip_rad' + n, 'Radial ' + (n + 1),
+                { x: 0, y: 0, z: 0 },
+                { x: rLen * Math.cos(az2) * Math.cos(dR), y: rLen * Math.sin(az2) * Math.cos(dR), z: -rLen * Math.sin(dR) }
+              ));
             }
-            case 'yagi': {
-                const rSp = (parseFloat(st.yagiRefSp) || 0.2) * sc;
-                const lam = 300 / st.freqMHz;
-                if (!st.arm1L) st.arm1L = (baseL - (gapM / lambda)) / 2;
-                if (!st.arm2L) st.arm2L = st.arm1L;
-                const h1 = st.arm1L * sc, h2 = st.arm2L * sc;
-                const metalL = st.arm1L + st.arm2L;
-                const gS = (gapM / lambda) * sc;
-                const g2 = gS * 0.5;
-                // Mounting Z-offset in real meters
-                const bRadM = (st.yagiBoomDiam || 20) / 2000; // boom radius in meters
-                const mOff = (st.yagiBoomMount || 1) > 1 ? bRadM : 0;
-                // Driven at y=0 (origin); reflector at y=−rSp; directors at y=+yp
-                if (st.yagiRef !== 0) {
-                    const refLwl = st.yagiRefL || (metalL * 1.032);
-                    const rH = refLwl * sc * 0.5;
-                    if (isVert) elements.push(mkEl('yagi_ref', 'Reflector', {x:0,y:-rSp,z:-rH}, {x:0,y:-rSp,z:rH}));
-                    else        elements.push(mkEl('yagi_ref', 'Reflector', {x:-rH,y:-rSp,z:mOff}, {x:rH,y:-rSp,z:mOff}));
-                }
-                if (st.yagiMatch === 'folded' && !isVert) {
-                    // Horizontal folded dipole — all coords in meters
-                    const fldSepM = Math.max((diam / 2000) * 4, 0.018); // 4× elem radius in meters
-                    const drvH = (st.arm1L + st.arm2L + gS / sc) * 0.5 * sc; // half-span in meters
-                    const fldGap = drvH * 0.06; // feedpoint gap in meters
-                    const zTop  = bRadM; // return rests on boom surface
-                    const zBase = zTop - 2 * fldSepM;
-                    const strH  = Math.max(fldSepM * 0.5, drvH - fldSepM);
-                    elements.push(mkEl('yagi_drA', 'Driven Feed L', {x:-strH,y:0,z:zBase}, {x:-fldGap,y:0,z:zBase}, {type:'driven',isFed:true,feedSeg:1}));
-                    elements.push(mkEl('yagi_drB', 'Driven Feed R', {x:fldGap,y:0,z:zBase}, {x:strH,y:0,z:zBase}, {type:'driven'}));
-                    elements.push(mkEl('yagi_drC', 'Driven Return', {x:-strH,y:0,z:zTop}, {x:strH,y:0,z:zTop}));
-                } else if (isVert) {
-                    // Single wire spanning full physical length — feed at centre segment
-                    elements.push(mkEl('yagi_drA', 'Driven', {x:0,y:0,z:-(g2+h2)}, {x:0,y:0,z:(g2+h1)}, {type:'driven',isFed:true,feedSeg:11,segments:21}));
-                } else {
-                    // Single wire spanning full physical length — feed at centre segment
-                    elements.push(mkEl('yagi_drA', 'Driven', {x:-(g2+h2),y:0,z:mOff}, {x:(g2+h1),y:0,z:mOff}, {type:'driven',isFed:true,feedSeg:11,segments:21}));
-                }
-                if (!st.yagiDirSps) st.yagiDirSps = [];
-                while (st.yagiDirSps.length < (st.yagiDir||0)) st.yagiDirSps.push(dl6wuDirPos(st.yagiDirSps.length));
-                if (st.yagiDirSps.length > (st.yagiDir||0)) st.yagiDirSps = st.yagiDirSps.slice(0, st.yagiDir);
-                if (!st.yagiDirLens) st.yagiDirLens = [];
-                while (st.yagiDirLens.length < (st.yagiDir||0)) st.yagiDirLens.push(dl6wuDirLen(st.yagiDirLens.length, metalL));
-                if (st.yagiDirLens.length > (st.yagiDir||0)) st.yagiDirLens = st.yagiDirLens.slice(0, st.yagiDir);
-                for (let d = 0; d < (st.yagiDir||0); d++) {
-                    const yp = st.yagiDirSps[d] * sc, dL = st.yagiDirLens[d], dH = dL * sc * 0.5;
-                    if (isVert) elements.push(mkEl('yagi_dir'+d, 'Director '+(d+1), {x:0,y:yp,z:-dH}, {x:0,y:yp,z:dH}));
-                    else        elements.push(mkEl('yagi_dir'+d, 'Director '+(d+1), {x:-dH,y:yp,z:mOff}, {x:dH,y:yp,z:mOff}));
-                }
-                break;
-            }
-            case 'gp': {
-                const h = baseL * sc;
-                elements.push(mkEl('gp_vert', 'Vertical Element', {x:0,y:0,z:0}, {x:0,y:0,z:h}, {type:'driven',isFed:true,feedSeg:1}));
-                if (!st.gpRadLens) st.gpRadLens = [];
-                while (st.gpRadLens.length < (st.gpRad||4)) st.gpRadLens.push(baseL * 0.9);
-                const dR = (st.gpDroop||0) * Math.PI/180;
-                for (let n = 0; n < (st.gpRad||4); n++) {
-                    const rL = st.gpRadLens[n], rLen = rL*sc, az2 = 2*Math.PI*n/(st.gpRad||4);
-                    elements.push(mkEl('gp_rad'+n, 'Radial '+(n+1),
-                        {x:0,y:0,z:0},
-                        {x:rLen*Math.cos(az2)*Math.cos(dR), y:rLen*Math.sin(az2)*Math.cos(dR), z:-rLen*Math.sin(dR)}
-                    ));
-                }
-                break;
-            }
-            case 'v': {
-                const aR = (st.alpha||45)*Math.PI/180, sA=Math.sin(aR), cA=Math.cos(aR);
-                if (!st.vArm1L) st.vArm1L = baseL*0.5;
-                if (!st.vArm2L) st.vArm2L = baseL*0.5;
-                const h1=st.vArm1L*sc, h2=st.vArm2L*sc;
-                elements.push(mkEl('v_arm1','Arm 1',{x:0,y:0,z:0},{x:sA*h1,y:0,z:cA*h1},{type:'driven',isFed:true,feedSeg:1}));
-                elements.push(mkEl('v_arm2','Arm 2',{x:0,y:0,z:0},{x:-sA*h2,y:0,z:cA*h2},{type:'driven'}));
-                if (st.vRef) {
-                    const ry0=-(st.vSp||0.25)*sc;
-                    const rL1=st.vRefArm1L||(st.vArm1L*1.05), rL2=st.vRefArm2L||(st.vArm2L*1.05);
-                    const rh1=rL1*sc, rh2=rL2*sc;
-                    elements.push(mkEl('v_ref1','Reflector Arm 1',{x:0,y:ry0,z:0},{x:sA*rh1,y:ry0,z:cA*rh1}));
-                    elements.push(mkEl('v_ref2','Reflector Arm 2',{x:0,y:ry0,z:0},{x:-sA*rh2,y:ry0,z:cA*rh2}));
-                }
-                break;
-            }
-            case 'turnstile': {
-                const LX=st.tsXL||baseL, LY=st.tsYL||baseL;
-                const hX=LX*sc*0.5, hY=LY*sc*0.5;
-                elements.push(mkEl('ts_x','Dipole X',{x:-hX,y:0,z:0},{x:hX,y:0,z:0},{type:'driven',isFed:true}));
-                elements.push(mkEl('ts_y','Dipole Y',{x:0,y:-hY,z:0},{x:0,y:hY,z:0},{type:'driven',isFed:true}));
-                if (st.tsRef) {
-                    const rLX=st.tsRefXL||(LX*1.05), rLY=st.tsRefYL||(LY*1.05);
-                    const rz0=-(st.tsSp||0.25)*sc;
-                    const rhX=rLX*sc*0.5, rhY=rLY*sc*0.5;
-                    elements.push(mkEl('ts_refX','Reflector X',{x:-rhX,y:0,z:rz0},{x:rhX,y:0,z:rz0}));
-                    elements.push(mkEl('ts_refY','Reflector Y',{x:0,y:-rhY,z:rz0},{x:0,y:rhY,z:rz0}));
-                }
-                break;
-            }
-            case 'collinear': {
-                const cLens=st.colLens||null, colN=st.colN||4;
-                const spWl=1.0*sc, tot=(colN-1)*spWl;
-                for (let n=0;n<colN;n++) {
-                    const eL=cLens&&cLens[n]?cLens[n]:baseL;
-                    const eH=eL*sc*0.5*0.76;
-                    const z0=n*spWl-tot/2;
-                    elements.push(mkEl('col_el'+n,'Element '+(n+1),{x:0,y:0,z:z0-eH},{x:0,y:0,z:z0+eH},{type:n===0?'driven':'parasitic',isFed:n===0}));
-                }
-                break;
-            }
-            case 'loop': {
-                // Closed polygon approximation of a circular loop in the XZ plane
-                // Feed at top (a=π/2). 24 single-segment chords.
-                const loopR = (baseL * sc) / (2 * Math.PI);  // radius from circumference L*lambda
-                const NSEG_LOOP = 24;
-                const feedIdx = Math.round(NSEG_LOOP / 4); // top of loop
-                for (let i = 0; i < NSEG_LOOP; i++) {
-                    const a1 = 2*Math.PI * i / NSEG_LOOP;
-                    const a2 = 2*Math.PI * (i+1) / NSEG_LOOP;
-                    elements.push(mkEl('loop_'+i, 'Loop seg '+(i+1),
-                        {x: loopR*Math.cos(a1), y: 0, z: loopR*Math.sin(a1)},
-                        {x: loopR*Math.cos(a2), y: 0, z: loopR*Math.sin(a2)},
-                        {type:'driven', isFed: (i===feedIdx), feedSeg:1, segments:1}
-                    ));
-                }
-                break;
-            }
-            case 'helix': {
-                // Axial-mode helix: helixT turns, pitch angle helixP°, circumference=L*lambda
-                const hC = baseL * sc;                          // circumference in metres
-                const hR = hC / (2*Math.PI);                   // radius
-                const hSp = hC * Math.tan((st.helixP||12)*Math.PI/180); // axial spacing per turn
-                const hTot = (st.helixT||4) * hSp;
-                const SEGS_PER_TURN = 12;
-                const nHW = (st.helixT||4) * SEGS_PER_TURN;
-                for (let i = 0; i < nHW; i++) {
-                    const t1 = i/nHW, t2 = (i+1)/nHW;
-                    const a1 = 2*Math.PI*(st.helixT||4)*t1, a2 = 2*Math.PI*(st.helixT||4)*t2;
-                    elements.push(mkEl('helix_'+i, 'Helix seg '+(i+1),
-                        {x: hR*Math.cos(a1), y: hR*Math.sin(a1), z: -hTot/2 + hTot*t1},
-                        {x: hR*Math.cos(a2), y: hR*Math.sin(a2), z: -hTot/2 + hTot*t2},
-                        {type:'driven', isFed: (i===0), feedSeg:1, segments:1}
-                    ));
-                }
-                break;
-            }
-            case 'qfh': {
-                // Quadrifilar helix: two interleaved helices fed in quadrature (0° / 90°)
-                // Element geometry follows PolarScope visualisation dimensions
-                const qL1 = st.qfhL1 || baseL, qL2 = st.qfhL2 || baseL;
-                const QT = st.qfhT || 1;
-                const SEGS_QFH = QT * 12;
-                for (let loop = 0; loop < 2; loop++) {
-                    const elL = (loop===0 ? qL1 : qL2) * sc;
-                    const hh = elL * 0.5 * 0.65, rq = elL * 0.5 * 0.32;
-                    const phOff = loop * Math.PI / 2; // 90° azimuth offset between loops
-                    for (let i = 0; i < SEGS_QFH; i++) {
-                        const t1 = i/SEGS_QFH, t2 = (i+1)/SEGS_QFH;
-                        const a1 = 2*Math.PI*QT*t1 + phOff, a2 = 2*Math.PI*QT*t2 + phOff;
-                        elements.push(mkEl('qfh_'+loop+'_'+i, 'QFH '+(loop+1)+' seg '+(i+1),
-                            {x: rq*Math.cos(a1), y: rq*Math.sin(a1), z: -hh + 2*hh*t1},
-                            {x: rq*Math.cos(a2), y: rq*Math.sin(a2), z: -hh + 2*hh*t2},
-                            {type:'driven', isFed: (i===0), feedSeg:1, segments:1,
-                             feedPhase: (loop===1 ? 90 : 0)}
-                        ));
-                    }
-                }
-                break;
-            }
+          } else if (st.endFed) {
+            // End-fed no radials: single full-length radiator, fed at bottom end (segment 1)
+            const hFull = baseL * sc;
+            elements.push(mkEl('dip_arm1', 'Radiator', { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: hFull }, { type: 'driven', isFed: true, feedSeg: 1 }));
+          } else if (isVert) {
+            // Single wire: full dipole fed at centre (segment 11), most accurate NEC model
+            elements.push(mkEl('dip_arm1', 'Dipole', { x: 0, y: 0, z: -(g2 + h) }, { x: 0, y: 0, z: g2 + h }, { type: 'driven', isFed: true, feedSeg: 11, segments: 21 }));
+          } else {
+            elements.push(mkEl('dip_arm1', 'Dipole', { x: 0, y: -(g2 + h), z: 0 }, { x: 0, y: g2 + h, z: 0 }, { type: 'driven', isFed: true, feedSeg: 11, segments: 21 }));
+          }
+          break;
         }
-        
-        st.geometryArray = elements;
-        // Only update sidebar list when not already inside the render loop
-        if (st === S && !_renderPending) renderElementList();
-        return st.geometryArray;
+        case 'yagi': {
+          const rSp = (parseFloat(st.yagiRefSp) || 0.2) * sc;
+          const lam = 300 / st.freqMHz;
+          if (!st.arm1L) st.arm1L = (baseL - (gapM / lambda)) / 2;
+          if (!st.arm2L) st.arm2L = st.arm1L;
+          const h1 = st.arm1L * sc, h2 = st.arm2L * sc;
+          const metalL = st.arm1L + st.arm2L;
+          const gS = (gapM / lambda) * sc;
+          const g2 = gS * 0.5;
+          // Mounting Z-offset in real meters
+          const bRadM = (st.yagiBoomDiam || 20) / 2000; // boom radius in meters
+          const mOff = (st.yagiBoomMount || 1) > 1 ? bRadM : 0;
+          // Driven at y=0 (origin); reflector at y=−rSp; directors at y=+yp
+          if (st.yagiRef !== 0) {
+            const refLwl = st.yagiRefL || (metalL * 1.032);
+            const rH = refLwl * sc * 0.5;
+            if (isVert) elements.push(mkEl('yagi_ref', 'Reflector', { x: 0, y: -rSp, z: -rH }, { x: 0, y: -rSp, z: rH }));
+            else elements.push(mkEl('yagi_ref', 'Reflector', { x: -rH, y: -rSp, z: mOff }, { x: rH, y: -rSp, z: mOff }));
+          }
+          if (st.yagiMatch === 'folded' && !isVert) {
+            // Horizontal folded dipole — all coords in meters
+            const fldSepM = Math.max((diam / 2000) * 4, 0.018); // 4× elem radius in meters
+            const drvH = (st.arm1L + st.arm2L + gS / sc) * 0.5 * sc; // half-span in meters
+            const fldGap = drvH * 0.06; // feedpoint gap in meters
+            const zTop = bRadM; // return rests on boom surface
+            const zBase = zTop - 2 * fldSepM;
+            const strH = Math.max(fldSepM * 0.5, drvH - fldSepM);
+            elements.push(mkEl('yagi_drA', 'Driven Feed L', { x: -strH, y: 0, z: zBase }, { x: -fldGap, y: 0, z: zBase }, { type: 'driven', isFed: true, feedSeg: 1 }));
+            elements.push(mkEl('yagi_drB', 'Driven Feed R', { x: fldGap, y: 0, z: zBase }, { x: strH, y: 0, z: zBase }, { type: 'driven' }));
+            elements.push(mkEl('yagi_drC', 'Driven Return', { x: -strH, y: 0, z: zTop }, { x: strH, y: 0, z: zTop }));
+          } else if (isVert) {
+            // Single wire spanning full physical length — feed at centre segment
+            elements.push(mkEl('yagi_drA', 'Driven', { x: 0, y: 0, z: -(g2 + h2) }, { x: 0, y: 0, z: (g2 + h1) }, { type: 'driven', isFed: true, feedSeg: 11, segments: 21 }));
+          } else {
+            // Single wire spanning full physical length — feed at centre segment
+            elements.push(mkEl('yagi_drA', 'Driven', { x: -(g2 + h2), y: 0, z: mOff }, { x: (g2 + h1), y: 0, z: mOff }, { type: 'driven', isFed: true, feedSeg: 11, segments: 21 }));
+          }
+          if (!st.yagiDirSps) st.yagiDirSps = [];
+          while (st.yagiDirSps.length < (st.yagiDir || 0)) st.yagiDirSps.push(dl6wuDirPos(st.yagiDirSps.length));
+          if (st.yagiDirSps.length > (st.yagiDir || 0)) st.yagiDirSps = st.yagiDirSps.slice(0, st.yagiDir);
+          if (!st.yagiDirLens) st.yagiDirLens = [];
+          while (st.yagiDirLens.length < (st.yagiDir || 0)) st.yagiDirLens.push(dl6wuDirLen(st.yagiDirLens.length, metalL));
+          if (st.yagiDirLens.length > (st.yagiDir || 0)) st.yagiDirLens = st.yagiDirLens.slice(0, st.yagiDir);
+          for (let d = 0; d < (st.yagiDir || 0); d++) {
+            const yp = st.yagiDirSps[d] * sc, dL = st.yagiDirLens[d], dH = dL * sc * 0.5;
+            if (isVert) elements.push(mkEl('yagi_dir' + d, 'Director ' + (d + 1), { x: 0, y: yp, z: -dH }, { x: 0, y: yp, z: dH }));
+            else elements.push(mkEl('yagi_dir' + d, 'Director ' + (d + 1), { x: -dH, y: yp, z: mOff }, { x: dH, y: yp, z: mOff }));
+          }
+          break;
+        }
+        case 'gp': {
+          const h = baseL * sc;
+          elements.push(mkEl('gp_vert', 'Vertical Element', { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: h }, { type: 'driven', isFed: true, feedSeg: 1 }));
+          if (!st.gpRadLens) st.gpRadLens = [];
+          while (st.gpRadLens.length < (st.gpRad || 4)) st.gpRadLens.push(baseL * 0.9);
+          const dR = (st.gpDroop || 0) * Math.PI / 180;
+          for (let n = 0; n < (st.gpRad || 4); n++) {
+            const rL = st.gpRadLens[n], rLen = rL * sc, az2 = 2 * Math.PI * n / (st.gpRad || 4);
+            elements.push(mkEl('gp_rad' + n, 'Radial ' + (n + 1),
+              { x: 0, y: 0, z: 0 },
+              { x: rLen * Math.cos(az2) * Math.cos(dR), y: rLen * Math.sin(az2) * Math.cos(dR), z: -rLen * Math.sin(dR) }
+            ));
+          }
+          break;
+        }
+        case 'v': {
+          const aR = (st.alpha || 45) * Math.PI / 180, sA = Math.sin(aR), cA = Math.cos(aR);
+          if (!st.vArm1L) st.vArm1L = baseL * 0.5;
+          if (!st.vArm2L) st.vArm2L = baseL * 0.5;
+          const h1 = st.vArm1L * sc, h2 = st.vArm2L * sc;
+          elements.push(mkEl('v_arm1', 'Arm 1', { x: 0, y: 0, z: 0 }, { x: sA * h1, y: 0, z: cA * h1 }, { type: 'driven', isFed: true, feedSeg: 1 }));
+          elements.push(mkEl('v_arm2', 'Arm 2', { x: 0, y: 0, z: 0 }, { x: -sA * h2, y: 0, z: cA * h2 }, { type: 'driven' }));
+          if (st.vRef) {
+            const ry0 = -(st.vSp || 0.25) * sc;
+            const rL1 = st.vRefArm1L || (st.vArm1L * 1.05), rL2 = st.vRefArm2L || (st.vArm2L * 1.05);
+            const rh1 = rL1 * sc, rh2 = rL2 * sc;
+            elements.push(mkEl('v_ref1', 'Reflector Arm 1', { x: 0, y: ry0, z: 0 }, { x: sA * rh1, y: ry0, z: cA * rh1 }));
+            elements.push(mkEl('v_ref2', 'Reflector Arm 2', { x: 0, y: ry0, z: 0 }, { x: -sA * rh2, y: ry0, z: cA * rh2 }));
+          }
+          break;
+        }
+        case 'turnstile': {
+          const LX = st.tsXL || baseL, LY = st.tsYL || baseL;
+          const hX = LX * sc * 0.5, hY = LY * sc * 0.5;
+          elements.push(mkEl('ts_x', 'Dipole X', { x: -hX, y: 0, z: 0 }, { x: hX, y: 0, z: 0 }, { type: 'driven', isFed: true }));
+          elements.push(mkEl('ts_y', 'Dipole Y', { x: 0, y: -hY, z: 0 }, { x: 0, y: hY, z: 0 }, { type: 'driven', isFed: true }));
+          if (st.tsRef) {
+            const rLX = st.tsRefXL || (LX * 1.05), rLY = st.tsRefYL || (LY * 1.05);
+            const rz0 = -(st.tsSp || 0.25) * sc;
+            const rhX = rLX * sc * 0.5, rhY = rLY * sc * 0.5;
+            elements.push(mkEl('ts_refX', 'Reflector X', { x: -rhX, y: 0, z: rz0 }, { x: rhX, y: 0, z: rz0 }));
+            elements.push(mkEl('ts_refY', 'Reflector Y', { x: 0, y: -rhY, z: rz0 }, { x: 0, y: rhY, z: rz0 }));
+          }
+          break;
+        }
+        case 'collinear': {
+          const cLens = st.colLens || null, colN = st.colN || 4;
+          const spWl = 1.0 * sc, tot = (colN - 1) * spWl;
+          for (let n = 0; n < colN; n++) {
+            const eL = cLens && cLens[n] ? cLens[n] : baseL;
+            const eH = eL * sc * 0.5 * 0.76;
+            const z0 = n * spWl - tot / 2;
+            elements.push(mkEl('col_el' + n, 'Element ' + (n + 1), { x: 0, y: 0, z: z0 - eH }, { x: 0, y: 0, z: z0 + eH }, { type: n === 0 ? 'driven' : 'parasitic', isFed: n === 0 }));
+          }
+          break;
+        }
+        case 'loop': {
+          // Closed polygon approximation of a circular loop in the XZ plane
+          // Feed at top (a=π/2). 24 single-segment chords.
+          const loopR = (baseL * sc) / (2 * Math.PI);  // radius from circumference L*lambda
+          const NSEG_LOOP = 24;
+          const feedIdx = Math.round(NSEG_LOOP / 4); // top of loop
+          for (let i = 0; i < NSEG_LOOP; i++) {
+            const a1 = 2 * Math.PI * i / NSEG_LOOP;
+            const a2 = 2 * Math.PI * (i + 1) / NSEG_LOOP;
+            elements.push(mkEl('loop_' + i, 'Loop seg ' + (i + 1),
+              { x: loopR * Math.cos(a1), y: 0, z: loopR * Math.sin(a1) },
+              { x: loopR * Math.cos(a2), y: 0, z: loopR * Math.sin(a2) },
+              { type: 'driven', isFed: (i === feedIdx), feedSeg: 1, segments: 1 }
+            ));
+          }
+          break;
+        }
+        case 'helix': {
+          // Axial-mode helix: helixT turns, pitch angle helixP°, circumference=L*lambda
+          const hC = baseL * sc;                          // circumference in metres
+          const hR = hC / (2 * Math.PI);                   // radius
+          const hSp = hC * Math.tan((st.helixP || 12) * Math.PI / 180); // axial spacing per turn
+          const hTot = (st.helixT || 4) * hSp;
+          const SEGS_PER_TURN = 12;
+          const nHW = (st.helixT || 4) * SEGS_PER_TURN;
+          for (let i = 0; i < nHW; i++) {
+            const t1 = i / nHW, t2 = (i + 1) / nHW;
+            const a1 = 2 * Math.PI * (st.helixT || 4) * t1, a2 = 2 * Math.PI * (st.helixT || 4) * t2;
+            elements.push(mkEl('helix_' + i, 'Helix seg ' + (i + 1),
+              { x: hR * Math.cos(a1), y: hR * Math.sin(a1), z: -hTot / 2 + hTot * t1 },
+              { x: hR * Math.cos(a2), y: hR * Math.sin(a2), z: -hTot / 2 + hTot * t2 },
+              { type: 'driven', isFed: (i === 0), feedSeg: 1, segments: 1 }
+            ));
+          }
+          break;
+        }
+        case 'qfh': {
+          // Quadrifilar helix: two interleaved helices fed in quadrature (0° / 90°)
+          // Element geometry follows PolarScope visualisation dimensions
+          const qL1 = st.qfhL1 || baseL, qL2 = st.qfhL2 || baseL;
+          const QT = st.qfhT || 1;
+          const SEGS_QFH = QT * 12;
+          for (let loop = 0; loop < 2; loop++) {
+            const elL = (loop === 0 ? qL1 : qL2) * sc;
+            const hh = elL * 0.5 * 0.65, rq = elL * 0.5 * 0.32;
+            const phOff = loop * Math.PI / 2; // 90° azimuth offset between loops
+            for (let i = 0; i < SEGS_QFH; i++) {
+              const t1 = i / SEGS_QFH, t2 = (i + 1) / SEGS_QFH;
+              const a1 = 2 * Math.PI * QT * t1 + phOff, a2 = 2 * Math.PI * QT * t2 + phOff;
+              elements.push(mkEl('qfh_' + loop + '_' + i, 'QFH ' + (loop + 1) + ' seg ' + (i + 1),
+                { x: rq * Math.cos(a1), y: rq * Math.sin(a1), z: -hh + 2 * hh * t1 },
+                { x: rq * Math.cos(a2), y: rq * Math.sin(a2), z: -hh + 2 * hh * t2 },
+                {
+                  type: 'driven', isFed: (i === 0), feedSeg: 1, segments: 1,
+                  feedPhase: (loop === 1 ? 90 : 0)
+                }
+              ));
+            }
+          }
+          break;
+        }
+      }
+
+      st.geometryArray = elements;
+      // Only update sidebar list when not already inside the render loop
+      if (st === S && !_renderPending) renderElementList();
+      return st.geometryArray;
     }
 
     /**
      * Renders the interactive element list in the sidebar
      */
     function renderElementList() {
-        try {
-            const rows = document.getElementById('elementRows');
-            if (!rows) return;
-            rows.innerHTML = '';
-            
-            if (S.customMode) {
-                const resetBtn = document.createElement('div');
-                resetBtn.className = 'scard';
-                resetBtn.style.textAlign = 'center';
-                resetBtn.style.color = 'var(--acc)';
-                resetBtn.style.fontSize = '0.5rem';
-                resetBtn.style.padding = '4px';
-                resetBtn.innerHTML = '↺ RESET TO AUTO';
-                resetBtn.onclick = () => {
-                    S.customMode = false;
-                    // Clear per-element length overrides so auto-values are recalculated from S.L
-                    if (S.type === 'dipole')     { S.arm1L = null; S.arm2L = null; S.dipRadLens = null; }
-                    else if (S.type === 'gp')        { S.gpRadLens = null; }
-                    else if (S.type === 'yagi')      { S.arm1L = null; S.arm2L = null; S.yagiRefL = null; S.yagiDirLens = null; }
-                    else if (S.type === 'v')         { S.vArm1L = null; S.vArm2L = null; S.vRefArm1L = null; S.vRefArm2L = null; }
-                    else if (S.type === 'collinear') { S.colLens = null; }
-                    else if (S.type === 'turnstile') { S.tsXL = null; S.tsYL = null; S.tsRefXL = null; S.tsRefYL = null; }
-                    render();
-                };
-                rows.appendChild(resetBtn);
-            }
-            
-            (S.geometryArray || []).forEach(el => {
-                const isFoc = S.focusedElementId === el.id;
-                const row = document.createElement('div');
-                row.className = 'scard' + (isFoc ? ' active' : '');
-                row.style.cursor = 'pointer';
-                row.style.padding = '4px 8px';
-                row.style.border = isFoc ? '1px solid var(--acc)' : '1px solid var(--brd)';
-                row.innerHTML = `
+      try {
+        const rows = document.getElementById('elementRows');
+        if (!rows) return;
+        rows.innerHTML = '';
+
+        if (S.customMode) {
+          const resetBtn = document.createElement('div');
+          resetBtn.className = 'scard';
+          resetBtn.style.textAlign = 'center';
+          resetBtn.style.color = 'var(--acc)';
+          resetBtn.style.fontSize = '0.5rem';
+          resetBtn.style.padding = '4px';
+          resetBtn.innerHTML = '↺ RESET TO AUTO';
+          resetBtn.onclick = () => {
+            S.customMode = false;
+            // Clear per-element length overrides so auto-values are recalculated from S.L
+            if (S.type === 'dipole') { S.arm1L = null; S.arm2L = null; S.dipRadLens = null; }
+            else if (S.type === 'gp') { S.gpRadLens = null; }
+            else if (S.type === 'yagi') { S.arm1L = null; S.arm2L = null; S.yagiRefL = null; S.yagiDirLens = null; }
+            else if (S.type === 'v') { S.vArm1L = null; S.vArm2L = null; S.vRefArm1L = null; S.vRefArm2L = null; }
+            else if (S.type === 'collinear') { S.colLens = null; }
+            else if (S.type === 'turnstile') { S.tsXL = null; S.tsYL = null; S.tsRefXL = null; S.tsRefYL = null; }
+            render();
+          };
+          rows.appendChild(resetBtn);
+        }
+
+        (S.geometryArray || []).forEach(el => {
+          const isFoc = S.focusedElementId === el.id;
+          const row = document.createElement('div');
+          row.className = 'scard' + (isFoc ? ' active' : '');
+          row.style.cursor = 'pointer';
+          row.style.padding = '4px 8px';
+          row.style.border = isFoc ? '1px solid var(--acc)' : '1px solid var(--brd)';
+          row.innerHTML = `
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:0.55rem;">${el.label}</span>
                         <span style="font-size:0.45rem; color:var(--muted);">${el.isFed ? 'FED' : ''}</span>
                     </div>
                 `;
-                row.onclick = () => {
-                    S.focusedElementId = el.id;
-                    renderElementList();
-                    render();
-                };
-                rows.appendChild(row);
-            });
+          row.onclick = () => {
+            S.focusedElementId = el.id;
+            renderElementList();
+            render();
+          };
+          rows.appendChild(row);
+        });
 
-            const ctrl = document.getElementById('focusedElementCtrl');
-            const foc = (S.geometryArray||[]).find(el => el.id === S.focusedElementId);
-            if (foc && ctrl) {
-                ctrl.style.display = 'block';
-                const focLenLabel = document.getElementById('focLenLabel');
-                const focYLabel   = document.getElementById('focYLabel');
-                const focUnitEl   = document.getElementById('focElemUnit');
-                const focUnit     = focUnitEl ? focUnitEl.value : 'wl';
-                const lambda      = getLambdaM(S);
-                // Length: 3D distance in meters (sc=lambda) → wavelengths → chosen unit
-                const dx=foc.p2.x-foc.p1.x, dy=foc.p2.y-foc.p1.y, dz=foc.p2.z-foc.p1.z;
-                const lenSc = Math.sqrt(dx*dx+dy*dy+dz*dz);
-                const lenWl = lenSc / lambda; // geometry in meters → ÷ lambda = wavelengths
-                const lenDisp = focUnit==='wl' ? lenWl : focUnit==='m' ? lenWl*lambda : focUnit==='cm' ? lenWl*lambda*100 : lenWl*lambda*1000;
-                const lenSuffix = focUnit==='wl' ? ' λ' : focUnit==='m' ? ' m' : focUnit==='cm' ? ' cm' : ' mm';
-                // Slider range in chosen unit
-                const lenSlider = document.getElementById('focLenSlider');
-                if (lenSlider) {
-                    const maxLen = focUnit==='wl' ? 3 : focUnit==='m' ? 3*lambda : focUnit==='cm' ? 300*lambda : 3000*lambda;
-                    lenSlider.max = maxLen.toFixed(3);
-                    lenSlider.step = (maxLen/500).toFixed(4);
-                    lenSlider.value = lenDisp.toFixed(4);
-                }
-                if (focLenLabel && document.activeElement !== focLenLabel) focLenLabel.value = lenDisp.toFixed(4);
-                // Position Y
-                const id2 = foc.id;
-                let posWl = foc.p1.y / lambda; // geometry in meters → ÷ lambda = wavelengths
-                // Reflector is at position 0; driven at yagiRefSp; directors at yagiRefSp + dirSps[i]
-                if (id2 === 'yagi_ref') posWl = 0;
-                else if (id2 === 'yagi_drA' || id2 === 'yagi_drB') posWl = S.yagiRefSp || 0.2;
-                else if (id2.startsWith('yagi_dir')) { const i=parseInt(id2.replace('yagi_dir','')); posWl = (S.yagiRefSp || 0.2) + (S.yagiDirSps && S.yagiDirSps[i] != null ? S.yagiDirSps[i] : 0); }
-                const posDisp = focUnit==='wl' ? posWl : focUnit==='m' ? posWl*lambda : focUnit==='cm' ? posWl*lambda*100 : posWl*lambda*1000;
-                const ySlider = document.getElementById('focYSlider');
-                if (ySlider) {
-                    let slMinWl = -3, slMaxWl = 3;
-                    if (id2 === 'yagi_drA' || id2 === 'yagi_drB') {
-                        slMinWl = 0.05;
-                        slMaxWl = (S.yagiDirSps && S.yagiDirSps.length > 0)
-                            ? (S.yagiRefSp || 0.2) + (S.yagiDirSps[0] || 0.12) - 0.04
-                            : 3.0;
-                    }
-                    const toDisp = wl => focUnit==='wl' ? wl : focUnit==='m' ? wl*lambda : focUnit==='cm' ? wl*lambda*100 : wl*lambda*1000;
-                    const slMin = toDisp(slMinWl), slMax = toDisp(slMaxWl);
-                    ySlider.min = slMin.toFixed(3); ySlider.max = slMax.toFixed(3);
-                    ySlider.step = ((slMax - slMin) / 500).toFixed(4);
-                    ySlider.value = posDisp.toFixed(4);
-                }
-                if (focYLabel && document.activeElement !== focYLabel) focYLabel.value = posDisp.toFixed(4);
-            } else if (ctrl) {
-                ctrl.style.display = 'none';
+        const ctrl = document.getElementById('focusedElementCtrl');
+        const foc = (S.geometryArray || []).find(el => el.id === S.focusedElementId);
+        if (foc && ctrl) {
+          ctrl.style.display = 'block';
+          const focLenLabel = document.getElementById('focLenLabel');
+          const focYLabel = document.getElementById('focYLabel');
+          const focUnitEl = document.getElementById('focElemUnit');
+          const focUnit = focUnitEl ? focUnitEl.value : 'wl';
+          const lambda = getLambdaM(S);
+          // Length: 3D distance in meters (sc=lambda) → wavelengths → chosen unit
+          const dx = foc.p2.x - foc.p1.x, dy = foc.p2.y - foc.p1.y, dz = foc.p2.z - foc.p1.z;
+          const lenSc = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          const lenWl = lenSc / lambda; // geometry in meters → ÷ lambda = wavelengths
+          const lenDisp = focUnit === 'wl' ? lenWl : focUnit === 'm' ? lenWl * lambda : focUnit === 'cm' ? lenWl * lambda * 100 : lenWl * lambda * 1000;
+          const lenSuffix = focUnit === 'wl' ? ' λ' : focUnit === 'm' ? ' m' : focUnit === 'cm' ? ' cm' : ' mm';
+          // Slider range in chosen unit
+          const lenSlider = document.getElementById('focLenSlider');
+          if (lenSlider) {
+            const maxLen = focUnit === 'wl' ? 3 : focUnit === 'm' ? 3 * lambda : focUnit === 'cm' ? 300 * lambda : 3000 * lambda;
+            lenSlider.max = maxLen.toFixed(3);
+            lenSlider.step = (maxLen / 500).toFixed(4);
+            lenSlider.value = lenDisp.toFixed(4);
+          }
+          if (focLenLabel && document.activeElement !== focLenLabel) focLenLabel.value = lenDisp.toFixed(4);
+          // Position Y
+          const id2 = foc.id;
+          let posWl = foc.p1.y / lambda; // geometry in meters → ÷ lambda = wavelengths
+          // Reflector is at position 0; driven at yagiRefSp; directors at yagiRefSp + dirSps[i]
+          if (id2 === 'yagi_ref') posWl = 0;
+          else if (id2 === 'yagi_drA' || id2 === 'yagi_drB') posWl = S.yagiRefSp || 0.2;
+          else if (id2.startsWith('yagi_dir')) { const i = parseInt(id2.replace('yagi_dir', '')); posWl = (S.yagiRefSp || 0.2) + (S.yagiDirSps && S.yagiDirSps[i] != null ? S.yagiDirSps[i] : 0); }
+          const posDisp = focUnit === 'wl' ? posWl : focUnit === 'm' ? posWl * lambda : focUnit === 'cm' ? posWl * lambda * 100 : posWl * lambda * 1000;
+          const ySlider = document.getElementById('focYSlider');
+          if (ySlider) {
+            let slMinWl = -3, slMaxWl = 3;
+            if (id2 === 'yagi_drA' || id2 === 'yagi_drB') {
+              slMinWl = 0.05;
+              slMaxWl = (S.yagiDirSps && S.yagiDirSps.length > 0)
+                ? (S.yagiRefSp || 0.2) + (S.yagiDirSps[0] || 0.12) - 0.04
+                : 3.0;
             }
-        } catch (err) {
-            console.warn('renderElementList error:', err);
+            const toDisp = wl => focUnit === 'wl' ? wl : focUnit === 'm' ? wl * lambda : focUnit === 'cm' ? wl * lambda * 100 : wl * lambda * 1000;
+            const slMin = toDisp(slMinWl), slMax = toDisp(slMaxWl);
+            ySlider.min = slMin.toFixed(3); ySlider.max = slMax.toFixed(3);
+            ySlider.step = ((slMax - slMin) / 500).toFixed(4);
+            ySlider.value = posDisp.toFixed(4);
+          }
+          if (focYLabel && document.activeElement !== focYLabel) focYLabel.value = posDisp.toFixed(4);
+        } else if (ctrl) {
+          ctrl.style.display = 'none';
         }
+      } catch (err) {
+        console.warn('renderElementList error:', err);
+      }
     }
 
     function updateFocusedElement(prop, rawVal) {
-        const foc = (S.geometryArray||[]).find(el => el.id === S.focusedElementId);
-        if (!foc) return;
-        const focUnitEl = document.getElementById('focElemUnit');
-        const focUnit   = focUnitEl ? focUnitEl.value : 'wl';
-        const lambda    = getLambdaM(S);
-        // Convert raw slider value (in chosen unit) to wavelengths
-        function toWl(v) {
-            const n = parseFloat(v);
-            if (isNaN(n)) return null;
-            if (focUnit === 'wl') return n;
-            if (focUnit === 'm')  return n / lambda;
-            if (focUnit === 'cm') return n / (lambda * 100);
-            if (focUnit === 'mm') return n / (lambda * 1000);
-            return n;
-        }
-        const vWl = toWl(rawVal);
-        if (vWl === null) return;
-        const sc = getLambdaM(S); // geometry coords are in metres; vWl × lambda = metres
+      const foc = (S.geometryArray || []).find(el => el.id === S.focusedElementId);
+      if (!foc) return;
+      const focUnitEl = document.getElementById('focElemUnit');
+      const focUnit = focUnitEl ? focUnitEl.value : 'wl';
+      const lambda = getLambdaM(S);
+      // Convert raw slider value (in chosen unit) to wavelengths
+      function toWl(v) {
+        const n = parseFloat(v);
+        if (isNaN(n)) return null;
+        if (focUnit === 'wl') return n;
+        if (focUnit === 'm') return n / lambda;
+        if (focUnit === 'cm') return n / (lambda * 100);
+        if (focUnit === 'mm') return n / (lambda * 1000);
+        return n;
+      }
+      const vWl = toWl(rawVal);
+      if (vWl === null) return;
+      const sc = getLambdaM(S); // geometry coords are in metres; vWl × lambda = metres
 
-        if (prop === 'len') {
-            // Resize element keeping its centre fixed, along whichever axis it spans
-            const cx=(foc.p1.x+foc.p2.x)/2, cy=(foc.p1.y+foc.p2.y)/2, cz=(foc.p1.z+foc.p2.z)/2;
-            const dx=foc.p2.x-foc.p1.x, dy=foc.p2.y-foc.p1.y, dz=foc.p2.z-foc.p1.z;
-            const curLen=Math.sqrt(dx*dx+dy*dy+dz*dz)||1e-9;
-            const newLen=vWl*sc;
-            const scale=newLen/curLen;
-            foc.p1={x:cx-dx*scale/2, y:cy-dy*scale/2, z:cz-dz*scale/2};
-            foc.p2={x:cx+dx*scale/2, y:cy+dy*scale/2, z:cz+dz*scale/2};
-            // Write back to S state — use wavelength value (vWl)
-            const v = vWl;  // alias for the write-back block below
-            const id=foc.id;
-            if (id==='yagi_ref')  { S.yagiRefL = v; }
-            else if (id==='yagi_drA') {
-                // Lock reflector+directors to current values before editing driven length
-                if (!S.yagiRefL) { const mL=(S.arm1L||0.235)+(S.arm2L||0.235); S.yagiRefL = mL*1.05; }
-                if (!S.yagiDirLens) S.yagiDirLens=[];
-                while(S.yagiDirLens.length<(S.yagiDir||0)){ const mL=(S.arm1L||0.235)+(S.arm2L||0.235); S.yagiDirLens.push(mL*(1-0.03*(S.yagiDirLens.length+1))); }
-                S.arm1L = v; S.L = (S.arm1L||v) + (S.arm2L||v);
-            }
-            else if (id==='yagi_drB') {
-                if (!S.yagiRefL) { const mL=(S.arm1L||0.235)+(S.arm2L||0.235); S.yagiRefL = mL*1.05; }
-                if (!S.yagiDirLens) S.yagiDirLens=[];
-                while(S.yagiDirLens.length<(S.yagiDir||0)){ const mL=(S.arm1L||0.235)+(S.arm2L||0.235); S.yagiDirLens.push(mL*(1-0.03*(S.yagiDirLens.length+1))); }
-                S.arm2L = v; S.L = (S.arm1L||v) + (S.arm2L||v);
-            }
-            else if (id.startsWith('yagi_dir')) { const i=parseInt(id.replace('yagi_dir','')); if(S.yagiDirLens)S.yagiDirLens[i]=v; }
-            else if (id==='dip_arm1') {
-                if (S.endFed) { S.L = v; S.arm1L = v / 2; S.arm2L = v / 2; }
-                else { S.arm1L = v; S.L = (S.arm1L||v) + (S.arm2L||v); }
-            }
-            else if (id==='dip_arm2') { S.arm2L = v; S.L = (S.arm1L||v) + (S.arm2L||v); }
-            else if (id.startsWith('dip_rad')) { const i=parseInt(id.replace('dip_rad','')); if(!S.dipRadLens)S.dipRadLens=[]; S.dipRadLens[i]=v; }
-            else if (id==='gp_vert') { S.L=v; }
-            else if (id.startsWith('gp_rad')) { const i=parseInt(id.replace('gp_rad','')); if(S.gpRadLens)S.gpRadLens[i]=v; }
-            else if (id==='ts_x') { S.tsXL=v; S.L=v; }
-            else if (id==='ts_y') { S.tsYL=v; S.L=v; }
-            else if (id==='ts_refX') { S.tsRefXL=v; }
-            else if (id==='ts_refY') { S.tsRefYL=v; }
-            else if (id==='v_arm1') {
-                // Freeze reflector to its current computed value before editing arm, so it stops auto-following
-                if (!S.vRefArm1L) S.vRefArm1L = (S.vArm1L || S.L*0.5) * 1.05;
-                S.vArm1L = v;
-                S.L = S.vArm1L + (S.vArm2L || S.vArm1L);
-            }
-            else if (id==='v_arm2') {
-                if (!S.vRefArm2L) S.vRefArm2L = (S.vArm2L || S.L*0.5) * 1.05;
-                S.vArm2L = v;
-                S.L = (S.vArm1L || S.vArm2L) + S.vArm2L;
-            }
-            else if (id==='v_ref1') { S.vRefArm1L = v; }
-            else if (id==='v_ref2') { S.vRefArm2L = v; }
-            else if (id.startsWith('col_el')) { const i=parseInt(id.replace('col_el','')); if(!S.colLens)S.colLens=[];S.colLens[i]=v; if(i===0)S.L=v; }
-        } else if (prop === 'y') {
-            const id = foc.id;
-            // vWl is in wavelengths. Reflector is at position 0; driven at yagiRefSp; directors at yagiRefSp+dirSps
-            const _refSp = S.yagiRefSp || 0.2;
-            if (id === 'yagi_ref') {
-                // Reflector is the fixed reference at 0 — dragging it does nothing to Y
-            } else if (id === 'yagi_drA' || id === 'yagi_drB') {
-                // Driven moves to vWl; reflector stays at 0; directors keep their absolute boom positions.
-                // Clamp driven so it can never reach or pass the first director.
-                const firstDirAbsPos = (S.yagiDirSps && S.yagiDirSps.length > 0)
-                    ? _refSp + (S.yagiDirSps[0] || 0.12)
-                    : Infinity;
-                const maxDriven = isFinite(firstDirAbsPos) ? firstDirAbsPos - 0.04 : 3.0;
-                const clampedVWl = Math.max(0.05, Math.min(maxDriven, vWl));
-                const delta = clampedVWl - _refSp;
-                S.yagiRefSp = clampedVWl;
-                if (delta !== 0 && S.yagiDirSps) {
-                    S.yagiDirSps = S.yagiDirSps.map(sp => Math.max(0.04, sp - delta));
-                }
-            } else if (id.startsWith('yagi_dir')) {
-                const i = parseInt(id.replace('yagi_dir', ''));
-                if (!S.yagiDirSps) S.yagiDirSps = [];
-                // Absolute position = vWl; spacing from driven = vWl - yagiRefSp
-                const spacing = vWl - _refSp;
-                const prevSp = i > 0 ? (S.yagiDirSps[i-1] || 0.04) : 0;
-                const nextSp = (S.yagiDirSps[i+1] != null) ? S.yagiDirSps[i+1] : Infinity;
-                S.yagiDirSps[i] = Math.max(prevSp + 0.04, Math.min(nextSp - 0.04, Math.max(0.04, spacing)));
-            }
-            renderElementList();
-            syncPanelToState(); // sync main sliders on position edits
-            renderAndSolve();
-            return;
+      if (prop === 'len') {
+        // Resize element keeping its centre fixed, along whichever axis it spans
+        const cx = (foc.p1.x + foc.p2.x) / 2, cy = (foc.p1.y + foc.p2.y) / 2, cz = (foc.p1.z + foc.p2.z) / 2;
+        const dx = foc.p2.x - foc.p1.x, dy = foc.p2.y - foc.p1.y, dz = foc.p2.z - foc.p1.z;
+        const curLen = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1e-9;
+        const newLen = vWl * sc;
+        const scale = newLen / curLen;
+        foc.p1 = { x: cx - dx * scale / 2, y: cy - dy * scale / 2, z: cz - dz * scale / 2 };
+        foc.p2 = { x: cx + dx * scale / 2, y: cy + dy * scale / 2, z: cz + dz * scale / 2 };
+        // Write back to S state — use wavelength value (vWl)
+        const v = vWl;  // alias for the write-back block below
+        const id = foc.id;
+        if (id === 'yagi_ref') { S.yagiRefL = v; }
+        else if (id === 'yagi_drA') {
+          // Lock reflector+directors to current values before editing driven length
+          if (!S.yagiRefL) { const mL = (S.arm1L || 0.235) + (S.arm2L || 0.235); S.yagiRefL = mL * 1.05; }
+          if (!S.yagiDirLens) S.yagiDirLens = [];
+          while (S.yagiDirLens.length < (S.yagiDir || 0)) { const mL = (S.arm1L || 0.235) + (S.arm2L || 0.235); S.yagiDirLens.push(mL * (1 - 0.03 * (S.yagiDirLens.length + 1))); }
+          S.arm1L = v; S.L = (S.arm1L || v) + (S.arm2L || v);
         }
-
-        S.customMode = true;
+        else if (id === 'yagi_drB') {
+          if (!S.yagiRefL) { const mL = (S.arm1L || 0.235) + (S.arm2L || 0.235); S.yagiRefL = mL * 1.05; }
+          if (!S.yagiDirLens) S.yagiDirLens = [];
+          while (S.yagiDirLens.length < (S.yagiDir || 0)) { const mL = (S.arm1L || 0.235) + (S.arm2L || 0.235); S.yagiDirLens.push(mL * (1 - 0.03 * (S.yagiDirLens.length + 1))); }
+          S.arm2L = v; S.L = (S.arm1L || v) + (S.arm2L || v);
+        }
+        else if (id.startsWith('yagi_dir')) { const i = parseInt(id.replace('yagi_dir', '')); if (S.yagiDirLens) S.yagiDirLens[i] = v; }
+        else if (id === 'dip_arm1') {
+          if (S.endFed) { S.L = v; S.arm1L = v / 2; S.arm2L = v / 2; }
+          else { S.arm1L = v; S.L = (S.arm1L || v) + (S.arm2L || v); }
+        }
+        else if (id === 'dip_arm2') { S.arm2L = v; S.L = (S.arm1L || v) + (S.arm2L || v); }
+        else if (id.startsWith('dip_rad')) { const i = parseInt(id.replace('dip_rad', '')); if (!S.dipRadLens) S.dipRadLens = []; S.dipRadLens[i] = v; }
+        else if (id === 'gp_vert') { S.L = v; }
+        else if (id.startsWith('gp_rad')) { const i = parseInt(id.replace('gp_rad', '')); if (S.gpRadLens) S.gpRadLens[i] = v; }
+        else if (id === 'ts_x') { S.tsXL = v; S.L = v; }
+        else if (id === 'ts_y') { S.tsYL = v; S.L = v; }
+        else if (id === 'ts_refX') { S.tsRefXL = v; }
+        else if (id === 'ts_refY') { S.tsRefYL = v; }
+        else if (id === 'v_arm1') {
+          // Freeze reflector to its current computed value before editing arm, so it stops auto-following
+          if (!S.vRefArm1L) S.vRefArm1L = (S.vArm1L || S.L * 0.5) * 1.05;
+          S.vArm1L = v;
+          S.L = S.vArm1L + (S.vArm2L || S.vArm1L);
+        }
+        else if (id === 'v_arm2') {
+          if (!S.vRefArm2L) S.vRefArm2L = (S.vArm2L || S.L * 0.5) * 1.05;
+          S.vArm2L = v;
+          S.L = (S.vArm1L || S.vArm2L) + S.vArm2L;
+        }
+        else if (id === 'v_ref1') { S.vRefArm1L = v; }
+        else if (id === 'v_ref2') { S.vRefArm2L = v; }
+        else if (id.startsWith('col_el')) { const i = parseInt(id.replace('col_el', '')); if (!S.colLens) S.colLens = []; S.colLens[i] = v; if (i === 0) S.L = v; }
+      } else if (prop === 'y') {
+        const id = foc.id;
+        // vWl is in wavelengths. Reflector is at position 0; driven at yagiRefSp; directors at yagiRefSp+dirSps
+        const _refSp = S.yagiRefSp || 0.2;
+        if (id === 'yagi_ref') {
+          // Reflector is the fixed reference at 0 — dragging it does nothing to Y
+        } else if (id === 'yagi_drA' || id === 'yagi_drB') {
+          // Driven moves to vWl; reflector stays at 0; directors keep their absolute boom positions.
+          // Clamp driven so it can never reach or pass the first director.
+          const firstDirAbsPos = (S.yagiDirSps && S.yagiDirSps.length > 0)
+            ? _refSp + (S.yagiDirSps[0] || 0.12)
+            : Infinity;
+          const maxDriven = isFinite(firstDirAbsPos) ? firstDirAbsPos - 0.04 : 3.0;
+          const clampedVWl = Math.max(0.05, Math.min(maxDriven, vWl));
+          const delta = clampedVWl - _refSp;
+          S.yagiRefSp = clampedVWl;
+          if (delta !== 0 && S.yagiDirSps) {
+            S.yagiDirSps = S.yagiDirSps.map(sp => Math.max(0.04, sp - delta));
+          }
+        } else if (id.startsWith('yagi_dir')) {
+          const i = parseInt(id.replace('yagi_dir', ''));
+          if (!S.yagiDirSps) S.yagiDirSps = [];
+          // Absolute position = vWl; spacing from driven = vWl - yagiRefSp
+          const spacing = vWl - _refSp;
+          const prevSp = i > 0 ? (S.yagiDirSps[i - 1] || 0.04) : 0;
+          const nextSp = (S.yagiDirSps[i + 1] != null) ? S.yagiDirSps[i + 1] : Infinity;
+          S.yagiDirSps[i] = Math.max(prevSp + 0.04, Math.min(nextSp - 0.04, Math.max(0.04, spacing)));
+        }
         renderElementList();
-        syncPanelToState(); // sync main sliders on length edits
+        syncPanelToState(); // sync main sliders on position edits
         renderAndSolve();
+        return;
+      }
+
+      S.customMode = true;
+      renderElementList();
+      syncPanelToState(); // sync main sliders on length edits
+      renderAndSolve();
     }
 
     /* ════════════════════════════════════════════════
@@ -4268,24 +4362,24 @@
           const lx = sinT * cosPhis[j], ly = sinT * sinPhis[j], lz = cosT;
           let val = 0;
           if (st.necResults && st.necResults.pattern.length > 0) {
-              if (useGround && (st.rotAz || _effEl)) {
-                  const [Dx, Dy, Dz] = rotPt(lx, ly, lz, st.rotAz, _effEl);
-                  val = getFieldFromNEC(Dx, Dy, Dz, st.necResults, st.disp);
-              } else {
-                  val = getFieldFromNEC(lx, ly, lz, st.necResults, st.disp);
-              }
+            if (useGround && (st.rotAz || _effEl)) {
+              const [Dx, Dy, Dz] = rotPt(lx, ly, lz, st.rotAz, _effEl);
+              val = getFieldFromNEC(Dx, Dy, Dz, st.necResults, st.disp);
+            } else {
+              val = getFieldFromNEC(lx, ly, lz, st.necResults, st.disp);
+            }
           } else {
-              // Analytic fallback (shown while NEC is pending)
-              val = Math.max(0, dispVal(localField(lx, ly, lz, st), st.disp));
-              if (useGround && gHeightWl > 0) {
-                const [, , sinElev] = rotPt(lx, ly, lz, st.rotAz, _effEl);
-                if (sinElev >= 0) {
-                  const phaseDiff = TWO_PI * 2 * trueHeightWl * sinElev;
-                  val *= 1 + reflCoeff * reflCoeff - 2 * reflCoeff * Math.cos(phaseDiff);
-                } else {
-                  val = 0;
-                }
+            // Analytic fallback (shown while NEC is pending)
+            val = Math.max(0, dispVal(localField(lx, ly, lz, st), st.disp));
+            if (useGround && gHeightWl > 0) {
+              const [, , sinElev] = rotPt(lx, ly, lz, st.rotAz, _effEl);
+              if (sinElev >= 0) {
+                const phaseDiff = TWO_PI * 2 * trueHeightWl * sinElev;
+                val *= 1 + reflCoeff * reflCoeff - 2 * reflCoeff * Math.cos(phaseDiff);
+              } else {
+                val = 0;
               }
+            }
           }
           row[j] = Math.max(0, val);
         }
@@ -4345,19 +4439,19 @@
       const efficiency = 1 - Gamma * Gamma;
       const G_real = G_dir * efficiency;
       st.peakDbi = (() => {
-          if (!st.necResults) return 10 * Math.log10(Math.max(EPS, G_real));
-          const pat = st.necResults.pattern;
-          switch (st.disp) {
-              case 'ver': case 'etheta': {
-                  let pk = -999; for (const p of pat) { if (p.gainV != null && p.gainV > -900 && p.gainV > pk) pk = p.gainV; }
-                  return pk > -900 ? pk : st.necResults.gainDbi;
-              }
-              case 'hor': case 'ephi': {
-                  let pk = -999; for (const p of pat) { if (p.gainH != null && p.gainH > -900 && p.gainH > pk) pk = p.gainH; }
-                  return pk > -900 ? pk : st.necResults.gainDbi;
-              }
-              default: return st.necResults.gainDbi;
+        if (!st.necResults) return 10 * Math.log10(Math.max(EPS, G_real));
+        const pat = st.necResults.pattern;
+        switch (st.disp) {
+          case 'ver': case 'etheta': {
+            let pk = -999; for (const p of pat) { if (p.gainV != null && p.gainV > -900 && p.gainV > pk) pk = p.gainV; }
+            return pk > -900 ? pk : st.necResults.gainDbi;
           }
+          case 'hor': case 'ephi': {
+            let pk = -999; for (const p of pat) { if (p.gainH != null && p.gainH > -900 && p.gainH > pk) pk = p.gainH; }
+            return pk > -900 ? pk : st.necResults.gainDbi;
+          }
+          default: return st.necResults.gainDbi;
+        }
       })();
 
       // 3. Physical Mesh Scaling (Balloon size)
@@ -4439,7 +4533,7 @@
       if (!Uarr || !Uarr.length) return '—';
       let maxU = EPS, maxTi = 0, maxPi = 0;
       for (let i = 0; i < Uarr.length; i++)
-        for (let j = 0; j < (Uarr[i]||[]).length; j++)
+        for (let j = 0; j < (Uarr[i] || []).length; j++)
           if (Uarr[i][j] > maxU) { maxU = Uarr[i][j]; maxTi = i; maxPi = j; }
       const oppTi = Math.min(NT, NT - maxTi);
       const oppPi = Math.round(maxPi + NP / 2) % NP;
@@ -4548,7 +4642,7 @@
       // Note: yagi and dipole rendering uses the legacy switch/case below (correct axis/scale).
       // The geometryArray is maintained for NEC export only.
 
-      
+
       function dipoleEl(p1, p2, L_el, col, elemName, shape) {
         const useCol = (elemName && st.elemColors && st.elemColors[elemName]) || col || 'rgba(255,255,255,0.82)';
         const N = 32, pts = [];
@@ -4721,19 +4815,19 @@
               for (let i = 0; i < bSegs; i++) {
                 let bcx, bcz;
                 if (_bShape === 'square') {
-                  const bc = [[_bRad,_bRad],[_bRad,-_bRad],[-_bRad,-_bRad],[-_bRad,_bRad]];
+                  const bc = [[_bRad, _bRad], [_bRad, -_bRad], [-_bRad, -_bRad], [-_bRad, _bRad]];
                   [bcx, bcz] = bc[i];
                 } else {
                   const bth = (i / bSegs) * TWO_PI;
                   bcx = Math.cos(bth) * _bRad; bcz = Math.sin(bth) * _bRad;
                 }
-                const [b1x,b1y,b1z] = rp(bcx, boomY0, bcz);
-                const [b2x,b2y,b2z] = rp(bcx, boomY1, bcz);
-                bvx.push(b1x,b2x); bvy.push(b1y,b2y); bvz.push(b1z,b2z);
-                const v0=i*2,v1=i*2+1,v2=((i+1)%bSegs)*2,v3=((i+1)%bSegs)*2+1;
-                bI.push(v0,v0); bJ.push(v1,v3); bK.push(v3,v2);
+                const [b1x, b1y, b1z] = rp(bcx, boomY0, bcz);
+                const [b2x, b2y, b2z] = rp(bcx, boomY1, bcz);
+                bvx.push(b1x, b2x); bvy.push(b1y, b2y); bvz.push(b1z, b2z);
+                const v0 = i * 2, v1 = i * 2 + 1, v2 = ((i + 1) % bSegs) * 2, v3 = ((i + 1) % bSegs) * 2 + 1;
+                bI.push(v0, v0); bJ.push(v1, v3); bK.push(v3, v2);
               }
-              traces.push({ type:'mesh3d', x:bvx, y:bvy, z:bvz, i:bI, j:bJ, k:bK, color:'rgba(160,160,160,.85)', opacity:1, flatshading:_bShape==='square', showlegend:false, hoverinfo:'text', text:Array(bvx.length).fill('Structural Boom'), hovertemplate:'%{text}<extra></extra>' });
+              traces.push({ type: 'mesh3d', x: bvx, y: bvy, z: bvz, i: bI, j: bJ, k: bK, color: 'rgba(160,160,160,.85)', opacity: 1, flatshading: _bShape === 'square', showlegend: false, hoverinfo: 'text', text: Array(bvx.length).fill('Structural Boom'), hovertemplate: '%{text}<extra></extra>' });
             } else {
               addLine([[0, boomY0, 0], [0, boomY1, 0]], 'rgba(180,180,180,.6)', 6, null, 'Structural Boom');
             }
@@ -4759,13 +4853,13 @@
                 const _Narc = 20, _capT = [], _capB = [];
                 for (let k = 0; k <= _Narc; k++) {
                   const ang = Math.PI - Math.PI * k / _Narc; // π→0
-                  _capT.push([fldSep * Math.cos(ang), dY,  strH + fldSep * Math.sin(ang)]);
+                  _capT.push([fldSep * Math.cos(ang), dY, strH + fldSep * Math.sin(ang)]);
                   _capB.push([fldSep * Math.cos(ang), dY, -strH - fldSep * Math.sin(ang)]);
                 }
                 const capSegL = fldSep * Math.PI / _Narc;
                 for (let _ci = 0; _ci < _Narc; _ci++) {
-                  dipoleEl(_capT[_ci], _capT[_ci+1], capSegL, '#ffd700', null, _eShape);
-                  dipoleEl(_capB[_ci], _capB[_ci+1], capSegL, '#ffd700', null, _eShape);
+                  dipoleEl(_capT[_ci], _capT[_ci + 1], capSegL, '#ffd700', null, _eShape);
+                  dipoleEl(_capB[_ci], _capB[_ci + 1], capSegL, '#ffd700', null, _eShape);
                 }
                 addMk([[-fldSep, dY, 0]], 'rgba(255,100,50,0.9)', 5);
                 addCurrentArcs([-fldSep, dY, -strH], [-fldSep, dY, strH], drvH / sc * 2);
@@ -4784,9 +4878,9 @@
                 const fldSep = Math.max(_elemRad * 4, 0.018);
                 const fldGap = drvH * 0.06;
                 // Return conductor always rests on boom surface — "balancing on it" for all mount types
-                const zTop  = _bRad;
+                const zTop = _bRad;
                 const zBase = zTop - 2 * fldSep;
-                const zCtr  = zTop - fldSep;
+                const zCtr = zTop - fldSep;
                 // Straight conductors stop fldSep short of tips; caps curve back out to exactly ±drvH
                 const strH = Math.max(fldSep * 0.5, drvH - fldSep);
                 dipoleEl([-strH, dY, zBase], [-fldGap, dY, zBase], st.arm1L, '#ffd700', 'Folded Feed L', _eShape);
@@ -4794,15 +4888,15 @@
                 dipoleEl([-strH, dY, zTop], [strH, dY, zTop], st.arm1L + st.arm2L, '#ffd700', 'Folded Return', _eShape);
                 const _Narc = 20, _capL = [], _capR = [];
                 for (let k = 0; k <= _Narc; k++) {
-                  const ang  = Math.PI / 2 + Math.PI * k / _Narc;
-                  _capL.push([-strH + fldSep * Math.cos(ang),  dY, zCtr + fldSep * Math.sin(ang)]);
+                  const ang = Math.PI / 2 + Math.PI * k / _Narc;
+                  _capL.push([-strH + fldSep * Math.cos(ang), dY, zCtr + fldSep * Math.sin(ang)]);
                   const ang2 = Math.PI / 2 - Math.PI * k / _Narc;
-                  _capR.push([ strH + fldSep * Math.cos(ang2), dY, zCtr + fldSep * Math.sin(ang2)]);
+                  _capR.push([strH + fldSep * Math.cos(ang2), dY, zCtr + fldSep * Math.sin(ang2)]);
                 }
                 const capSegL = fldSep * Math.PI / _Narc;
                 for (let _ci = 0; _ci < _Narc; _ci++) {
-                  dipoleEl(_capL[_ci], _capL[_ci+1], capSegL, '#ffd700', null, _eShape);
-                  dipoleEl(_capR[_ci], _capR[_ci+1], capSegL, '#ffd700', null, _eShape);
+                  dipoleEl(_capL[_ci], _capL[_ci + 1], capSegL, '#ffd700', null, _eShape);
+                  dipoleEl(_capR[_ci], _capR[_ci + 1], capSegL, '#ffd700', null, _eShape);
                 }
                 if (_boomMount === 3 && showGeom) addLine([[0, dY, 0], [0, dY, _mOff]], 'rgba(160,160,160,.8)', 2, null, 'Bracket');
                 addMk([[0, dY, zBase]], 'rgba(255,100,50,0.9)', 5);
@@ -5193,7 +5287,7 @@
       const opac = Math.max(0.2, Math.min(1, (st.opacity || 100) / 100));
       const cs = CMAPS[st.cmap] || CMAPS.default;
       const data = [];
-      
+
       if (st.showWire) {
         const tStep = 3;
         for (let i = 0; i <= NT; i += tStep) {
@@ -5208,7 +5302,7 @@
       } else if (st.showLobe) {
         data.push({ type: 'surface', x: X, y: Y, z: Z, surfacecolor: C, colorscale: cs, cmin: 0, cmax: 1, showscale: false, opacity: opac, lighting: { ambient: .78, diffuse: .52, specular: .08, roughness: .92, fresnel: .02 }, hoverinfo: 'skip', contours: { x: { highlight: false }, y: { highlight: false }, z: { highlight: false } } });
       }
-      
+
       for (const t of geomTraces(st, mesh)) data.push(t);
 
       const elId = 'plot3d_' + winIdx;
@@ -5236,16 +5330,16 @@
     let necSolveTimeout = null;
 
     function _necBanner(msg, color) {
-        const el = document.getElementById('necServerBanner');
-        if (!el) return;
-        if (!msg) { el.style.display = 'none'; return; }
-        el.style.display = 'block';
-        el.style.background = color === 'ok' ? 'rgba(16,185,129,0.12)' :
-                              color === 'err' ? 'rgba(239,68,68,0.15)' :
-                              'rgba(251,191,36,0.1)';
-        el.style.border = `1px solid ${color === 'ok' ? '#10b981' : color === 'err' ? '#ef4444' : 'var(--acc)'}`;
-        el.style.color  = color === 'ok' ? '#10b981' : color === 'err' ? '#ef4444' : 'var(--acc)';
-        el.innerHTML = msg;
+      const el = document.getElementById('necServerBanner');
+      if (!el) return;
+      if (!msg) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+      el.style.background = color === 'ok' ? 'rgba(16,185,129,0.12)' :
+        color === 'err' ? 'rgba(239,68,68,0.15)' :
+          'rgba(251,191,36,0.1)';
+      el.style.border = `1px solid ${color === 'ok' ? '#10b981' : color === 'err' ? '#ef4444' : 'var(--acc)'}`;
+      el.style.color = color === 'ok' ? '#10b981' : color === 'err' ? '#ef4444' : 'var(--acc)';
+      el.innerHTML = msg;
     }
 
     const _NEC_UNSUPPORTED = []; // all types now have proper NEC geometry
@@ -5257,7 +5351,7 @@
       const L_H = Math.max(0, parseFloat(S.ldUH) || 0) * 1e-6;
       const fHz = Math.max(0.1, parseFloat(S.freqMHz) || 146) * 1e6;
       const xL = 2 * Math.PI * fHz * L_H;
-      el.textContent = (xL >= 1000) ? (xL/1000).toFixed(1) + ' kΩ' : xL.toFixed(1) + ' Ω';
+      el.textContent = (xL >= 1000) ? (xL / 1000).toFixed(1) + ' kΩ' : xL.toFixed(1) + ' Ω';
     }
 
     let _necGen = 0; // incremented each time a new solve is requested; stale results are discarded
@@ -5274,46 +5368,46 @@
         if (gen !== _necGen) return; // superseded by a newer request during debounce
         _necBanner('&#9654; Solving with nec2d.exe…', 'warn');
         try {
-            rebuildGeometry(st);
-            const necDeck = (st.customMode && st.customNECDeck) ? st.customNECDeck : NECBridge.generateNECString(st);
+          rebuildGeometry(st);
+          const necDeck = (st.customMode && st.customNECDeck) ? st.customNECDeck : NECBridge.generateNECString(st);
 
-            // Pattern solve first — apply results immediately so the display updates fast.
-            // Sweep runs after and only updates the SWR pane.
-            const results = await NECBridge.solve(necDeck);
-            if (gen !== _necGen) return; // superseded while pattern solve was in flight
+          // Pattern solve first — apply results immediately so the display updates fast.
+          // Sweep runs after and only updates the SWR pane.
+          const results = await NECBridge.solve(necDeck);
+          if (gen !== _necGen) return; // superseded while pattern solve was in flight
 
-            st._necRaw = { results, sweep: null };
-            applyBalunToState(st);
-            st._necPending = false;
-            _setNecSpinner(false);
-            updateStatsFromNEC(st, st.necResults);
-            _necBanner('&#9654; Sweep running…', 'warn');
-            _setSweepSpinner(true);
-            swrInited = [false, false]; // force SWR pane to show updated diamond immediately
-            render();
+          st._necRaw = { results, sweep: null };
+          applyBalunToState(st);
+          st._necPending = false;
+          _setNecSpinner(false);
+          updateStatsFromNEC(st, st.necResults);
+          _necBanner('&#9654; Sweep running…', 'warn');
+          _setSweepSpinner(true);
+          swrInited = [false, false]; // force SWR pane to show updated diamond immediately
+          render();
 
-            // Sweep is slow — run it separately so it doesn't block the pattern display
-            const sweepData = await NECBridge.sweepImpedance(st).catch(e => { console.warn('[NEC sweep]', e.message); return null; });
-            if (gen !== _necGen) { _setSweepSpinner(false); return; }
+          // Sweep is slow — run it separately so it doesn't block the pattern display
+          const sweepData = await NECBridge.sweepImpedance(st).catch(e => { console.warn('[NEC sweep]', e.message); return null; });
+          if (gen !== _necGen) { _setSweepSpinner(false); return; }
 
-            st._necRaw.sweep = sweepData;
-            applyBalunToState(st);
-            updateStatsFromNEC(st, st.necResults);
-            _setSweepSpinner(false);
-            _necBanner('&#10003; nec2d.exe — SOLVED', 'ok');
-            swrInited = [false, false]; // force SWR panes to reinit with fresh sweep data
-            render();
+          st._necRaw.sweep = sweepData;
+          applyBalunToState(st);
+          updateStatsFromNEC(st, st.necResults);
+          _setSweepSpinner(false);
+          _necBanner('&#10003; nec2d.exe — SOLVED', 'ok');
+          swrInited = [false, false]; // force SWR panes to reinit with fresh sweep data
+          render();
         } catch (e) {
-            if (gen !== _necGen) return;
-            st._necPending = false;
-            _setNecSpinner(false);
-            _setSweepSpinner(false);
-            console.error(e);
-            const msg = e.message || String(e);
-            const hint = msg.includes('unreachable') || msg.includes('not running')
-                ? `&#9888; NEC server offline<br><span style="color:#aaa">Run: <b>node necserver.js</b> in the project folder</span>`
-                : `&#9888; NEC error: ${msg}`;
-            _necBanner(hint, 'err');
+          if (gen !== _necGen) return;
+          st._necPending = false;
+          _setNecSpinner(false);
+          _setSweepSpinner(false);
+          console.error(e);
+          const msg = e.message || String(e);
+          const hint = msg.includes('unreachable') || msg.includes('not running')
+            ? `&#9888; NEC server offline<br><span style="color:#aaa">Run: <b>node necserver.js</b> in the project folder</span>`
+            : `&#9888; NEC error: ${msg}`;
+          _necBanner(hint, 'err');
         }
       }, 600);
     }
@@ -5337,131 +5431,133 @@
     // ── Ferrite choke data: |Z| per single turn (Ω) for FT240-size cores ──────
     // Approximate from Fair-Rite datasheets and K9YC published measurements
     const FERRITE_Z1 = {
-        '31': { f:[0.5, 1,  2,  3,  5,  7, 10, 14, 21, 28, 50,100], z:[  5,10, 22, 32, 50, 64, 78, 88, 95, 90, 75, 50] },
-        '43': { f:[  1, 3,  7, 10, 14, 21, 28, 50,100,144,432    ], z:[  4,10, 20, 28, 38, 52, 62, 75, 80, 70, 40    ] },
-        '61': { f:[ 14,21, 28, 50,100,144,432,600               ], z:[  3, 5,  8, 18, 45, 75,100, 85               ] },
-        '75': { f:[0.1,.5,  1,  2,  3,  5,  7, 10, 14, 21       ], z:[  2,25, 45, 70, 80, 85, 78, 65, 50, 35       ] }
+      '31': { f: [0.5, 1, 2, 3, 5, 7, 10, 14, 21, 28, 50, 100], z: [5, 10, 22, 32, 50, 64, 78, 88, 95, 90, 75, 50] },
+      '43': { f: [1, 3, 7, 10, 14, 21, 28, 50, 100, 144, 432], z: [4, 10, 20, 28, 38, 52, 62, 75, 80, 70, 40] },
+      '61': { f: [14, 21, 28, 50, 100, 144, 432, 600], z: [3, 5, 8, 18, 45, 75, 100, 85] },
+      '75': { f: [0.1, .5, 1, 2, 3, 5, 7, 10, 14, 21], z: [2, 25, 45, 70, 80, 85, 78, 65, 50, 35] }
     };
 
     function _interpChoke(freqMHz, core) {
-        const d = FERRITE_Z1[core] || FERRITE_Z1['43'];
-        const {f, z} = d;
-        if (freqMHz <= f[0]) return z[0];
-        if (freqMHz >= f[f.length-1]) return z[f.length-1];
-        // log-linear interpolation between surrounding points
-        let i = 0;
-        while (i < f.length - 1 && f[i+1] < freqMHz) i++;
-        const t = (Math.log(freqMHz) - Math.log(f[i])) / (Math.log(f[i+1]) - Math.log(f[i]));
-        return z[i] + t * (z[i+1] - z[i]);
+      const d = FERRITE_Z1[core] || FERRITE_Z1['43'];
+      const { f, z } = d;
+      if (freqMHz <= f[0]) return z[0];
+      if (freqMHz >= f[f.length - 1]) return z[f.length - 1];
+      // log-linear interpolation between surrounding points
+      let i = 0;
+      while (i < f.length - 1 && f[i + 1] < freqMHz) i++;
+      const t = (Math.log(freqMHz) - Math.log(f[i])) / (Math.log(f[i + 1]) - Math.log(f[i]));
+      return z[i] + t * (z[i + 1] - z[i]);
     }
 
     function calcChokeZ(st) {
-        const N = st.balunTurns || 8;
-        const zMag = _interpChoke(parseFloat(st.freqMHz) || 146, st.balunCore || '43') * N * N;
-        let cls, label;
-        if      (zMag >= 1500) { cls = 'q-excellent'; label = 'Excellent'; }
-        else if (zMag >= 500)  { cls = 'q-good';      label = 'Good';      }
-        else if (zMag >= 200)  { cls = 'q-adequate';  label = 'Adequate';  }
-        else                   { cls = 'q-poor';       label = 'Poor';      }
-        return { zMag, cls, label };
+      const N = st.balunTurns || 8;
+      const zMag = _interpChoke(parseFloat(st.freqMHz) || 146, st.balunCore || '43') * N * N;
+      let cls, label;
+      if (zMag >= 1500) { cls = 'q-excellent'; label = 'Excellent'; }
+      else if (zMag >= 500) { cls = 'q-good'; label = 'Good'; }
+      else if (zMag >= 200) { cls = 'q-adequate'; label = 'Adequate'; }
+      else { cls = 'q-poor'; label = 'Poor'; }
+      return { zMag, cls, label };
     }
 
     // Applies the currently selected balun/unun transform to the raw NEC data,
     // writing the transformed values into st.necResults and st.swrSweep.
     function applyBalunToState(st) {
-        if (!st._necRaw) return;
-        const { results, sweep } = st._necRaw;
-        const RATIOS = { '4:1b':4, '4:1u':4, '9:1':9, '49:1':49, '64:1':64 };
-        const ratio = RATIOS[st.balunType];
+      if (!st._necRaw) return;
+      const { results, sweep } = st._necRaw;
+      const RATIOS = { '4:1b': 4, '4:1u': 4, '9:1': 9, '49:1': 49, '64:1': 64 };
+      const ratio = RATIOS[st.balunType];
 
-        if (!ratio) {
-            // No impedance transform (none / choke)
-            st.necResults = Object.assign({}, results, { impedance: Object.assign({}, results.impedance) });
-            st.swrSweep   = sweep ? sweep.map(p => Object.assign({}, p)) : null;
-        } else {
-            const r = results.impedance.r / ratio;
-            const x = results.impedance.x / ratio;
-            const rho2 = ((r-50)**2 + x**2) / ((r+50)**2 + x**2);
-            const g = Math.sqrt(Math.max(0, rho2));
-            const swr = Math.min(999, g < 0.9999 ? (1+g)/(1-g) : 999);
-            st.necResults = Object.assign({}, results, { impedance: { r, x }, swr });
+      if (!ratio) {
+        // No impedance transform (none / choke)
+        st.necResults = Object.assign({}, results, { impedance: Object.assign({}, results.impedance) });
+        st.swrSweep = sweep ? sweep.map(p => Object.assign({}, p)) : null;
+      } else {
+        const r = results.impedance.r / ratio;
+        const x = results.impedance.x / ratio;
+        const rho2 = ((r - 50) ** 2 + x ** 2) / ((r + 50) ** 2 + x ** 2);
+        const g = Math.sqrt(Math.max(0, rho2));
+        const swr = Math.min(999, g < 0.9999 ? (1 + g) / (1 - g) : 999);
+        st.necResults = Object.assign({}, results, { impedance: { r, x }, swr });
 
-            st.swrSweep = sweep ? sweep.map(p => {
-                const pr = p.r / ratio, px = p.x / ratio;
-                const p2 = ((pr-50)**2 + px**2) / ((pr+50)**2 + px**2);
-                const pg = Math.sqrt(Math.max(0, p2));
-                return { freq: p.freq, r: pr, x: px,
-                         swr: Math.min(999, pg < 0.9999 ? (1+pg)/(1-pg) : 999) };
-            }) : null;
-        }
-        // Short-circuit zeroing — shorted dipole/yagi (fpGap=0) reports Z=0, SWR=∞
-        if ((st.type === 'dipole' && !st.endFed || st.type === 'yagi') && !(parseFloat(st.fpGap) > 0)) {
-            st.necResults.impedance = { r: 0, x: 0 };
-            st.necResults.swr = 999;
-            if (st.swrSweep) st.swrSweep = st.swrSweep.map(p => ({ ...p, r: 0, x: 0, swr: 999 }));
-        }
+        st.swrSweep = sweep ? sweep.map(p => {
+          const pr = p.r / ratio, px = p.x / ratio;
+          const p2 = ((pr - 50) ** 2 + px ** 2) / ((pr + 50) ** 2 + px ** 2);
+          const pg = Math.sqrt(Math.max(0, p2));
+          return {
+            freq: p.freq, r: pr, x: px,
+            swr: Math.min(999, pg < 0.9999 ? (1 + pg) / (1 - pg) : 999)
+          };
+        }) : null;
+      }
+      // Short-circuit zeroing — shorted dipole/yagi (fpGap=0) reports Z=0, SWR=∞
+      if ((st.type === 'dipole' && !st.endFed || st.type === 'yagi') && !(parseFloat(st.fpGap) > 0)) {
+        st.necResults.impedance = { r: 0, x: 0 };
+        st.necResults.swr = 999;
+        if (st.swrSweep) st.swrSweep = st.swrSweep.map(p => ({ ...p, r: 0, x: 0, swr: 999 }));
+      }
     }
 
     function updateBalunUI() {
-        const type = S.balunType || 'none';
-        const chokeCtrl = document.getElementById('balunChokeCtrl');
-        if (chokeCtrl) chokeCtrl.style.display = type === 'choke' ? 'block' : 'none';
+      const type = S.balunType || 'none';
+      const chokeCtrl = document.getElementById('balunChokeCtrl');
+      if (chokeCtrl) chokeCtrl.style.display = type === 'choke' ? 'block' : 'none';
 
-        // Re-apply transform and refresh display when balun settings change
-        if (S._necRaw) {
-            applyBalunToState(S);
-            updateStatsFromNEC(S, S.necResults);
-            const paneIdx = sbsMode ? (activeWin === sbsWin0 ? 0 : 1) : 0;
-            if (S.showSWR) renderSWRPane(paneIdx, S);
-        }
+      // Re-apply transform and refresh display when balun settings change
+      if (S._necRaw) {
+        applyBalunToState(S);
+        updateStatsFromNEC(S, S.necResults);
+        const paneIdx = sbsMode ? (activeWin === sbsWin0 ? 0 : 1) : 0;
+        if (S.showSWR) renderSWRPane(paneIdx, S);
+      }
     }
 
     function updateStatsFromNEC(st, res) {
-        if (!res) return;
-        const g = (res.gainDbi || 0), s = (res.swr || 1.0);
-        const rVal = (res.impedance ? res.impedance.r : 50);
-        const xVal = (res.impedance ? res.impedance.x : 0);
+      if (!res) return;
+      const g = (res.gainDbi || 0), s = (res.swr || 1.0);
+      const rVal = (res.impedance ? res.impedance.r : 50);
+      const xVal = (res.impedance ? res.impedance.x : 0);
 
-        const badge = document.getElementById('gainBadge');
-        if (badge) badge.textContent = 'Peak: ' + g.toFixed(2) + ' dBi';
+      const badge = document.getElementById('gainBadge');
+      if (badge) badge.textContent = 'Peak: ' + g.toFixed(2) + ' dBi';
 
-        const container = document.getElementById('elementRows');
-        if (container) {
-            let stats = document.getElementById('necStatsBox');
-            if (!stats) {
-                stats = document.createElement('div');
-                stats.id = 'necStatsBox';
-                stats.style.cssText = 'font-size:0.55rem;background:rgba(0,0,0,0.3);border:1px solid var(--acc);padding:6px;margin-top:8px;border-radius:4px;font-family:monospace;';
-                container.parentNode.insertBefore(stats, container.nextSibling);
-            }
-            const fmt = (r, x) => {
-                const sgn = x >= 0 ? '+' : '−';
-                const ax = Math.abs(x) < 0.05 ? '0.00' : Math.abs(x).toFixed(2);
-                return `${r.toFixed(2)} ${sgn} j${ax} Ω`;
-            };
-            const type = st.balunType || 'none';
-            const RATIOS = { '4:1b':4, '4:1u':4, '9:1':9, '49:1':49, '64:1':64 };
-            const ratio = RATIOS[type];
-            let balunLine = '';
-            if (ratio) {
-                balunLine = `<div style="color:var(--muted);font-size:0.45rem;margin-top:2px">${ratio}:1 transform applied</div>`;
-            } else if (type === 'choke') {
-                const ch = calcChokeZ(st);
-                const qColors = {'q-excellent':'#10b981','q-good':'#22c55e','q-adequate':'#f59e0b','q-poor':'#ef4444'};
-                balunLine = `<div style="display:flex;justify-content:space-between;margin-top:2px"><span style="color:var(--muted)">Choke |Z|:</span><b style="color:${qColors[ch.cls]}">${ch.zMag>=1000?(ch.zMag/1000).toFixed(1)+'kΩ':ch.zMag.toFixed(0)+'Ω'} (${ch.label})</b></div>`;
-            }
-            stats.innerHTML = `
+      const container = document.getElementById('elementRows');
+      if (container) {
+        let stats = document.getElementById('necStatsBox');
+        if (!stats) {
+          stats = document.createElement('div');
+          stats.id = 'necStatsBox';
+          stats.style.cssText = 'font-size:0.55rem;background:rgba(0,0,0,0.3);border:1px solid var(--acc);padding:6px;margin-top:8px;border-radius:4px;font-family:monospace;';
+          container.parentNode.insertBefore(stats, container.nextSibling);
+        }
+        const fmt = (r, x) => {
+          const sgn = x >= 0 ? '+' : '−';
+          const ax = Math.abs(x) < 0.05 ? '0.00' : Math.abs(x).toFixed(2);
+          return `${r.toFixed(2)} ${sgn} j${ax} Ω`;
+        };
+        const type = st.balunType || 'none';
+        const RATIOS = { '4:1b': 4, '4:1u': 4, '9:1': 9, '49:1': 49, '64:1': 64 };
+        const ratio = RATIOS[type];
+        let balunLine = '';
+        if (ratio) {
+          balunLine = `<div style="color:var(--muted);font-size:0.45rem;margin-top:2px">${ratio}:1 transform applied</div>`;
+        } else if (type === 'choke') {
+          const ch = calcChokeZ(st);
+          const qColors = { 'q-excellent': '#10b981', 'q-good': '#22c55e', 'q-adequate': '#f59e0b', 'q-poor': '#ef4444' };
+          balunLine = `<div style="display:flex;justify-content:space-between;margin-top:2px"><span style="color:var(--muted)">Choke |Z|:</span><b style="color:${qColors[ch.cls]}">${ch.zMag >= 1000 ? (ch.zMag / 1000).toFixed(1) + 'kΩ' : ch.zMag.toFixed(0) + 'Ω'} (${ch.label})</b></div>`;
+        }
+        stats.innerHTML = `
                 <div style="color:var(--acc);font-weight:bold;margin-bottom:3px;font-size:0.6rem;">NEC-2 RESULTS</div>
-                <div style="display:flex;justify-content:space-between"><span>Z:</span> <b>${fmt(rVal,xVal)}</b></div>
+                <div style="display:flex;justify-content:space-between"><span>Z:</span> <b>${fmt(rVal, xVal)}</b></div>
                 <div style="display:flex;justify-content:space-between"><span>SWR (50Ω):</span> <b style="color:#fbbf24">${s.toFixed(3)}</b></div>
                 <div style="display:flex;justify-content:space-between"><span>Gain:</span> <span>${g.toFixed(2)} dBi</span></div>
                 ${balunLine}
             `;
-        }
+      }
 
-        // Update choke info box in balun panel (visible only for choke type)
-        const box = document.getElementById('balunResultBox');
-        if (box) box.innerHTML = '';
+      // Update choke info box in balun panel (visible only for choke type)
+      const box = document.getElementById('balunResultBox');
+      if (box) box.innerHTML = '';
     }
 
     function toggleCutMode(paneIdx) {
@@ -5676,7 +5772,7 @@
       const hasNECSweep = st.swrSweep && st.swrSweep.length > 0;
       if (hasNECSweep) {
         const nFreqs = st.swrSweep.map(p => p.freq);
-        const nSwrs  = st.swrSweep.map(p => Math.min(11.9, p.swr));
+        const nSwrs = st.swrSweep.map(p => Math.min(11.9, p.swr));
         plotData.push({
           x: nFreqs, y: nSwrs, type: 'scatter', mode: 'lines',
           line: { color: acc, width: 2, shape: 'linear' },
@@ -5980,7 +6076,7 @@
       // Force title update
       const NAMES = { dipole: 'Dipole', v: 'V-Dipole', gp: '¼λ GP', yagi: 'Yagi-Uda', turnstile: 'Turnstile', qfh: 'QFH', collinear: 'Collinear', loop: 'Loop', helix: 'Helix' };
       const DISPS = { total: 'Total Gain', ver: 'Vertical Gain', hor: 'Horizontal Gain', etheta: 'Eθ Field', ephi: 'Eφ Field', ar: 'Axial Ratio' };
-      document.getElementById('plotTitle').textContent = `${NAMES[S.type] || S.type} · ${DISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz/1000).toFixed(3)+' GHz' : S.freqMHz+' MHz'}`;
+      document.getElementById('plotTitle').textContent = `${NAMES[S.type] || S.type} · ${DISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz / 1000).toFixed(3) + ' GHz' : S.freqMHz + ' MHz'}`;
       syncPanelToState();
       if (editMode) refreshEditDisplay();
       polarInited = [false, false];
@@ -6018,7 +6114,7 @@
       }
 
       document.querySelectorAll('.wtab').forEach(t => t.classList.toggle('active', parseInt(t.dataset.win) === activeWin));
-      document.getElementById('plotTitle').textContent = `${NAMES[S.type] || S.type} · ${DISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz/1000).toFixed(3)+' GHz' : S.freqMHz+' MHz'}`;
+      document.getElementById('plotTitle').textContent = `${NAMES[S.type] || S.type} · ${DISPS[S.disp] || S.disp} · ${S.freqMHz >= 1000 ? (S.freqMHz / 1000).toFixed(3) + ' GHz' : S.freqMHz + ' MHz'}`;
       syncPanelToState();
       if (editMode) refreshEditDisplay();
       polarInited = [false, false];
@@ -6448,8 +6544,8 @@
       try {
         // dBi/dBd buttons — keep in sync with active window
         const _dbu = S.dbUnit || 'dBi';
-        ['dbiBtnH','dbiBtnL'].forEach(id => { const b = document.getElementById(id); if(b) b.classList.toggle('active', _dbu === 'dBi'); });
-        ['dbdBtnH','dbdBtnL'].forEach(id => { const b = document.getElementById(id); if(b) b.classList.toggle('active', _dbu === 'dBd'); });
+        ['dbiBtnH', 'dbiBtnL'].forEach(id => { const b = document.getElementById(id); if (b) b.classList.toggle('active', _dbu === 'dBi'); });
+        ['dbdBtnH', 'dbdBtnL'].forEach(id => { const b = document.getElementById(id); if (b) b.classList.toggle('active', _dbu === 'dBd'); });
         // Type tabs + extra controls
         document.querySelectorAll('#type-tabs .ttab').forEach(b => b.classList.toggle('active', b.dataset.type === S.type));
         ALL_TYPES.forEach(x => {
@@ -6851,7 +6947,7 @@
     document.addEventListener('keyup', e => { if (e.key === 'Alt') altHeld = false; });
 
     // rotAz/rotEl don't change the NEC free-space result — image theory handles rotation in display
-    const _visualOnlyKeys = new Set(['phiCut','opacity','rotAz','rotEl']);
+    const _visualOnlyKeys = new Set(['phiCut', 'opacity', 'rotAz', 'rotEl']);
     function wire(id, key, lid, fmt, isF) {
       const e = document.getElementById(id); if (!e) return;
       e.addEventListener('input', () => {
@@ -7647,43 +7743,45 @@
 
     window.importNECFile = () => { document.getElementById('necImportInput').click(); };
     window._necImportFile = (input) => {
-        const file = input.files[0]; if (!file) return;
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            const deck = e.target.result;
-            input.value = '';
-            S.customMode = true;
-            S.customNECDeck = deck;
-            // Parse GW lines to build geometry array for display
-            const wires = [];
-            for (const line of deck.split('\n')) {
-                const m = line.match(/^GW\s+(\d+)\s+(\d+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/i);
-                if (m) wires.push({ id: 'gw'+m[1], label:'GW'+m[1], type:'driven', isFed: parseInt(m[1])===1, segments:parseInt(m[2]),
-                    p1:{x:parseFloat(m[3]),y:parseFloat(m[4]),z:parseFloat(m[5])},
-                    p2:{x:parseFloat(m[6]),y:parseFloat(m[7]),z:parseFloat(m[8])},
-                    diam:(parseFloat(m[9])||0.001)*2000 });
-            }
-            S.geometryArray = wires;
-            S.necResults = null; S._necRaw = null;
-            _necDirty = true;
-            renderAndSolve();
-        };
-        reader.readAsText(file);
+      const file = input.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const deck = e.target.result;
+        input.value = '';
+        S.customMode = true;
+        S.customNECDeck = deck;
+        // Parse GW lines to build geometry array for display
+        const wires = [];
+        for (const line of deck.split('\n')) {
+          const m = line.match(/^GW\s+(\d+)\s+(\d+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)\s+([\d.eE+\-]+)/i);
+          if (m) wires.push({
+            id: 'gw' + m[1], label: 'GW' + m[1], type: 'driven', isFed: parseInt(m[1]) === 1, segments: parseInt(m[2]),
+            p1: { x: parseFloat(m[3]), y: parseFloat(m[4]), z: parseFloat(m[5]) },
+            p2: { x: parseFloat(m[6]), y: parseFloat(m[7]), z: parseFloat(m[8]) },
+            diam: (parseFloat(m[9]) || 0.001) * 2000
+          });
+        }
+        S.geometryArray = wires;
+        S.necResults = null; S._necRaw = null;
+        _necDirty = true;
+        renderAndSolve();
+      };
+      reader.readAsText(file);
     };
     window.exportNECFile = () => {
-        if (!window.NECBridge) { alert('NECBridge not loaded.'); return; }
-        rebuildGeometry(S);
-        let deck;
-        try { deck = NECBridge.generateNECString(S); }
-        catch (e) { alert('Could not generate NEC deck: ' + e.message); return; }
-        const freq = (parseFloat(S.freqMHz) || 146).toFixed(3);
-        const name = `polarscope_${S.type || 'antenna'}_${freq}MHz.nec`;
-        const blob = new Blob([deck], { type: 'text/plain' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = name;
-        a.click();
-        URL.revokeObjectURL(a.href);
+      if (!window.NECBridge) { alert('NECBridge not loaded.'); return; }
+      rebuildGeometry(S);
+      let deck;
+      try { deck = NECBridge.generateNECString(S); }
+      catch (e) { alert('Could not generate NEC deck: ' + e.message); return; }
+      const freq = (parseFloat(S.freqMHz) || 146).toFixed(3);
+      const name = `polarscope_${S.type || 'antenna'}_${freq}MHz.nec`;
+      const blob = new Blob([deck], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      URL.revokeObjectURL(a.href);
     };
   </script>
 </body>

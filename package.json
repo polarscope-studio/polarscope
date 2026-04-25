@@ -17,18 +17,14 @@
     "directories": {
       "output": "dist"
     },
+    "icon": "icon.png",
     "files": [
       "main.js",
       "necserver.js",
       "NECBridge.js",
       "polarscopemain.html",
       "polarscopestyle.css",
-      "nec2.js",
-      "nec2.wasm",
-      "nec2c.js",
-      "nec2c.wasm",
-      "necpp.js",
-      "necpp.wasm",
+      "icon.png",
       "!NEC/**"
     ],
     "extraResources": [
