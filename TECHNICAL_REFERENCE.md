@@ -1,87 +1,172 @@
-This technical documentation provides a deep dive into the electromagnetic physics and mathematical frameworks used in the **FAR-FIELD 3D** antenna radiation pattern visualizer.
+# 🛰️ PolarScope: Engineering & Physics Documentation
 
-# 🛰️ FAR-FIELD 3D: Engineering & Physics Documentation
-
-This document outlines the mathematical models used to compute radiation patterns, the coordinate transformations for 3D rendering, and the ground interaction physics implemented in the software.
+This document covers the electromagnetic physics, mathematical frameworks, and NEC-2 solver integration used in PolarScope.
 
 ---
 
 ## 1. Coordinate System & Transformations
-The software utilizes a global Cartesian coordinate system $(X, Y, Z)$ where $Z$ is the vertical axis (altitude) and the $XY$-plane represents the ground.
 
-### 🔄 Rotation Logic (`rotPt`)
-To simulate antenna orientation (Azimuth and Elevation), every mesh point in the global frame is transformed into the antenna's local frame.
-* **Elevation ($el$):** Rotation around the $X$-axis.
-* **Azimuth ($az$):** Rotation around the $Z$-axis.
+The software uses a global Cartesian coordinate system $(X, Y, Z)$ where $Z$ is the vertical axis and the $XY$-plane represents the ground.
 
-The transformation follows the standard rotation matrix application:
+### Rotation Logic (`rotPt`)
+To simulate antenna orientation (Azimuth and Elevation), every mesh point is transformed into the antenna's local frame:
+
 $$P_{local} = R_z(-az) \cdot R_x(-el) \cdot P_{global}$$
-This ensures that the radiation pattern is always computed relative to the antenna's physical orientation before being projected into 3D space.
+
+- **Elevation ($el$):** Rotation around the $X$-axis
+- **Azimuth ($az$):** Rotation around the $Z$-axis
+
+For Yagi and polarisation-flipped antennas, an additional 90° elevation offset (`polFlipped`) is applied without moving the UI slider. The pattern mesh rotates rigidly with the antenna — the same `rotPt` transform is applied to NEC wire geometry before card generation, so ground interaction is computed in the physically correct orientation.
 
 ---
 
-## 2. Electromagnetic Field Models
-The engine computes the far-field pattern by calculating the electric field intensity $E(\theta, \phi)$ at each point on a spherical mesh.
+## 2. NEC-2 Method of Moments Solver
 
-### 🥢 Linear Elements (Dipole, Yagi, Collinear)
-For a thin-wire linear element of length $L$ at frequency $f$ (wavelength $\lambda$), the element factor is derived from the current distribution:
-$$E(\theta) = \frac{\cos(\frac{kL}{2} \cos \theta) - \cos(\frac{kL}{2})}{\sin \theta}$$
-where $k = 2\pi/\lambda$ is the wavenumber.
+PolarScope uses **nec2dxs500.exe**, a 500-segment-capacity NEC-2 (Numerical Electromagnetics Code) solver, via a local HTTP bridge (`necserver.js` on port 7373).
 
-* **Yagi-Uda:** Implements an array factor summation. The total field is the vector sum of the driven element, the reflector, and $N$ directors, each with unique phase shifts based on their $Y$-axis position (boom position).
-* **Collinear:** Elements are stacked along the $Z$-axis. The phase shift for the $n$-th element is calculated as $k \cdot d_n \cdot \cos \theta$, where $d_n$ is the vertical displacement from the origin.
+### Method of Moments
+NEC-2 solves for the current distribution on a wire structure by enforcing the electric field boundary condition on each wire segment:
 
-### 🌀 Circular & Helical Elements
-* **Loop Antennas:** Calculated using the magnetic dipole approximation for small loops or the full-wave integration for large loops.
-* **QFH (Quadrifilar Helix):** Simulates two bifilar helical loops fed in phase quadrature ($90^\circ$). The pattern is computed by summing the fields of four fractional-turn helical wires, producing the characteristic hemispherical circularly polarized pattern.
+$$\sum_{n} Z_{mn} I_n = V_m$$
+
+where $Z_{mn}$ is the impedance matrix element between segments $m$ and $n$, $I_n$ is the unknown current on segment $n$, and $V_m$ is the applied excitation voltage. The full matrix is solved via LU decomposition, giving exact currents on all elements including mutual coupling between elements.
+
+### Far-Field Radiation Pattern
+From the computed current distribution, the far-field electric field at angle $(\theta, \phi)$ is:
+
+$$\vec{E}(\theta, \phi) = \sum_{n} I_n \cdot \vec{f}_n(\theta, \phi)$$
+
+where $\vec{f}_n$ is the element pattern factor for segment $n$. PolarScope requests a full **181×360** radiation pattern (1° resolution in both theta and phi) via the NEC-2 `RP` card.
+
+### NEC Card Deck Structure
+Card order required by NEC-2 (enforced by `NECBridge.js`):
+
+```
+CM  — Comment
+CE  — End comment
+GW  — Wire geometry (one per element segment group)
+GE  — Geometry end
+GN  — Sommerfeld ground (when height > 0)
+LD  — Lumped loading (optional)
+FR  — Frequency
+EX  — Excitation (voltage source)
+RP  — Radiation pattern request (solve) or XQ (sweep)
+EN  — End
+```
+
+### Sommerfeld Ground
+When ground is active, NEC-2 uses the Sommerfeld integral method (GN card type 2) for accurate near-ground impedance and pattern computation. This accounts for surface wave contributions and is significantly more accurate than the Method of Images for low antenna heights. Ground parameters:
+
+| Type   | $\epsilon_r$ | $\sigma$ (S/m) |
+|--------|-------------|----------------|
+| Dry    | 5           | 0.001          |
+| Medium | 13          | 0.005          |
+| Wet    | 20          | 0.030          |
+
+The antenna is shifted up by `zOff` metres so no wire touches the Sommerfeld $z = 0$ plane. For drooped GP radials, the z-offset accounts for the lowest radial tip position.
+
+### Lumped Loading (LD Card)
+A series R+jωL load is placed on the driven element at the chosen position (base, centre, or top):
+
+```
+LD 0 TAG SEG SEG R L_H 0
+```
+
+where `L_H` is inductance in henries. This enables coil loading simulation for shortened antennas.
+
+---
+
+## 3. Physics Fallback Model
+
+When the NEC-2 server is unavailable, PolarScope falls back to analytical far-field approximations.
+
+### Linear Elements (Dipole, Yagi, Collinear)
+The element factor for a thin-wire element of half-length $L/2$:
+
+$$E(\theta) = \frac{\cos\!\left(\frac{kL}{2} \cos \theta\right) - \cos\!\left(\frac{kL}{2}\right)}{\sin \theta}$$
+
+where $k = 2\pi/\lambda$.
+
+- **Yagi-Uda:** Array factor summation — driven element, reflector, and $N$ directors, each with phase shifts based on boom position along $Y$.
+- **Collinear:** Elements stacked along $Z$. Phase shift for element $n$: $k \cdot d_n \cdot \cos\theta$.
+
+### Circular & Helical Elements
+- **Loop:** Magnetic dipole approximation for small loops; full-wave integration for large loops.
+- **QFH:** Two bifilar helical loops fed in phase quadrature (90°). Fields of four fractional-turn wires summed, producing the characteristic hemispherical circularly polarised pattern.
 
 ---
 
-## 3. Ground Interaction Physics
-The software transitions from "Free Space" to "Real World" by applying a **Ground Reflection Model**.
+## 4. Ground Interaction (Fallback)
 
-### 🪞 The Method of Images
-When an antenna is placed at height $h$ above ground, the software creates a virtual "image" antenna below the ground plane. The total field is the interference pattern between the direct wave and the reflected wave:
-$$E_{total} = E_{direct} \cdot [1 + \Gamma \cdot e^{-j(2kh \sin \psi)}]$$
-where $\psi$ is the grazing angle and $\Gamma$ is the **Fresnel Reflection Coefficient**.
+When using the physics model without NEC-2, ground reflection uses the **Method of Images**:
 
-### 🌍 Ground Parameters
-The reflection coefficient $\Gamma$ is dynamically adjusted based on the selected ground type:
-* **Conductivity ($\sigma$):** Varies from $0.001$ S/m (Dry) to $0.030$ S/m (Wet).
-* **Permittivity ($\epsilon_r$):** Varies from $5$ to $25$.
-The software calculates the complex pseudo-Brewster angle to accurately model the "Take-Off Angle" (TOA) and ground gain.
+$$E_{total} = E_{direct} \cdot \left[1 + \Gamma \cdot e^{-j(2kh \sin \psi)}\right]$$
+
+where $\psi$ is the grazing angle and $\Gamma$ is the Fresnel reflection coefficient. The complex pseudo-Brewster angle is used to model the take-off angle and ground gain.
 
 ---
 
-## 4. Structural Mast System & Physics
-The simulator includes a deterministic structural modeling engine for towers and guy wires, reacting dynamically to the mounted antenna.
+## 5. SWR & Impedance
 
-### 🗼 Lattice Tower Generation
-The tower is generated as a rigid lattice structure anchored at the ground plane and extending up to the structural pivot point ($Z = 0$).
-* **Scaling:** The tower's radius and segment spacing automatically scale based on the specified ground height $H$.
-* **Bracing Logic:** The engine dynamically adjusts the number of cross-bracing segments using a minimum segment length threshold to maintain realistic geometric proportions, regardless of the tower's absolute height.
+### NEC-2 (Primary)
+Impedance is extracted directly from NEC-2's `ANTENNA INPUT PARAMETERS` block:
 
-### ⛓️ Guy Wire Physics (Catenary Sag)
-When guy wires are enabled, the support lines are mathematically modeled using a simplified catenary approximation to simulate gravitational droop.
-* **Anchors:** Guy lines project outwards at approximately 70% of the tower height ($0.7 \cdot H$), extending down to ground anchors spaced mathematically around the base.
-* **Slack Factor:** The droop magnitude is controlled by the user-defined `Slack` parameter across $n$-levels of guy supports, introducing realistic downward curvature into the 3D traces.
+```
+Z = R + jX  (Ω)
+Γ = (Z - 50) / (Z + 50)
+SWR = (1 + |Γ|) / (1 - |Γ|)
+```
 
-### 🔥 Structural Tension Mapping
-The engine calculates a localized **Thermal Stress Heatmap** visualizing mechanical strain on the tower structure. The stress metric $S$ combines:
-1. **Antenna Mass ($M_a$):** Approximated by calculating the total linear length of all active antenna elements, assuming a standard aluminium tube density profile ($\sim 2700 \text{ kg/m}^3$).
-2. **Instability ($I$):** Increases linearly with structure height and decreases asymptotically based on the number of active guy wire levels.
-3. **Weight Transfer:** The total stress gradient $S(z) = M_a \cdot g + I(z)$ peaks at the top where the antenna is mounted and distributes downwards through the lattice legs, shifting colors from idle grey $\rightarrow$ blue $\rightarrow$ red based on peak strain.
+The SWR sweep uses an `FR` card with $N$ linear frequency steps (51 points with Sommerfeld, 151 without) and an `XQ` card instead of `RP` — this skips the radiation pattern computation for each point, making the sweep ~10× faster than a full solve per frequency.
+
+Sweep range: **0.35× to 2.2×** centre frequency.
+
+### Physics Fallback (Secondary)
+When NEC-2 is unavailable, impedance is modelled as a series RLC circuit:
+
+$$X(f) = Q_{sys} \cdot R \cdot \left( \frac{f}{f_r} - \frac{f_r}{f} \right)$$
+
+where $Q_{sys}$ is the system quality factor (10–12 for thin-wire antennas) and $f_r$ is the resonance frequency adjusted for feedpoint gap capacitance.
+
+---
+
+## 6. Structural Mast System
+
+### Lattice Tower Generation
+The tower is a rigid lattice anchored at $z = 0$ extending to height $H$. Cross-bracing segment count adjusts dynamically with $H$ to maintain realistic geometric proportions.
+
+### Guy Wire Physics (Catenary Sag)
+Guy lines are modelled with a simplified catenary approximation. Anchors project at $0.7H$ radially, drooping downward by a user-controlled slack factor across up to 3 support levels.
+
+### Structural Tension Heatmap
+Stress metric $S$ at height $z$:
+
+$$S(z) = M_a \cdot g + I(z)$$
+
+where $M_a$ is antenna mass (estimated from total element length at ~2700 kg/m³ aluminium density) and $I(z)$ is instability, increasing linearly with height and decreasing with active guy levels.
 
 ---
 
-## 5. Performance Optimizations
+## 7. Performance Optimisations
 
-* **LUT (Lookup Tables):** For wave propagation animations, the engine avoids re-calculating the 3D field for every pixel. Instead, it generates a $64 \times 64$ texture map of the pattern and uses it as a 2D lookup table, resulting in a $\sim 20\times$ speed increase.
-* **Typed Arrays:** All mesh vertices and trig values are stored in `Float32Array` buffers to minimize garbage collection and leverage browser-level math optimizations.
-* **Render Throttling:** The `requestAnimationFrame` API ensures that if multiple parameters change simultaneously (e.g., dragging a slider), only one 3D redraw is executed per display refresh cycle.
+- **LUT:** 64×64 pattern lookup table for wave propagation — avoids `localField` per pixel, ~20× speedup
+- **Float32Array:** All mesh vertices and trig values use typed arrays to minimise GC pressure
+- **Render Throttling:** `requestAnimationFrame` coalesces slider events into one WebGL redraw per frame
+- **Plotly.purge():** Called before `newPlot` to prevent WebGL context and memory leaks
+- **XQ vs RP:** Sweep solves use `XQ` (no pattern) rather than `RP` (full 181×360 pattern) — each sweep point is ~10× faster
 
 ---
-**Technical Specs:**
-* **Mesh Resolution:** $72 \times 96$ (6,912 vertices).
-* **Engine:** Vanilla JS / WebGL (via Plotly.js).
-* **Accuracy:** Far-field approximation ($r \gg \lambda$).
+
+## Technical Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| Solver | NEC-2 MoM (nec2dxs500.exe, 500 segments) |
+| Pattern resolution | 181 × 360 (1° × 1°) |
+| Sweep points | 51 (with Sommerfeld) / 151 (free space) |
+| Sweep range | 0.35× – 2.2× centre frequency |
+| Mesh resolution | 72 × 96 (6,912 vertices) |
+| Wave prop LUT | 64 × 64 |
+| Reference impedance | 50 Ω |
+| Render engine | Plotly.js WebGL (Electron) |
+| Accuracy | Far-field ($r \gg \lambda$), Sommerfeld ground |

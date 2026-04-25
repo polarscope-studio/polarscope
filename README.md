@@ -5,38 +5,39 @@
 
 **by Jack Mitchell — M7PXZ**
 
-**WEBSITE:** [https://polarscope-studio.github.io/polarscope/](https://polarscope-studio.github.io/polarscope/)
-
-**OTHER PROJECT:** [www.polarplot.net](https://www.polarplot.net)
-
-**LIVE DEMO VIDEO:** https://youtu.be/cLPWEIdKRf0
-
 **EMAIL:** m7pxzqrz@gmail.com (Bugs & fixes)
 
-**DISCORD:** https://discord.gg/zBAam3TZKf (#polarscope-dev)
+**DISCORD:** https://discord.gg/zBAam3TZKf (#polarstudio-dev)
 
-FAR-FIELD 3D · RF Engineering Tool · Powered By Physics
+**YOUTUBE:** https://www.youtube.com/@M7PXZ
+
+FAR-FIELD 3D · RF Engineering Tool · Powered By Real Electromagnetics
 
 ---
 
 ## Overview
 
-A real-time 3D antenna radiation pattern simulator built entirely in the browser as a single HTML file. Visualise far-field patterns, compare antennas side-by-side, and explore wave propagation — all powered by physics-based electromagnetic models using Plotly.js for 3D rendering.
+PolarScope is a desktop antenna radiation pattern simulator powered by a real NEC-2 electromagnetic solver. Model antennas, simulate impedance, plot 3D far-field radiation patterns, and sweep SWR across frequency all running locally on your machine with no cloud, no server, and no data leaving your device.
 
-No installation required. No data leaves your device. No server needed — just open the `index.html` file in any modern browser.
+Built as an Electron app wrapping a single-file HTML/JS frontend against a local NEC-2 HTTP bridge (necserver.js). The bundled `nec2dxs500.exe` solver handles all electromagnetic computation.
+
+---
+
+## Installation
+
+1. Download `PolarScope Setup 1.4.0.exe`
+2. Run the installer, no admin rights required by default
+3. Launch **PolarScope** from the Desktop or Start Menu
+4. Click **Start Simulator**
+
+No Node.js, no Python, no external dependencies. Everything is bundled.
 
 ---
 
 ## Features
 
----
-
 ### 9 Antenna Types
-
-![antennatypes](https://github.com/user-attachments/assets/d8f1b383-8194-4750-8fc9-fdda571ee761)
-
-
-- **Dipole** — Half-wave dipole with end-fed option
+- **Dipole** — Half-wave dipole with feedpoint gap and end-fed option
 - **V-Dipole** — Variable apex angle with optional reflector
 - **Ground Plane (¼λ GP)** — Vertical with configurable radials and droop angle
 - **Yagi-Uda** — Up to 12 directors, optional reflector, per-element editing
@@ -44,16 +45,26 @@ No installation required. No data leaves your device. No server needed — just 
 - **QFH (Quadrifilar Helix)** — Configurable turns for satellite reception patterns
 - **Collinear** — Stacked vertical elements, per-element length control
 - **Loop** — Small and full-wave loop with circumference control
-- **Helix** — Axial-mode with configurable turns and pitch angle (free-space model)
+- **Helix** — Axial-mode with configurable turns and pitch angle
 
----
+### NEC-2 Electromagnetic Solver
+- Powered by `nec2dxs500.exe` — a real NEC-2 Method of Moments solver
+- Full 181×360 far-field radiation pattern (1° resolution)
+- Accurate complex impedance (R ± jX Ω) and SWR at the operating frequency
+- Sommerfeld ground modelling — height, conductivity, drooped radial clearance
+- Lumped loading (LD card) — series R+L at base, centre, or top of driven element
+- Physical antenna rotation fed into NEC geometry for accurate ground interaction
+- Export ready-to-use `.nec` card decks for external tools (4NEC2, EZNEC, etc.)
+
+### SWR & Impedance Panel
+- Real NEC-2 sweep: 51–151 frequency points across 0.35× to 2.2× centre frequency
+- Live impedance readout (R ± jX Ω) and SWR at operating frequency
+- NEC diamond marker on the curve — colour-coded green (SWR ≤ 2.0) / red (SWR > 2.0)
+- JetBrains Mono hover tooltips with frequency and SWR readout
+- Resonance frequency and bandwidth detection
 
 ### 3D Radiation Pattern Viewer
-
-![radiationpattern](https://github.com/user-attachments/assets/a4a4d215-5618-4a3d-9072-c4faf0387d7b)
-
-
-- Real-time Plotly.js WebGL rendering
+- Real-time Plotly.js WebGL rendering of NEC-2 far-field data
 - Orbit, pan, zoom controls
 - 6 snap views (Y, X, Z, -Y, -X, -Z) plus ISO
 - 5 colour themes (Dark, Light, Terminal, Space, Amber)
@@ -61,340 +72,207 @@ No installation required. No data leaves your device. No server needed — just 
 - dBi / dBd unit toggle
 - Adjustable lobe opacity
 - Wireframe mode with theta rings and phi meridians
+- Current distribution overlay
 
----
+### Orientation Control
+- V/H pill switch — toggle vertical/horizontal for any antenna type
+- Free azimuth and elevation rotation (-180° to 180°)
+- Pattern mesh rotates rigidly with antenna orientation
+- Flip uses `polFlipped` flag — elevation slider stays at 0° after flip
 
 ### Side-by-Side Comparison
-
-![sidebyside](https://github.com/user-attachments/assets/f5140f5d-8b9a-407c-9d27-fba6675367b1)
-
-
-- Two independent antenna windows
+- Two independent antenna windows with separate NEC-2 solvers
 - Per-window antenna type, parameters, and overlays
 - Independent wave propagation and polar slice panels
-- Window selector dropdowns (L: and R:)
-- Active window indicator
-
----
+- Active window indicator and window selector dropdowns
 
 ### Wave Propagation Overlay
-
-![waveprop](https://github.com/user-attachments/assets/f1005712-5749-4f6b-9865-8caabf1e9bcc)
-
-
 - Canvas-based 2D animated wavefronts
-- Near-Field mode: individual element sources with interference patterns
-- Far-Field mode: radiation pattern lookup table (64×64 LUT, ~20× faster)
+- Near-Field mode: element-level interference patterns
+- Far-Field mode: 64×64 pattern LUT (~20× faster)
 - 8 colour themes: Thermal, Ocean, Fire, Neon, Mono, Plasma, Ember, Aurora
-- Independent speed control per pane
-- Independent V/H cut toggle per pane (Vertical φ or Horizontal θ)
-- GPU-accelerated compositing
-
----
+- Independent speed control and V/H cut toggle per pane
 
 ### Polar Slice Panel
-
-![polarslice](https://github.com/user-attachments/assets/e3bc1ab8-a773-4d38-9a62-5dcc020d5d20)
-
-
 - Interactive 2D scatterpolar gain plot
-- Hover gain readout on entire lobe edge (elevation + absolute gain)
+- Per-angle hover readout with absolute gain
 - Gold star markers on lobe peaks
-- Dark red star markers on lobe nulls with exact dB tooltips
+- Dark red star markers on nulls with exact dBi/dBd tooltips
 - -3dB reference circle
-- Independent V/H cut toggle (Vertical φ or Horizontal θ)
-- Live resize with Plotly.relayout
-
----
 
 ### Edit Mode
-
-![editmode](https://github.com/user-attachments/assets/658ce305-50b9-409a-bc02-8fcc37b89187)
-
-
-- Per-element length editing for all antenna types
-- Bidirectional sync: Live unit conversion between global sliders and Edit Mode fields
-- Precision Typing Lock: Prevents state overwrites while manually editing numbers
+- Per-element length, diameter, and feed point editing
+- Live NEC re-solve on every change
 - Colour picker per element
-- Live radiation pattern and geometry updates
-- Turnstile: Dipole X, Dipole Y, Reflector X, Reflector Y (all independent)
-- Yagi: Reflector, Driven, each Director (all independent)
-- Collinear: each element independent
-- QFH: Loop 1, Loop 2
-- Loop: Element (circumference)
-- Helix: Element (circumference affecting pattern)
-
----
-
-### Ground Reflection Model
-
-![groundplane](https://github.com/user-attachments/assets/82cbb744-7dce-43a7-b23e-02187ea883ec)
-
-
-- Height above ground (m, cm, mm, in, ft, wavelengths)
-- Conductivity: Dry, Medium, Wet
-- Phase-based reflection with elevation-dependent attenuation
-- Accounts for antenna tilt via rotPt global frame transform
-
----
-
-### Take-Off Angle (TOA)
-
-![TOA](https://github.com/user-attachments/assets/270bb5a0-f042-44d4-8f24-4b5e37a609e8)
-
-
-- Three modes: Strongest, Lowest, Highest
-- Orbitable marker label (slider moves gold marker around ring)
-- Optional beam lines (8 radial lines at TOA elevation)
-- Zenith detection
-
----
+- Bidirectional sync with global sliders
+- Precision Typing Lock — prevents state overwrites during manual input
 
 ### Structural Mast System
+- Dynamic 3D lattice tower generation
+- Configurable multi-level guy wire lines with slack physics
+- Real-time Structural Tension Heatmap
+- Automatic ground plane enforcement when tower is active
 
-![mast](https://github.com/user-attachments/assets/55917f06-2206-4fc9-aca0-84ac44b67e8d)
-
-
-- Dynamic 3D lattice tower generation that scales automatically with height
-- Configurable multi-level guy wire lines (up to 3 levels)
-- Catenary curve simulation (toggleable 'Taut' or 'Slack' wire gravitational droop)
-- Real-time Structural Tension Heatmap factoring in antenna weight and mast instability
-- Automatic ground UI enforcement when a tower is active
-- Precise visual anchoring to the ground plane
-
----
-
-### Overlay Panel System
-
-![overlays](https://github.com/user-attachments/assets/52768d73-96d0-4e28-b512-b42dcd65617c)
-
-
-- Drag-to-move via header bar
-- Resize from any edge or corner (8 invisible hit zones)
-- Content scales proportionally (text, charts, canvas)
-- Panels clamped to parent pane bounds
-- Works independently in SBS mode
-- Pointer-events isolation — camera never grabs during overlay interaction
-
----
-
-### Responsive Design
-- 5 CSS breakpoints: >1400px, 1200-1400, 900-1100, 640-900, <640px
-- Mobile: vertical layout, panel on top, deferred WebGL init
-- Orientation change handler
-- SBS overlay auto-scaling
-
----
+### Take-Off Angle (TOA)
+- Three modes: Strongest, Lowest, Highest
+- Orbitable marker label
+- Optional beam lines at TOA elevation
 
 ### Other Features
 - Amateur band labels with QRZ-style colours (2200m through 1.2cm)
 - Frequency input with MHz/kHz/GHz selector
-- Precision controls: ◀/▶ stepper buttons for exact lengths and angles
-- Smart stepping: 10mm / 10° logical increments across all measurement units
-- Antenna geometry overlay with current arcs
-- Feedpoint markers
+- Precision ◀/▶ stepper buttons for exact lengths and angles
+- Feedpoint gap control (default 2mm for dipole)
 - Splash screen with About, Features, Controls, Links, and Changelog tabs
-- Presets for each antenna type
 
 ---
 
 ## Architecture
 
-### Single File
-Everything is contained in one HTML file — CSS, JavaScript, and all antenna models. No build step, no dependencies beyond the Plotly.js CDN.
+### Electron Desktop App
+PolarScope runs as a native Windows app via Electron. The main process (`main.js`) starts the NEC-2 HTTP bridge at launch and serves the frontend via a `BrowserWindow`.
 
-### Pattern Computation
-1. Pattern computed in **local antenna frame** first via `localField(lx, ly, lz, st)`
-2. Mesh points rotated via `rotPt()` to account for azimuth and elevation rotation
-3. Eliminates lobe warping on rotation
-4. Ground reflection applied in **global frame** using true elevation
+### NEC-2 Bridge
+`necserver.js` wraps `nec2dxs500.exe` as a local HTTP server on port 7373:
+- `POST /solve` — single-frequency full radiation pattern solve
+- `POST /sweep` — multi-frequency impedance sweep (no RP card, fast)
+- `GET /ping` — server health check
+- `GET /debug` — last raw NEC output for diagnostics
+
+### NECBridge.js
+Translates the UI state object into NEC-2 card decks:
+- GW wires from `geometryArray` with rotation, z-offset, and segment count
+- GE / GN (Sommerfeld ground) cards when ground is active
+- LD lumped loading cards
+- FR frequency cards
+- EX excitation cards
+- RP radiation pattern card (181×360, 1° step)
+
+### Frontend
+Single HTML file (`polarscopemain.html`) — all CSS, JavaScript, and antenna models. Communicates with necserver.js via `fetch()`.
 
 ### Key State Design
 - `WINS[]` array holds per-window state objects
 - `S = WINS[activeWin]` is the active window shortcut
 - `defaultState()` returns a fresh state with all parameters
-- Each window stores its own antenna type, parameters, overlay states, and display options
+- `_necDirty` flag triggers NEC re-solve on next render
 
-### Performance Optimisations
-- `requestAnimationFrame` render throttling — coalesces multiple slider events into one render per frame
-- Pre-computed sin/cos arrays for theta and phi (`Float32Array`)
-- 64×64 pattern lookup table (LUT) for wave propagation — avoids calling `localField` per pixel
-- LUT auto-invalidates on antenna parameter change
-- `Plotly.purge()` before `newPlot` to prevent WebGL memory leaks
-- GPU compositing hints (`will-change`, `transform: translateZ(0)`) on wave canvases
-- Mesh resolution: NT=72, NP=96 (6,912 vertices)
+### Pattern Computation
+1. Pattern computed in **local antenna frame** via `localField(lx, ly, lz, st)`
+2. Mesh points rotated via `rotPt()` for azimuth/elevation rotation
+3. Ground reflection applied in **global frame** using true elevation
+4. NEC-2 results override the physics model when server is available
 
-### Coordinate System
-- **Yagi**: Elements along Z axis, boom along +Y. Field model uses `cosT` for element factor, `(-ly)` for array phase
-- **Helix**: Element length `L` = circumference `C`, spacing `Sp = C × tan(pitch)`
-- **Ground**: Always horizontal (global Z), reflection uses `gz` component after rotation
-
----
-
-## Changelog
-
-### v1.2.0 — Antenna Orientation & Structural Features (30 Mar 2026)
-
-#### Structural Mast System
-- **Lattice Towers & Masts**: Added a complete structural modelling system allowing you to mount antennas on detailed 3D lattice towers or simple poles.
-- **Guy Wire Physics**: Implemented configurable, multi-level guy wire supports. Guy lines automatically anchor to the ground plane and support configurable slack/sag physics.
-- **Structural Tension Map**: An interactive stress heatmap visually highlights strain points on the tower based on the mounted antenna's mass, wind load instability, and the support provided by the guy wires.
-
-#### Antenna Orientation & UI
-- **Yagi Horizontal Mode**: Fixed 3D geometry rendering so that driven, reflector, and director elements correctly lay along the X-axis when the antenna is flipped to horizontal mode.
-- **Rotation Freedom**: Expanded both Azimuth and Elevation sliders from restricted ranges to a full -180° to 180°, allowing unrestricted 360-degree pointing of all antenna types.
-- **Flip Button Repair**: Restored functionality to the "Flip Orientation" button so that UI controls and the 3D model now sync and re-render immediately upon clicking.
-
-#### Editor Upgrades
-- **Dynamic Editor Refresh**: Resolved a bug where the "Edit Mode" side panel failed to update when dynamically adding or removing elements (like Yagi directors or Collinear sections), ensuring the editor always matches the active 3D model.
-- **Element Syncing**: Fixed logic errors where adjusting single-element dimensions incorrectly modified multi-element arrays (e.g., V-dipole arms or Turnstile reflectors). Synchronised overall length sliders specifically for single-loop and single-helix antennas to alter circumference directly.
-
-### v1.1.0 — Precision & Visualization Update (30 Mar 2026)
-
-#### Precision & UX
-- **Control Steppers**: Added precision ◀/▶ buttons to all critical sliders (Length, Orientation, Height, Spacing).
-- **Smart Stepping**: Logical 10mm/10° increments that work seamlessly across all 6 unit types.
-- **Edit Mode Sync**: Global length unit selection now synchronizes live with individual element fields.
-- **Typing Lock**: Manual input fields now "lock" during typing to prevent UI updates from wiping user changes.
-- **UI Structure**: Added layout separators for better grouping of antenna parameters.
-
-#### Advanced Visualization
-- **Visual Null Markers**: Dark red stars on polar plots mark deep nulls with exact dBi/dBd hover data.
-- **3D Null Scanning**: Matrix-based structural scan across both H and V planes for accurate multi-plane detection.
-- **Cut Toggles**: Independent V/H cut switching on both Polar Slice and Wave Propagation overlays.
-- **Rendering Fixes**: Resolved line Z-fighting in 3D viewer and improved slice visibility.
-
-#### Improvements & Fixes
-- **Yagi counts**: Updated presets to match standard amateur radio element conventions (R+D+Directors).
-- **State Persistence**: Overlays now persist their visibility and position when switching antenna types.
-- **Pattern accuracy**: Improved peak detection for dipole models.
-- **Splash Screen**: Reorganized splash menu with dedicated Changelog and Links tabs.
-
-### v1.0.0 — Initial Release (28 Mar 2026)
-
-#### Core Simulator
-- 9 antenna types with physics-based field models
-- 3D radiation pattern rendering via Plotly.js WebGL
-- Rotation (azimuth + elevation tilt) for all antenna types
-- Ground reflection model with height, conductivity, ground size
-- 5 colour themes and 5 colormaps
-- dBi/dBd unit toggle
-- Frequency input with amateur band detection
-- Coaxial cable presets
-- Antenna geometry overlay with current arcs and feedpoint markers
-- Presets for each antenna type
-
-#### Side-by-Side Comparison
-- Dual independent windows with per-window state
-- Window selector dropdowns
-- Active window indicator
-- Independent overlays per pane
-
-#### Wave Propagation
-- Canvas-based 2D animated wavefronts
-- Near-Field mode with element-level interference
-- Far-Field mode with 64×64 pattern LUT (~20× speedup)
-- 8 colour themes
-- Per-pane speed and φ controls
-- GPU-accelerated compositing
-
-#### Polar Slice Panel
-- Interactive 2D gain plot with hover readouts on entire lobe edge
-- Gold star markers on lobe peaks
-- -3dB reference circle
-- Per-pane φ slider
-
-#### Edit Mode
-- Per-element length editing for all antenna types
-- Independent element control (Turnstile 4 elements, Yagi N+2 elements, Collinear N elements)
-- Field model reads per-element lengths for accurate pattern updates
-- Colour picker per element
-
-#### Wireframe Mode
-- Explicit scatter3d line traces (~15 theta rings + ~24 phi meridians)
-- Replaces glitchy Plotly contour approach
-- Hides filled radiation lobe when active
-
-#### Take-Off Angle
-- Three modes: Strongest, Lowest, Highest
-- Orbitable marker label
-- Optional beam lines
-
-#### Overlay Panel System
-- Drag-to-move via header bar
-- Resize from any edge or corner (8 invisible hit zones)
-- Proportional text scaling
-- Live polar chart resize via `Plotly.relayout`
-- Camera isolation via `pointer-events: none` during interaction
-- Panels clamped to parent pane bounds
-- SBS-aware positioning with auto-reset on mode toggle
-
-#### Performance
+### Performance
 - `requestAnimationFrame` render throttling
-- `Float32Array` mesh building with pre-computed trig
-- `Plotly.purge()` before `newPlot` for memory cleanup
-- Pattern LUT cache for wave propagation
-
-#### Responsive Design
-- 5 CSS breakpoints (desktop → mobile)
-- Mobile vertical layout with deferred WebGL init
-- Orientation change handler
-- SBS overlay auto-scaling
-
-#### Splash Screen
-- Landing page with tabbed content
-- About, Features, Controls, Buy Me a Coffee tabs
-- Smooth fade-out transition
-
----
-
-## Known Limitations
-
-- **Parabolic antenna**: Attempted but abandoned — beam direction vs dish geometry could not be resolved
-- **Mobile 3D rendering**: May be blank on some devices despite explicit sizing and delayed init
-- **Element coupling**: Not modelled — each element's field is computed independently (maybe future update)
-- **Far-field only**: Near-field in wave prop is approximate (spherical wave superposition)
-
----
-
-## Tech Stack
-
-- **Plotly.js 2.27.0** — 3D surface/scatter plots, polar charts
-- **Canvas API** — Wave propagation animation
-- **CSS Custom Properties** — Theming system
-- **Vanilla JavaScript** — No frameworks, no build tools
-- **Google Fonts** — JetBrains Mono, DM Sans
-
----
-
-## Browser Support
-
-- Chrome/Edge/Brave 90+ (recommended)
-- Firefox 90+
-- Safari 15+
-- Mobile browsers (experience may vary, mobile scaling is a nightmare!)
-
----
-
-## Getting Started
-
-1. Download `index.html`
-2. Open in any modern browser
-3. Click **Start Simulator**
-4. Select an antenna type and explore!
-
-No server, no install, no dependencies.
+- Pre-computed sin/cos arrays (`Float32Array`)
+- 64×64 pattern LUT for wave propagation
+- `Plotly.purge()` before `newPlot` to prevent WebGL memory leaks
 
 ---
 
 ## File Structure
 
 ```
-index.html                 — The Entire Simulator (Single File)
-README.md                  — This Documentation
-TECHNICAL_REFERENCE.md     — Technical Maths & Physics Documentation
-LICENSE.txt                — License Documentation
+polarscopemain.html        — Frontend (single-file app)
+polarscopestyle.css        — Stylesheet
+NECBridge.js               — UI state → NEC-2 card deck translator
+necserver.js               — NEC-2 HTTP server (port 7373)
+main.js                    — Electron entry point
+package.json               — Electron + electron-builder config
+NEC/
+  nec2dxs500.exe           — NEC-2 solver (500-segment capacity)
+dist/
+  PolarScope Setup x.x.x.exe  — Windows installer
+README.md                  — This file
+TECHNICAL_REFERENCE.md     — Physics & maths reference
+LICENSE.txt                — License
 ```
+
+---
+
+## Tech Stack
+
+- **NEC-2 (nec2dxs500.exe)** — Method of Moments electromagnetic solver
+- **Electron 28** — Desktop app wrapper
+- **Plotly.js 2.27.0** — 3D surface/scatter plots, polar charts
+- **Node.js HTTP** — Local NEC-2 bridge server
+- **Canvas API** — Wave propagation animation
+- **Vanilla JavaScript** — No frameworks, no build tools
+- **Google Fonts** — JetBrains Mono, DM Sans
+
+---
+
+## Changelog
+
+### v1.4.0 — NEC-2 Engine & Electron App (25 Apr 2026)
+
+- Full NEC-2 simulation via bundled nec2dxs500.exe (real Method of Moments solver)
+- Local HTTP bridge (necserver.js) — impedance, SWR, and full 181×360 radiation pattern
+- SWR sweep: real impedance vs frequency curve with 51–151 sample points
+- NEC diamond marker on SWR plot — live Z and SWR, colour-coded green/red
+- Export .nec deck for use in external tools
+- Lumped loading (LD card) — series R+L at base, centre, or top of driven element
+- Sommerfeld ground integration — height, conductivity, drooped radial clearance
+- V/H orientation pill switch replaces Vertical checkbox and Flip Orientation button
+- Pattern mesh rotates rigidly with antenna orientation
+- Flip uses `polFlipped` flag — elevation slider stays at 0° after flip
+- SWR hover: JetBrains Mono font, frequency + SWR readout, no spike line
+- Plot title updates correctly for every antenna type on each render
+- Dipole default feedpoint gap changed from 0 mm to 2 mm
+- Yagi Units dropdown removed
+- Packaged as standalone Windows installer (Electron + NSIS, no Node.js required)
+
+### v1.3.0 — Physics-Driven Q-Factor Engine (31 Mar 2026)
+
+- Universal Dynamic Q-Factor engine replacing hard-coded SWR bandwidths
+- Real-time "Pinch" effect: SWR sharpness reacts to geometry, thickness, and ground loading
+- Element Diameter UI control with dual-unit (mm/λ) badge system
+- Array Complexity Modelling for narrower high-gain Yagi bandwidths
+- Intelligent Plotly X-axis auto-scaling based on real-time Q calculation
+- Integrated Ground Proximity Loading (h < 0.2λ) into SWR simulation
+
+### v1.2.0 — Structural Mast & Orientation (30 Mar 2026)
+
+- Lattice towers & mast mounting system
+- Multi-level guy wire lines with slack physics
+- Structural Tension Heatmap
+- Yagi Horizontal Mode 3D geometry fixed
+- Rotation freedom unlocked (-180° to 180°)
+- Flip Orientation button repaired
+- Dynamic Editor UI refresh & element sync fixes
+
+### v1.1.0 — Precision & Visualization (30 Mar 2026)
+
+- Precision ◀/▶ stepper buttons on all critical sliders
+- Smart 10mm/10° stepping across all unit types
+- Visual Null Markers on polar plots with exact dBi/dBd tooltips
+- 3D structural null scanning (H+V cuts)
+- Independent element length tracking in Edit Mode
+- Bidirectional unit conversion & live refresh
+- Fixed pattern slice Z-fighting
+
+### v1.0.0 — Initial Release (28 Mar 2026)
+
+- 9 antenna types with physics-based field models
+- 3D interactive radiation pattern viewer
+- Side-by-side antenna comparison mode
+- Wave propagation overlay (NF/FF, 8 themes)
+- Polar slice panel with hover gain readouts
+- Per-element editing in Edit Mode
+- Ground reflection modelling
+- Draggable & resizable overlay panels
+- Take-off angle analysis
+- 5 colour themes, 5 colormaps
+- Splash screen
+
+---
+
+## Known Limitations
+
+- **Element coupling**: Not modelled in the physics fallback — NEC-2 handles this correctly when the server is running
+- **Mobile**: Not supported — Electron app is Windows desktop only
+- **Far-field only**: Near-field in wave propagation is approximate (spherical wave superposition)
 
 ---
 
@@ -408,4 +286,4 @@ If you find this tool useful, consider buying me a coffee!
 
 ---
 
-*Powered By Physics · Built with Plotly.js · Created by Jack Mitchell — M7PXZ*
+*Powered By Real Electromagnetics · Built with Electron & Plotly.js · Created by Jack Mitchell — M7PXZ*

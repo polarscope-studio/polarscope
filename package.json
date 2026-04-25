@@ -1,0 +1,56 @@
+{
+  "name": "polarscope",
+  "version": "1.0.0",
+  "description": "Antenna Radiation Pattern Visualizer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.m7pxz.polarscope",
+    "productName": "PolarScope",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "necserver.js",
+      "NECBridge.js",
+      "polarscopemain.html",
+      "polarscopestyle.css",
+      "nec2.js",
+      "nec2.wasm",
+      "nec2c.js",
+      "nec2c.wasm",
+      "necpp.js",
+      "necpp.wasm",
+      "!NEC/**"
+    ],
+    "extraResources": [
+      {
+        "from": "NEC",
+        "to": "NEC",
+        "filter": ["nec2dxs500.exe"]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
