@@ -5084,25 +5084,39 @@
         const gsm = getAutoGndSizeM(st);
         const gHalf = gsm / (getLambdaM(st) * 2);
         const gz = structActive ? -gHeightWl : -(gHeightWl + vertExtent);
-        const gN = 2;
-        const gX = [], gY = [], gZ = [];
-        for (let ri = 0; ri <= gN; ri++) {
-          const row = [], row2 = [], row3 = [];
-          for (let ci = 0; ci <= gN; ci++) {
-            row.push(-gHalf + 2 * gHalf * ci / gN);
-            row2.push(-gHalf + 2 * gHalf * ri / gN);
-            row3.push(gz);
-          }
-          gX.push(row); gY.push(row2); gZ.push(row3);
-        }
         const cond = st.groundCond;
-        const gcol = cond === 0 ? 'rgba(120,80,40,.5)' : cond === 1 ? 'rgba(40,110,40,.5)' : 'rgba(50,80,130,.5)';
+        const [gR, gG, gB] = cond === 0 ? [120,80,40] : cond === 1 ? [40,110,40] : [50,80,130];
+        // Circular ground disc — quadratic ring spacing keeps ~20 rings in the ±3λ scene.
+        // gMaxR=20λ >> scene diagonal (~4.24λ), so the transparent outer edge is always
+        // outside the viewport and no hard circular outline ever appears.
+        const Nr = 48, Nphi = 80;
+        const gMaxR = 20.0;
+        const sX = [], sY = [], sZ = [], sC = [];
+        for (let ri = 0; ri <= Nr; ri++) {
+          const t = ri / Nr;
+          const r = gMaxR * t * t; // quadratic: dense near center, sparse far out
+          const rx = [], ry = [], rz = [], rc = [];
+          for (let phii = 0; phii <= Nphi; phii++) {
+            const phi = phii / Nphi * 2 * Math.PI;
+            rx.push(r * Math.cos(phi)); ry.push(r * Math.sin(phi));
+            rz.push(gz); rc.push(t);
+          }
+          sX.push(rx); sY.push(ry); sZ.push(rz); sC.push(rc);
+        }
         traces.push({
-          type: 'surface', x: gX, y: gY, z: gZ,
-          colorscale: [[0, gcol], [1, gcol.replace('.5', '.2')]],
-          showscale: false, opacity: .55, lighting: { ambient: .95, diffuse: .05 },
+          type: 'surface', x: sX, y: sY, z: sZ, surfacecolor: sC,
+          colorscale: [
+            [0,    `rgba(${gR},${gG},${gB},0.62)`],
+            [0.25, `rgba(${gR},${gG},${gB},0.50)`],
+            [0.39, `rgba(${gR},${gG},${gB},0.35)`],
+            [0.46, `rgba(${gR},${gG},${gB},0.20)`],
+            [0.65, `rgba(${gR},${gG},${gB},0.06)`],
+            [1,    `rgba(${gR},${gG},${gB},0.00)`]
+          ],
+          showscale: false, opacity: 1,
+          lighting: { ambient: 1, diffuse: 0 },
           hoverinfo: 'skip',
-          contours: { x: { highlight: false }, y: { highlight: false }, z: { highlight: false } }
+          contours: { x: { show: false, highlight: false }, y: { show: false, highlight: false }, z: { show: false, highlight: false } }
         });
         if (structActive) {
           const userHalfM = gsm / 2;
