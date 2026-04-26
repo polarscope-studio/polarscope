@@ -5369,7 +5369,13 @@
       // Update UI panels
       document.getElementById('polarOv0').style.display = S.showPolar ? 'flex' : 'none';
       if (S.showPolar) renderPolarPane(0, S, mesh);
-      if (S.showSWR) renderSWRPane(0, S);
+      if (sbsMode) {
+        // In SBS mode only update the active window's pane; inactive pane stays frozen
+        const activePaneIdx = activeWin === sbsWin0 ? 0 : 1;
+        if (S.showSWR) renderSWRPane(activePaneIdx, S);
+      } else {
+        if (S.showSWR) renderSWRPane(0, S);
+      }
 
       updateFreqDisplay();
       // Keep edit-mode panel in sync on every render
@@ -5689,6 +5695,7 @@
       if (S.showSWR) {
         swrInited[paneIdx] = false; // force fresh Plotly.newPlot on every open
         renderSWRPane(paneIdx, S);
+        if (sbsMode) { renderAndSolve(); return; } // trigger sweep for this window; other pane stays frozen
       }
       render();
     }
@@ -6744,6 +6751,7 @@
         document.getElementById('togCurrent').checked = S.showCurr;
         document.getElementById('togArcs').checked = S.showArcs;
         // togFeed removed — showFeed stays true (feedpoints always visible)
+        document.getElementById('togSWR').checked = !!S.showSWR;
         document.getElementById('togTOA').checked = S.showTOA;
         document.getElementById('togWave').checked = !!S.showWave;
         document.getElementById('waveOv0').style.display = S.showWave ? 'flex' : 'none';
