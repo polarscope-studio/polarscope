@@ -26,7 +26,7 @@ Built as an Electron app wrapping a single-file HTML/JS frontend against a local
 ## Installation
 
 1. Go to "Releases"
-2. Download `PolarScope Setup 1.4.0.exe`
+2. Download `PolarScope Setup 1.5.0.exe`
 3. Run the installer, no admin rights required by default
 4. Launch **PolarScope** from the Desktop or Start Menu
 5. Click **Start Simulator**
