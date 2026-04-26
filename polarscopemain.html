@@ -5367,8 +5367,14 @@
       }
 
       // Update UI panels
-      document.getElementById('polarOv0').style.display = S.showPolar ? 'flex' : 'none';
-      if (S.showPolar) renderPolarPane(0, S, mesh);
+      if (sbsMode) {
+        const activePaneIdx = activeWin === sbsWin0 ? 0 : 1;
+        document.getElementById('polarOv' + activePaneIdx).style.display = S.showPolar ? 'flex' : 'none';
+        if (S.showPolar) renderPolarPane(activePaneIdx, S, mesh);
+      } else {
+        document.getElementById('polarOv0').style.display = S.showPolar ? 'flex' : 'none';
+        if (S.showPolar) renderPolarPane(0, S, mesh);
+      }
       if (sbsMode) {
         // In SBS mode only update the active window's pane; inactive pane stays frozen
         const activePaneIdx = activeWin === sbsWin0 ? 0 : 1;
@@ -6754,7 +6760,7 @@
         document.getElementById('togSWR').checked = !!S.showSWR;
         document.getElementById('togTOA').checked = S.showTOA;
         document.getElementById('togWave').checked = !!S.showWave;
-        document.getElementById('waveOv0').style.display = S.showWave ? 'flex' : 'none';
+        document.getElementById('waveOv' + (sbsMode ? (activeWin === sbsWin0 ? 0 : 1) : 0)).style.display = S.showWave ? 'flex' : 'none';
         syncWaveUI(0);
         syncWaveUI(1);
         // Start wave if any pane needs it, don't stop if another pane has it on
