@@ -2226,6 +2226,24 @@
 
 <body data-theme="dark">
 
+  <!-- Load Code Modal -->
+  <div class="splash hidden" id="loadCodeModal" onclick="if(event.target===this)_closeLoadModal()">
+    <div class="splash-card" style="max-width:420px;padding:24px 28px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <span style="font-size:.8rem;font-weight:600;color:var(--acc)">↑ Load Antenna Code</span>
+        <button onclick="_closeLoadModal()" style="background:none;border:none;color:var(--fg);font-size:1.1rem;cursor:pointer;line-height:1;opacity:.7">✕</button>
+      </div>
+      <textarea id="loadCodeTA" rows="5"
+        style="width:100%;box-sizing:border-box;background:rgba(0,0,0,0.3);border:1px solid var(--brd);border-radius:6px;color:var(--fg);font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:8px;resize:vertical;outline:none"
+        placeholder="Paste antenna code here…"
+        onkeydown="if(event.key==='Enter'&&(event.ctrlKey||event.metaKey))_confirmLoadCode();if(event.key==='Escape')_closeLoadModal()"></textarea>
+      <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
+        <button class="pbtn" onclick="_closeLoadModal()" style="font-size:.6rem;padding:5px 14px">Cancel</button>
+        <button class="pbtn" onclick="_confirmLoadCode()" style="font-size:.6rem;padding:5px 14px;background:var(--acc);color:#000">Load</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Splash Screen -->
   <div class="splash" id="splashScreen">
     <div class="splash-card">
@@ -2304,9 +2322,28 @@
         </select>
         <span class="gbadge" id="hLambda">λ=2.05m</span>
         <span class="band-badge" id="hBand">2m</span>
+        <select class="sel" id="bandPreset" onchange="applyBandPreset(this.value);this.selectedIndex=0" style="width:62px;margin-top:0;padding:3px 4px;font-size:.58rem">
+          <option value="">Band▾</option>
+          <option value="1.85">160m</option>
+          <option value="3.65">80m</option>
+          <option value="7.1">40m</option>
+          <option value="10.125">30m</option>
+          <option value="14.175">20m</option>
+          <option value="18.1">17m</option>
+          <option value="21.225">15m</option>
+          <option value="24.94">12m</option>
+          <option value="28.5">10m</option>
+          <option value="51">6m</option>
+          <option value="70.2">4m</option>
+          <option value="145">2m</option>
+          <option value="433">70cm</option>
+          <option value="1296">23cm</option>
+        </select>
       </div>
       <button class="hbtn" id="editBtn" onclick="toggleEdit()">✏ Edit</button>
       <button class="hbtn" onclick="resetCameras()">⟲ View</button>
+      <button class="hbtn" onclick="shareCode()" title="Copy antenna state code">⎘ Copy</button>
+      <button class="hbtn" onclick="loadCode()" title="Load antenna from code">↑ Load</button>
       <button class="hbtn" id="sbsBtn" onclick="toggleSBS()">⊞ SBS</button>
       <span id="sbsSelWrap"
         style="display:none;font-size:.6rem;font-family:'JetBrains Mono',monospace;color:var(--muted)">
@@ -3420,6 +3457,61 @@
     ════════════════════════════════════════════════ */
     function getLambdaM(st) { const f = (st || S).freqMHz * 1e6; return C_LIGHT / f; }
     function freqToMHz(v, u) { return u === 'GHz' ? v * 1e3 : u === 'kHz' ? v / 1e3 : v; }
+    const SHARE_KEYS = ['type','freqMHz','L','rotAz','rotEl','polFlipped','cpMode','endFed',
+      'alpha','vRef','vSp','gpRad','gpDroop','yagiDir','yagiRef','yagiRefSp','yagiDirSps','yagiMatch',
+      'colN','loopC','helixT','helixP','qfhT','elemThick','fpGap','disp','cmap','dbUnit',
+      'showGnd','groundHeight','groundUnit','groundCond'];
+    function shareCode() {
+      const snap = {};
+      for (const k of SHARE_KEYS) if (S[k] !== undefined) snap[k] = S[k];
+      const code = btoa(JSON.stringify(snap));
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('[onclick="shareCode()"]');
+        if (btn) { const orig = btn.textContent; btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = orig, 1800); }
+      }).catch(() => prompt('Copy this code:', code));
+    }
+    function loadCode() {
+      const ta = document.getElementById('loadCodeTA');
+      if (ta) ta.value = '';
+      const modal = document.getElementById('loadCodeModal');
+      if (modal) { modal.classList.remove('hidden'); if (ta) setTimeout(() => ta.focus(), 50); }
+    }
+    function _closeLoadModal() {
+      const modal = document.getElementById('loadCodeModal');
+      if (modal) modal.classList.add('hidden');
+    }
+    function _confirmLoadCode() {
+      const ta = document.getElementById('loadCodeTA');
+      const code = ta ? ta.value.trim() : '';
+      if (!code) return;
+      _closeLoadModal();
+      try {
+        const snap = JSON.parse(atob(code));
+        for (const k of SHARE_KEYS) { if (snap[k] !== undefined) S[k] = snap[k]; }
+        rebuildGeometry(S);
+        syncPanelToState();
+        updateFreqDisplay();
+        const _NAMES = { dipole: 'Dipole', v: 'V-Dipole', gp: '¼λ GP', yagi: 'Yagi-Uda', turnstile: 'Turnstile', qfh: 'QFH', collinear: 'Collinear', loop: 'Loop', helix: 'Helix' };
+        const wb = document.getElementById('wb' + activeWin);
+        if (wb) wb.textContent = _NAMES[S.type] || S.type;
+        renderAndSolve();
+      } catch (_) {
+        const errModal = document.getElementById('loadCodeModal');
+        const ta2 = document.getElementById('loadCodeTA');
+        if (ta2) ta2.style.borderColor = '#ff5555';
+        if (errModal) errModal.classList.remove('hidden');
+        setTimeout(() => { if (ta2) ta2.style.borderColor = ''; }, 1500);
+      }
+    }
+    function applyBandPreset(mhz) {
+      if (!mhz) return;
+      S.freqMHz = parseFloat(mhz);
+      document.getElementById('hFreqVal').value = S.freqMHz;
+      document.getElementById('hFreqUnit').value = 'MHz';
+      updateFreqDisplay();
+      if (typeof editMode !== 'undefined' && editMode) refreshEditDisplay();
+      renderAndSolve();
+    }
     function onFreqInput() {
       const v = parseFloat(document.getElementById('hFreqVal').value) || 146;
       const u = document.getElementById('hFreqUnit').value;
@@ -7948,7 +8040,12 @@
       if (!window.NECBridge) { alert('NECBridge not loaded.'); return; }
       rebuildGeometry(S);
       let deck;
-      try { deck = NECBridge.generateNECString(S); }
+      try {
+        // Strip visual-only rotation flags so the canonical geometry is exported,
+        // not a physically-rotated version that squishes the pattern in 4nec2.
+        const exportSt = Object.assign({}, S, { rotAz: 0, rotEl: 0, polFlipped: false });
+        deck = NECBridge.generateNECString(exportSt);
+      }
       catch (e) { alert('Could not generate NEC deck: ' + e.message); return; }
       const freq = (parseFloat(S.freqMHz) || 146).toFixed(3);
       const name = `polarscope_${S.type || 'antenna'}_${freq}MHz.nec`;
