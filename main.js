@@ -5,7 +5,9 @@ const path = require('path');
 // In packaged app: process.resourcesPath points to the resources/ folder outside asar
 // In dev: fall back to __dirname
 const necBase = app.isPackaged ? process.resourcesPath : __dirname;
-process.env.NEC_EXE_PATH = path.join(necBase, 'NEC', 'nec2dxs500.exe');
+const isWin = process.platform === 'win32';
+const necExeName = isWin ? 'nec2dxs500.exe' : 'nec2c';
+process.env.NEC_EXE_PATH = path.join(necBase, 'NEC', necExeName);
 
 // Start NEC HTTP server directly in the main process (port 7373)
 require('./necserver.js');

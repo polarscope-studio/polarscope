@@ -25,6 +25,8 @@ Built as an Electron app wrapping a single-file HTML/JS frontend against a local
 
 ## Installation
 
+### Windows
+
 1. Go to "Releases"
 2. Download `PolarScope Setup 1.5.0.exe`
 3. Run the installer, no admin rights required by default
@@ -34,6 +36,39 @@ Built as an Electron app wrapping a single-file HTML/JS frontend against a local
 No Node.js, no Python, no external dependencies. Everything is bundled.
 
 VirusTotal: https://www.virustotal.com/gui/file/e959eefa099b9b91dddc08a835fff98e1b9aaaf4d8a7b4e03e82a217c03b047c
+
+### macOS (running from source)
+
+PolarScope runs on macOS via Electron. Because the bundled `nec2dxs500.exe` is a Windows binary, you need to compile the open-source **nec2c** solver natively first. The process takes about 2 minutes.
+
+**Prerequisites**
+- [Node.js](https://nodejs.org) 18 or later
+- Xcode Command Line Tools
+- [Homebrew](https://brew.sh) *(optional — only needed if `autoconf`/`automake` are missing)*
+
+**Steps**
+
+```bash
+# 1. Install Xcode Command Line Tools (skip if already installed)
+xcode-select --install
+
+# 2. Clone the repository
+git clone https://github.com/yuryja/polarscope.git
+cd polarscope
+
+# 3. Install Node dependencies
+npm install
+
+# 4. Compile the NEC-2 solver for macOS (one-time, ~1-2 min)
+bash scripts/build-nec2c-mac.sh
+
+# 5. Launch PolarScope
+npm start
+```
+
+The build script clones [nec2c](https://github.com/KJ7LNW/nec2c), compiles it with `gcc`, and places the native binary at `NEC/nec2c`. Both Intel and Apple Silicon (arm64) Macs are supported.
+
+> **Note:** The NEC-2 solver runs fully locally — no data leaves your machine.
 
 ---
 
@@ -133,10 +168,14 @@ VirusTotal: https://www.virustotal.com/gui/file/e959eefa099b9b91dddc08a835fff98e
 ## Architecture
 
 ### Electron Desktop App
-PolarScope runs as a native Windows app via Electron. The main process (`main.js`) starts the NEC-2 HTTP bridge at launch and serves the frontend via a `BrowserWindow`.
+PolarScope runs as a native desktop app via Electron on **Windows and macOS**. The main process (`main.js`) starts the NEC-2 HTTP bridge at launch and serves the frontend via a `BrowserWindow`.
 
 ### NEC-2 Bridge
-`necserver.js` wraps `nec2dxs500.exe` as a local HTTP server on port 7373:
+`necserver.js` wraps the platform-appropriate NEC-2 solver as a local HTTP server on port 7373:
+- **Windows** — `NEC/nec2dxs500.exe` (PE32 binary, stdin-driven)
+- **macOS / Linux** — `NEC/nec2c` (compiled from source, `-i`/`-o` CLI flags)
+
+Endpoints:
 - `POST /solve` — single-frequency full radiation pattern solve
 - `POST /sweep` — multi-frequency impedance sweep (no RP card, fast)
 - `GET /ping` — server health check
@@ -184,7 +223,10 @@ necserver.js               — NEC-2 HTTP server (port 7373)
 main.js                    — Electron entry point
 package.json               — Electron + electron-builder config
 NEC/
-  nec2dxs500.exe           — NEC-2 solver (500-segment capacity)
+  nec2dxs500.exe           — NEC-2 solver for Windows (PE32, 500-segment)
+  nec2c                    — NEC-2 solver for macOS/Linux (compiled from source)
+scripts/
+  build-nec2c-mac.sh       — Compiles nec2c for macOS (one-time setup)
 dist/
   PolarScope Setup x.x.x.exe  — Windows installer
 README.md                  — This file
@@ -196,8 +238,8 @@ LICENSE.txt                — License
 
 ## Tech Stack
 
-- **NEC-2 (nec2dxs500.exe)** — Method of Moments electromagnetic solver
-- **Electron 28** — Desktop app wrapper
+- **NEC-2 (nec2dxs500.exe / nec2c)** — Method of Moments electromagnetic solver (Windows / macOS)
+- **Electron 28** — Desktop app wrapper (Windows & macOS)
 - **Plotly.js 2.27.0** — 3D surface/scatter plots, polar charts
 - **Node.js HTTP** — Local NEC-2 bridge server
 - **Canvas API** — Wave propagation animation

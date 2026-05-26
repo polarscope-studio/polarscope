@@ -1,6 +1,8 @@
 /**
  * necserver.js
- * Local HTTP server that wraps nec2dxs500.exe for real NEC-2 simulation.
+ * Local HTTP server that wraps the NEC-2 solver for real simulation.
+ * Windows: uses nec2dxs500.exe (stdin prompts)
+ * macOS/Linux: uses nec2c (compiled from source, -i/-o flags)
  * Start with: node necserver.js
  * Listens on http://localhost:7373
  */
@@ -12,30 +14,49 @@ const path = require('path');
 const os = require('os');
 
 const PORT = 7373;
-// nec2dxs500 is a real Windows PE32 binary (500-segment capacity, enough for any PolarScope antenna)
-const NEC_EXE = process.env.NEC_EXE_PATH || path.join(__dirname, 'NEC', 'nec2dxs500.exe');
+const IS_WIN = process.platform === 'win32';
+
+// On Windows: nec2dxs500.exe (stdin-driven)
+// On macOS/Linux: nec2c (CLI flags: -i input -o output)
+const NEC_EXE = process.env.NEC_EXE_PATH ||
+    (IS_WIN
+        ? path.join(__dirname, 'NEC', 'nec2dxs500.exe')
+        : path.join(__dirname, 'NEC', 'nec2c'));
+
+// On macOS, os.tmpdir() returns a very long /var/folders/… path that
+// exceeds nec2c's 75-char filename limit. Use /tmp (symlink → /private/tmp)
+// on non-Windows, and a short counter-based ID to keep filenames compact.
+let _necCounter = 0;
+const NEC_TMP_DIR = IS_WIN ? os.tmpdir() : '/tmp';
 
 function runNEC(necString) {
     return new Promise((resolve, reject) => {
-        const uid = Date.now() + '_' + Math.random().toString(36).slice(2);
-        const inputFile  = path.join(os.tmpdir(), `nec_in_${uid}.nec`);
-        const outputFile = path.join(os.tmpdir(), `nec_out_${uid}.out`);
+        const uid = (++_necCounter % 99999).toString().padStart(5, '0');
+        const inputFile  = path.join(NEC_TMP_DIR, `n${uid}.nec`);
+        const outputFile = path.join(NEC_TMP_DIR, `n${uid}.out`);
 
         fs.writeFileSync(inputFile, necString, 'utf8');
 
-        const proc = spawn(NEC_EXE, [], { cwd: os.tmpdir() });
-
-        // nec2dxs prompts "ENTER NAME OF INPUT FILE >" then output file on stdin
-        proc.stdin.write(inputFile + '\r\n');
-        proc.stdin.write(outputFile + '\r\n');
-        proc.stdin.end();
+        let proc;
+        if (IS_WIN) {
+            // Windows: nec2dxs500.exe reads input/output file paths from stdin
+            proc = spawn(NEC_EXE, [], { cwd: NEC_TMP_DIR });
+            proc.stdin.write(inputFile + '\r\n');
+            proc.stdin.write(outputFile + '\r\n');
+            proc.stdin.end();
+        } else {
+            // macOS/Linux: nec2c uses -i <input> -o <output> CLI flags
+            proc = spawn(NEC_EXE, ['-i', inputFile, '-o', outputFile], { cwd: NEC_TMP_DIR });
+            proc.stdin.end();
+        }
 
         let stderr = '';
         proc.stderr.on('data', d => { stderr += d.toString(); });
 
+        const solverName = IS_WIN ? 'nec2dxs500.exe' : 'nec2c';
         const timeout = setTimeout(() => {
             proc.kill();
-            reject(new Error('nec2dxs500.exe timed out after 25s'));
+            reject(new Error(`${solverName} timed out after 25s`));
         }, 25000);
 
         proc.on('close', (code) => {
@@ -43,7 +64,7 @@ function runNEC(necString) {
             try { fs.unlinkSync(inputFile); } catch (_) {}
 
             if (!fs.existsSync(outputFile)) {
-                return reject(new Error(`nec2dxs500.exe exited ${code}, no output file. stderr: ${stderr}`));
+                return reject(new Error(`${solverName} exited ${code}, no output file. stderr: ${stderr}`));
             }
 
             let output;
@@ -59,7 +80,7 @@ function runNEC(necString) {
 
         proc.on('error', (e) => {
             clearTimeout(timeout);
-            reject(new Error('Failed to spawn nec2dxs500.exe: ' + e.message));
+            reject(new Error(`Failed to spawn ${solverName}: ${e.message}`));
         });
     });
 }
@@ -226,7 +247,7 @@ const server = http.createServer((req, res) => {
             try {
                 console.log(`[NEC] Solving ${body.split('\n').length} card lines...`);
                 const rawOutput = await runNEC(body);
-                fs.writeFileSync(path.join(os.tmpdir(), 'nec_debug_last.txt'), rawOutput, 'utf8');
+                fs.writeFileSync(path.join(NEC_TMP_DIR, 'nec_debug_last.txt'), rawOutput, 'utf8');
                 const parsed = parseOutput(rawOutput);
                 console.log(`[NEC] Z=${parsed.impedance.r.toFixed(1)}+j${parsed.impedance.x.toFixed(1)}Ω  SWR=${parsed.swr.toFixed(2)}  Gain=${parsed.gainDbi.toFixed(1)}dBi  Pattern=${parsed.pattern.length}pts`);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -267,7 +288,7 @@ const server = http.createServer((req, res) => {
     }
 
     if (req.method === 'GET' && req.url === '/debug') {
-        const f = path.join(os.tmpdir(), 'nec_debug_last.txt');
+        const f = path.join(NEC_TMP_DIR, 'nec_debug_last.txt');
         if (fs.existsSync(f)) {
             res.writeHead(200, { 'Content-Type': 'text/plain' });
             return res.end(fs.readFileSync(f, 'utf8'));
@@ -280,9 +301,14 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '127.0.0.1', () => {
-    console.log(`[NEC Server] Ready on http://127.0.0.1:${PORT}`);
+    const platform = IS_WIN ? 'Windows' : process.platform;
+    console.log(`[NEC Server] Ready on http://127.0.0.1:${PORT} [${platform}]`);
     console.log(`[NEC Server] Solver: ${NEC_EXE}`);
     if (!fs.existsSync(NEC_EXE)) {
-        console.error(`[NEC Server] WARNING: ${NEC_EXE} not found!`);
+        const hint = IS_WIN
+            ? 'Place nec2dxs500.exe in the NEC/ directory.'
+            : 'Run: bash scripts/build-nec2c-mac.sh  to compile nec2c for macOS.';
+        console.error(`[NEC Server] WARNING: solver not found at ${NEC_EXE}`);
+        console.error(`[NEC Server] HINT: ${hint}`);
     }
 });
