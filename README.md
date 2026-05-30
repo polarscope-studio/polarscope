@@ -113,16 +113,18 @@ That's it — PolarScope should open in a window.
 
 ## Features
 
-### 9 Antenna Types
+### 11 Antenna Types
 - **Dipole** — Half-wave dipole with feedpoint gap and end-fed option
 - **V-Dipole** — Variable apex angle with optional reflector
 - **Ground Plane (¼λ GP)** — Vertical with configurable radials and droop angle
-- **Yagi-Uda** — Up to 12 directors, optional reflector, per-element editing
+- **Yagi-Uda** — Up to 12 directors, optional reflector, gamma / folded / split matching, per-element editing
 - **Turnstile** — Crossed dipoles with optional tilted reflector
 - **QFH (Quadrifilar Helix)** — Configurable turns for satellite reception patterns
 - **Collinear** — Stacked vertical elements, per-element length control
 - **Loop** — Small and full-wave loop with circumference control
 - **Helix** — Axial-mode with configurable turns and pitch angle
+- **Moxon** — Compact 2-element rectangular directional antenna with VK1OD calculator-style A/B/C/D dimensions (width, driven tip, tip gap, reflector tip), each side independently editable
+- **J-Pole** — End-fed half-wave with quarter-wave parallel matching stub, tunable rod length / spacing / feed tap
 
 ### NEC-2 Electromagnetic Solver
 - Powered by `nec2dxs500.exe` — a real NEC-2 Method of Moments solver
