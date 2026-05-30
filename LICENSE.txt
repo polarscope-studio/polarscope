@@ -1,0 +1,74 @@
+Polarscope Software License
+Copyright (c) 2026 Jack Mitchell (M7PXZ). All rights reserved.
+
+================================================================================
+GRANT OF RIGHTS
+================================================================================
+
+Subject to the terms and conditions of this License, the copyright holder hereby
+grants you a worldwide, royalty-free, non-exclusive, perpetual license to:
+
+  1. Use this software for any purpose, including personal, educational,
+     research, and commercial workflows.
+
+  2. Copy, modify, and create derivative works based on this software.
+
+  3. Distribute original or modified copies of this software, provided that:
+       (a) This License is included in full with every copy or distribution.
+       (b) The original copyright notice is retained and clearly visible.
+       (c) Any modifications are clearly documented and attributed.
+
+================================================================================
+RESTRICTIONS — NO SALE, NO PAYWALL
+================================================================================
+
+The following are strictly prohibited, regardless of whether the software is
+distributed in original or modified form:
+
+  1. NO SALE: You may not sell, license for a fee, or otherwise charge any
+     monetary amount — directly or indirectly — for this software or any
+     derivative work based on it. This includes but is not limited to:
+       - Selling the software as a standalone product or bundled product.
+       - Charging for access, download, or installation of the software.
+       - Reselling the software under a different name or brand.
+
+  2. NO PAYWALL: You may not restrict access to this software or any derivative
+     work behind a subscription, membership, login wall, token, credit system,
+     or any mechanism that requires payment or financial commitment to access
+     or use the software.
+
+  3. NO MISREPRESENTATION: You may not represent this software or any derivative
+     work as your own original creation without clearly crediting the original
+     author. You may not remove or obscure the copyright notice or this License.
+
+================================================================================
+DISCLAIMER OF WARRANTIES
+================================================================================
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+================================================================================
+CONTACT
+================================================================================
+
+For licensing enquiries, commercial partnerships, or written permissions beyond
+the scope of this License, contact:
+
+  Jack Mitchell — M7PXZ
+  m7pxzqrz@gmail.com
+
+================================================================================
+SUMMARY (not a substitute for the full License text above)
+================================================================================
+
+  + Free to use for any purpose
+  + Free to copy, modify, and fork
+  + Free to distribute with attribution
+  - Cannot sell or charge for it
+  - Cannot put it behind a paywall
+  - Cannot remove this License or the copyright notice

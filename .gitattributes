@@ -1,0 +1,9 @@
+* text=auto
+
+# Shell scripts must use LF endings or they break on Mac/Linux
+*.sh text eol=lf
+
+# Binaries
+NEC/nec2c binary
+NEC/*.exe binary
+*.png binary
