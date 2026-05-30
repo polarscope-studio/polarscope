@@ -43,7 +43,7 @@ Built as an Electron app wrapping a single-file HTML/JS frontend against a local
 
 No Node.js, no Python, no external dependencies. Everything is bundled.
 
-VirusTotal: https://www.virustotal.com/gui/file/04ba23cd6967ce83e82aa59bb038e51c3070a62b1662ef2de0223c9603fb78de/community
+VirusTotal: https://www.virustotal.com/gui/file/d7ea4e8f4a73b27bda12d89a623d7c16eda13eeea0daeaf5834e0202cf8e39a5?nocache=1
 
 ---
 
