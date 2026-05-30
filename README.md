@@ -82,26 +82,32 @@ sudo apt install -y nodejs
 
 Verify with `node --version` (should be 18+).
 
-**2. Install build tools:**
+**2. Install build tools and Electron runtime libraries:**
 
 ```bash
 sudo apt update
+# Build tools for nec2c:
 sudo apt install -y build-essential autoconf automake libtool git curl
+# Electron's runtime dependencies (libasound2t64 on Debian 13 Trixie / Ubuntu 24+, libasound2 on older):
+sudo apt install -y libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 \
+    xdg-utils libatspi2.0-0 libsecret-1-0 libasound2t64 \
+    || sudo apt install -y libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 \
+    xdg-utils libatspi2.0-0 libsecret-1-0 libasound2
 ```
 
-**3. Clone and run:**
+**3. Clone, build, and run:**
 
 ```bash
 git clone https://github.com/polarscope-studio/polarscope.git
 cd polarscope
-npm install
-bash scripts/build-nec2c.sh
+npm install                  # pulls Electron + electron-builder (~200 MB)
+bash scripts/build-nec2c.sh  # compiles nec2c → NEC/nec2c (under a minute)
 npm start
 ```
 
-The build script clones `nec2c`, compiles it natively, and places the binary at `NEC/nec2c` automatically.
+That's it — PolarScope should open in a window.
 
-> **Fedora / Arch users:** install equivalent packages (`gcc make autoconf automake libtool git nodejs npm`) from your distro's package manager. The rest of the steps are identical.
+> **Fedora / Arch users:** install equivalent packages (`gcc make autoconf automake libtool git nodejs npm gtk3 nss libnotify libxss libsecret alsa-lib at-spi2-atk`) from your distro's package manager. The rest of the steps are identical.
 
 ---
 
