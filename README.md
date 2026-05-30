@@ -73,11 +73,25 @@ npm start
 
 No pre-compiled binary is included for Linux — build takes under a minute.
 
-```bash
-# Prerequisites: Node.js 18+, git, gcc toolchain
-# Ubuntu/Debian:
-sudo apt install build-essential autoconf automake libtool git nodejs npm
+**1. Install Node.js 18+** (the version in Debian/Ubuntu repos is often too old or has broken dependencies — use NodeSource instead):
 
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+Verify with `node --version` (should be 18+).
+
+**2. Install build tools:**
+
+```bash
+sudo apt update
+sudo apt install -y build-essential autoconf automake libtool git curl
+```
+
+**3. Clone and run:**
+
+```bash
 git clone https://github.com/polarscope-studio/polarscope.git
 cd polarscope
 npm install
@@ -86,6 +100,8 @@ npm start
 ```
 
 The build script clones `nec2c`, compiles it natively, and places the binary at `NEC/nec2c` automatically.
+
+> **Fedora / Arch users:** install equivalent packages (`gcc make autoconf automake libtool git nodejs npm`) from your distro's package manager. The rest of the steps are identical.
 
 ---
 
