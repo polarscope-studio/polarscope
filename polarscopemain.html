@@ -6016,9 +6016,10 @@
       st = st || S;
       const sc = SBGCOL[currentTheme] || '#080b12';
       const cam = savedCamera[winIdx] || { eye: { x: 1.2, y: 0.4, z: 0.6 } };
-      // Viewport range — expand dynamically for custom geometry that exceeds default 3λ
+      // Viewport range — auto-expand to fit the geometry (works for both parametric and custom modes).
+      // geometryArray coords are in metres for both modes; conv = 1.2/λ maps them to display units.
       let rng = 3.0;
-      if (st.customMode && st.geometryArray && st.geometryArray.length > 0) {
+      if (st.geometryArray && st.geometryArray.length > 0) {
         const lambdaM = getLambdaM(st);
         const conv = 1.2 / lambdaM;
         let maxExt = 0;
@@ -6027,7 +6028,8 @@
             Math.abs(el.p1.x*conv), Math.abs(el.p1.y*conv), Math.abs(el.p1.z*conv),
             Math.abs(el.p2.x*conv), Math.abs(el.p2.y*conv), Math.abs(el.p2.z*conv));
         }
-        rng = Math.max(3.0, maxExt * 1.15);
+        // Need at least 1.5 for the radiation lobe sphere; pad by 15% for headroom
+        rng = Math.max(3.0, maxExt * 1.15, 1.5);
       }
       let zMin = -rng;
       if (st.showGnd) {
