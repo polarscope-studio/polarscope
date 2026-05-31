@@ -289,14 +289,43 @@ LICENSE.txt                — License
 
 ## Changelog
 
-### v1.6.0 — Cross-Platform Support (29 May 2026)
+### v1.6.0 — Cross-Platform, New Antennas, Undo/Redo (29–31 May 2026)
 
+**Cross-Platform Support**
 - macOS support via nec2c native solver (Apple Silicon arm64 binary bundled)
 - Linux support via nec2c compiled from source (`bash scripts/build-nec2c.sh`)
 - Platform-aware NEC solver selection and spawn protocol in necserver.js
 - `/tmp` path and short counter filenames to satisfy nec2c's 75-char limit
-- `scripts/build-nec2c.sh` — one-command build script for macOS Intel and Linux
+- `scripts/build-nec2c.sh` — one-command build script for macOS Intel and Linux, with absolute-path resolution + tarball fallback so future re-runs are reliable
+- Linux install docs updated: Node.js 18+ via NodeSource (avoids broken Debian package), Electron runtime libraries (libgtk-3, libnss3, libasound2t64 with fallback to libasound2)
+- `.gitattributes` forces LF endings on shell scripts so they execute on Unix
 - Credit: macOS support contributed by [Yury Jakovlev — YY3BIG](https://github.com/yuryja)
+
+**New Antenna Types**
+- **Moxon** — compact 2-element directional with VK1OD-calculator-style A/B/C/D dimensions: per-side widths, driven tip length (B), tip gap (C), reflector tip length (D) each individually editable. Auto-derived total depth E = B + C + D.
+- **J-Pole** — end-fed half-wave with quarter-wave parallel matching stub; tunable rod length, parallel rod spacing (mm), and feed tap position
+- Both new types: per-slider unit dropdowns (λ / mm / cm / m / in / ft) and edit-mode rows for per-element editing
+- Moxon feedpoint gap properly modelled — split driven element with 1-segment NEC feed wire bridging the gap
+
+**Yagi Improvements**
+- Radiation pattern direction corrected (element-factor axis fix — adding directors now correctly increases forward gain)
+- Gamma match — orientation fixed (rod offsets along boom axis instead of vertical), vertical-yagi gamma support added, tunable rod length / spacing / series capacitor (modelled as NEC LD card), feedpoint gap automatically hidden when gamma is active
+- Driven element shown as electrically continuous when gamma is active (sub-segments hidden from element list)
+- Director array no longer truncated when reducing then restoring director count
+- DL6WU feedpoint gap formula corrected: g = 0.01292·λ + 0.02383·d
+- Folded dipole feedpoint gap now drives visual feed gap correctly
+- Custom NEC import: auto-detects boom axis, directors, reflector spacing, feedpoint gap; boom rendered for custom yagi imports
+- Geometry centred on driven element on NEC import (fixes camera fly-off)
+
+**3D Viewer & UI**
+- Undo / Redo buttons in the header — Ctrl+Z / Ctrl+Y / Ctrl+Shift+Z keyboard shortcuts. Snapshots cover all windows, 80-deep history, debounced to avoid noise during slider drags
+- Viewport auto-expands to fit large antennas (12-director Yagis, oversized Moxons, long collinear stacks) — was previously locked at 3λ for parametric antennas
+- Header buttons distributed evenly across the full width with `justify-content: space-between` — no more awkward right-cluster gaps
+- TOA ring follows the actual lobe contour at the take-off elevation instead of drawing a uniform circle — for directional antennas the ring traces the real pattern shape
+- TOA marker hugs the lobe surface at its orbit angle
+- TOA beam lines extend from the antenna at the exact take-off elevation with arrowheads, up to 4 main beams shown
+- Wave propagation and polar slice lines aligned with the lobe surface
+- 11 antenna types total (was 9)
 
 ### v1.5.0 — Yagi & NEC Improvements (May 2026)
 
