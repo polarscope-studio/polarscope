@@ -3,13 +3,13 @@
 
 # 📡 POLARSCOPE - Antenna Radiation Pattern Visualizer
 
-**by Jack Mitchell — M7PXZ**
+**by Jack Mitchell — M9PXZ**
 
-**EMAIL:** m7pxzqrz@gmail.com (Bugs & fixes)
+**EMAIL:** papaxrayzulu@gmail.com (Bugs & fixes)
 
 **DISCORD:** https://discord.gg/zBAam3TZKf (#polarstudio-dev)
 
-**YOUTUBE:** https://www.youtube.com/@M7PXZ
+**YOUTUBE:** https://www.youtube.com/@M9PXZ
 
 FAR-FIELD 3D · RF Engineering Tool · Powered By Real Electromagnetics
 
@@ -19,7 +19,7 @@ FAR-FIELD 3D · RF Engineering Tool · Powered By Real Electromagnetics
 
 | Contributor | Callsign | Contribution |
 |---|---|---|
-| [Jack Mitchell](https://github.com/m7pxz) | M7PXZ | Original author |
+| [Jack Mitchell](https://github.com/polarscope-studio) | M9PXZ | Original author |
 | [Yury Jakovlev](https://github.com/yuryja) | YY3BIG | macOS support via nec2c native solver |
 
 ---
@@ -420,8 +420,8 @@ If you find this tool useful, consider buying me a coffee!
 
 ☕ **[paypal.me/mitchkmn](https://www.paypal.me/mitchkmn)**
 
-73 de M7PXZ 🤙
+73 de M9PXZ 🤙
 
 ---
 
-*Powered By Real Electromagnetics · Built with Electron & Plotly.js · Created by Jack Mitchell — M7PXZ*
+*Powered By Real Electromagnetics · Built with Electron & Plotly.js · Created by Jack Mitchell — M9PXZ*

@@ -1,5 +1,5 @@
 Polarscope Software License
-Copyright (c) 2026 Jack Mitchell (M7PXZ). All rights reserved.
+Copyright (c) 2026 Jack Mitchell (M9PXZ). All rights reserved.
 
 ================================================================================
 GRANT OF RIGHTS
@@ -59,8 +59,8 @@ CONTACT
 For licensing enquiries, commercial partnerships, or written permissions beyond
 the scope of this License, contact:
 
-  Jack Mitchell — M7PXZ
-  m7pxzqrz@gmail.com
+  Jack Mitchell — M9PXZ
+  papaxrayzulu@gmail.com
 
 ================================================================================
 SUMMARY (not a substitute for the full License text above)

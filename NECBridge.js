@@ -241,9 +241,12 @@ const NECBridge = {
     generateSweepDeck(st) {
         if (!st) throw new Error("State object is null");
         const fc = Math.max(0.1, parseFloat(st.freqMHz) || 435);
-        // Sweep from 0.35× to 2.2× centre frequency, 251 steps
-        const fStart = parseFloat((fc * 0.35).toFixed(4));
-        const fEnd   = parseFloat((fc * 2.2).toFixed(4));
+        // User-defined range takes priority; otherwise auto-span 0.35×–2.2× centre frequency
+        const userStart = parseFloat(st.swrFStart);
+        const userEnd   = parseFloat(st.swrFEnd);
+        const hasUserRange = isFinite(userStart) && isFinite(userEnd) && userStart > 0 && userEnd > userStart;
+        const fStart = hasUserRange ? parseFloat(userStart.toFixed(4)) : parseFloat((fc * 0.35).toFixed(4));
+        const fEnd   = hasUserRange ? parseFloat(userEnd.toFixed(4))   : parseFloat((fc * 2.2).toFixed(4));
         const lambdaM = 300 / fc;
         const gHeightM = st.showGnd ? this._groundHeightM(st) : 0;
         const useSommerfeld = gHeightM > 0.001;
